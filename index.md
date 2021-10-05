@@ -16,3 +16,8 @@ You can contact me at sl8160@nyu.edu
 Pavel Izmailov, Patrick Nicholson, Sanae Lotfi, Andrew Gordon Wilson \
 _Neural Information Processing Systems (NeurIPS), 2021_ \
 [[arxiv](https://arxiv.org/abs/2106.11905), [code](https://github.com/izmailovpavel/bnn_covariate_shift)]
+
+[Loss Surface Simplexes for Mode Connecting Volumes and Fast Ensembling](https://arxiv.org/pdf/2102.13042.pdf) \
+Gregory W. Benton, Wesley J. Maddox, Sanae Lotfi, Andrew Gordon Wilson \
+_International Conference on Machine Learning (ICML), 2021_ \
+[[arxiv](https://arxiv.org/abs/2102.13042), [code](https://github.com/g-benton/loss-surface-simplexes)]
