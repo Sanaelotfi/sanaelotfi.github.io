@@ -25,5 +25,5 @@ _International Conference on Machine Learning (ICML), 2021_ \
 [Stochastic Damped L-BFGS with Controlled Norm of the Hessian Approximation](https://arxiv.org/pdf/2012.05783.pdf) \
 Sanae Lotf, Tiphaine B. de Ruisselet, Dominique Orban, Andrea Lodi \
 _NeurIPS Optimization for Machine Learning Workshop, 2020_ \
-**spotlight presentation** \
+**Spotlight presentation** \
 [[arxiv](https://arxiv.org/abs/2012.05783)]
