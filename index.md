@@ -21,3 +21,8 @@ _Neural Information Processing Systems (NeurIPS), 2021_ \
 Gregory W. Benton, Wesley J. Maddox, Sanae Lotfi, Andrew Gordon Wilson \
 _International Conference on Machine Learning (ICML), 2021_ \
 [[arxiv](https://arxiv.org/abs/2102.13042), [code](https://github.com/g-benton/loss-surface-simplexes)]
+
+[Stochastic Damped L-BFGS with Controlled Norm of the Hessian Approximation](https://arxiv.org/pdf/2012.05783.pdf) \
+Sanae Lotf, Tiphaine B. de Ruisselet, Dominique Orban, Andrea Lodi \
+_NeurIPS Optimization for Machine Learning Workshop 2020, **spotlight presentation**_ \
+[[arxiv](https://arxiv.org/abs/2012.05783)]
