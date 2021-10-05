@@ -12,6 +12,9 @@ You can contact me at sl8160@nyu.edu
 ### Publications 
 
 [Dangers of Bayesian Model Averaging under Covariate Shift]()
+
 Pavel Izmailov, Patrick Nicholson, Sanae Lotfi, Andrew Gordon Wilson
+
 Neural Information Processing Systems (NeurIPS), 2021
+
 [[arxiv](https://arxiv.org/abs/2106.11905), [code](https://github.com/izmailovpavel/bnn_covariate_shift)]
