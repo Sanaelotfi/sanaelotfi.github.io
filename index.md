@@ -7,3 +7,11 @@ You can contact me at sl8160@nyu.edu
 
 [Google Scholar](https://scholar.google.com/citations?user=0GyjMX4AAAAJ&hl=fr&authuser=2), [LinkedIn](https://www.linkedin.com/in/sanae-lotfi-636825127), [Twitter](https://twitter.com/lotfisanae), [Github](https://github.com/Sanaelotfi)
 <!-- Remove above link if you don't want to attibute -->
+
+
+### Publications 
+
+[Dangers of Bayesian Model Averaging under Covariate Shift]()
+Pavel Izmailov, Patrick Nicholson, Sanae Lotfi, Andrew Gordon Wilson
+Neural Information Processing Systems (NeurIPS), 2021
+[[arxiv](https://arxiv.org/abs/2106.11905), [code](https://github.com/izmailovpavel/bnn_covariate_shift)]
