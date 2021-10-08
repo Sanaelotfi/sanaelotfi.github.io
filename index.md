@@ -1,4 +1,4 @@
-I am a PhD student at the [Center for Data Science](https://cds.nyu.edu/) at NYU and a [DeepMind](https://deepmind.com/) fellow, advised by Professor [Andrew Gordon Wilson](https://cims.nyu.edu/~andrewgw/).  I am currently interested in understanding and quantifying the generalization of deep learning models. More broadly, my research interests include out-of-distribution generalization in deep learning, statistical learning theory and inference, Bayesian learning, probabilistic modeling, large-scale optimization, and loss surface snalysis.
+I am a PhD student at the [Center for Data Science](https://cds.nyu.edu/) at NYU and a [DeepMind](https://deepmind.com/) fellow, advised by Professor [Andrew Gordon Wilson](https://cims.nyu.edu/~andrewgw/).  I am currently interested in understanding and quantifying the generalization of deep learning models. More broadly, my research interests include out-of-distribution generalization in deep learning, statistical learning theory and inference, Bayesian learning, probabilistic modeling, large-scale optimization, and loss surface analysis.
 
 Prior to NYU, I obtained a master’s degree in applied mathematics from [Polytechnique Montreal](https://www.polymtl.ca/). I was fortunate to work there with Professors [Andrea Lodi](https://cerc-datascience.polymtl.ca/person/dr-andrea-lodi/) and [Dominique Orban](https://dpo.github.io/) to design stochastic first- and second-order algorithms with compelling theoretical and empirical properties for machine learning and large-scale optimization. I also hold an engineering degree in general engineering and applied mathematics from [CentraleSupélec](https://www.centralesupelec.fr/en).
 
@@ -30,4 +30,4 @@ Spotlight presentation \
 
 [Stochastic First and Second Order Optimization Methods for Machine Learning](https://publications.polymtl.ca/5457/) \
 Sanae Lotfi \
-Master's Thesis 
+_Master's Thesis_ 
