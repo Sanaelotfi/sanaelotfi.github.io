@@ -30,4 +30,5 @@ Spotlight presentation \
 
 [Stochastic First and Second Order Optimization Methods for Machine Learning](https://publications.polymtl.ca/5457/) \
 Sanae Lotfi \
-_Master's Thesis_ 
+_Master's Thesis, 2020_ \
+Polytechnique Montreal 
