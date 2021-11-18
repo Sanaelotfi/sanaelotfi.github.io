@@ -17,6 +17,11 @@ Pavel Izmailov, Patrick Nicholson, Sanae Lotfi, Andrew Gordon Wilson \
 _Neural Information Processing Systems (NeurIPS), 2021_ \
 [[arxiv](https://arxiv.org/abs/2106.11905), [code](https://github.com/izmailovpavel/bnn_covariate_shift)]
 
+[NeurIPS 2021 Competition: Evaluating Approximate Inference in Bayesian Deep Learning](https://izmailovpavel.github.io/neurips_bdl_competition/files/BDL_NeurIPS_Competition.pdf) \
+Andrew Gordon Wilson, Pavel Izmailov, Matthew D Hoffman, Yarin Gal, Yingzhen Li, Melanie F Pradier, Sharad Vikram, Andrew Foong, Sanae Lotfi, Sebastian Farquhar \
+_Neural Information Processing Systems (NeurIPS), 2021_ \
+[[pdf](https://izmailovpavel.github.io/neurips_bdl_competition/files/BDL_NeurIPS_Competition.pdf)]
+
 [Loss Surface Simplexes for Mode Connecting Volumes and Fast Ensembling](https://arxiv.org/pdf/2102.13042.pdf) \
 Gregory W. Benton, Wesley J. Maddox, Sanae Lotfi, Andrew Gordon Wilson \
 _International Conference on Machine Learning (ICML), 2021_ \
