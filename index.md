@@ -1,4 +1,4 @@
-I am a PhD student at the [Center for Data Science](https://cds.nyu.edu/) at NYU and a [DeepMind](https://deepmind.com/) fellow, advised by Professor [Andrew Gordon Wilson](https://cims.nyu.edu/~andrewgw/).  I am currently interested in understanding and quantifying the generalization of deep learning models. More broadly, my research interests include out-of-distribution generalization in deep learning, statistical learning theory and inference, Bayesian learning, probabilistic modeling, large-scale optimization, and loss surface analysis.
+I am a PhD student at the [Center for Data Science](https://cds.nyu.edu/) at NYU and a [DeepMind](https://deepmind.com/) fellow, advised by Professor [Andrew Gordon Wilson](https://cims.nyu.edu/~andrewgw/).  I am currently interested in understanding and quantifying the generalization of deep learning models. More broadly, my research interests include out-of-distribution generalization, Bayesian learning, probabilistic modeling, large-scale optimization, and loss surface analysis.
 
 Prior to NYU, I obtained a master’s degree in applied mathematics from [Polytechnique Montreal](https://www.polymtl.ca/). I was fortunate to work there with Professors [Andrea Lodi](https://cerc-datascience.polymtl.ca/person/dr-andrea-lodi/) and [Dominique Orban](https://dpo.github.io/) to design stochastic first- and second-order algorithms with compelling theoretical and empirical properties for machine learning and large-scale optimization. I also hold an engineering degree in general engineering and applied mathematics from [CentraleSupélec](https://www.centralesupelec.fr/en).
 
@@ -21,11 +21,6 @@ _Under review_ \
 Pavel Izmailov, Patrick Nicholson, Sanae Lotfi, Andrew Gordon Wilson \
 _Neural Information Processing Systems (NeurIPS), 2021_ \
 [[arxiv](https://arxiv.org/abs/2106.11905), [code](https://github.com/izmailovpavel/bnn_covariate_shift)]
-
-[Evaluating Approximate Inference in Bayesian Deep Learning](https://izmailovpavel.github.io/neurips_bdl_competition/files/BDL_NeurIPS_Competition.pdf) \
-Andrew Gordon Wilson, Pavel Izmailov, Matthew D Hoffman, Yarin Gal, Yingzhen Li, Melanie F Pradier, Sharad Vikram, Andrew Foong, Sanae Lotfi, Sebastian Farquhar \
-_NeurIPS 2021 Competition_ \
-[[pdf](https://izmailovpavel.github.io/neurips_bdl_competition/files/BDL_NeurIPS_Competition.pdf)]
 
 [Loss Surface Simplexes for Mode Connecting Volumes and Fast Ensembling](https://arxiv.org/pdf/2102.13042.pdf) \
 Gregory W. Benton, Wesley J. Maddox, Sanae Lotfi, Andrew Gordon Wilson \
