@@ -22,15 +22,15 @@ Pavel Izmailov, Patrick Nicholson, Sanae Lotfi, Andrew Gordon Wilson \
 _Neural Information Processing Systems (NeurIPS), 2021_ \
 [[arxiv](https://arxiv.org/abs/2106.11905), [code](https://github.com/izmailovpavel/bnn_covariate_shift)]
 
-[Loss Surface Simplexes for Mode Connecting Volumes and Fast Ensembling](https://arxiv.org/pdf/2102.13042.pdf) \
-Gregory W. Benton, Wesley J. Maddox, Sanae Lotfi, Andrew Gordon Wilson \
-_International Conference on Machine Learning (ICML), 2021_ \
-[[arxiv](https://arxiv.org/abs/2102.13042), [code](https://github.com/g-benton/loss-surface-simplexes)]
-
 [Adaptive First-and Second-Order Algorithms for Large-Scale Machine Learning](https://arxiv.org/pdf/2111.14761.pdf) \
 Sanae Lotfi, Tiphaine Bonniot de Ruisselet, Dominique Orban, Andrea Lodi \
 _Journal of Information by MDPI, under review_ \
 [[arxiv](https://arxiv.org/pdf/2111.14761.pdf)]
+
+[Loss Surface Simplexes for Mode Connecting Volumes and Fast Ensembling](https://arxiv.org/pdf/2102.13042.pdf) \
+Gregory W. Benton, Wesley J. Maddox, Sanae Lotfi, Andrew Gordon Wilson \
+_International Conference on Machine Learning (ICML), 2021_ \
+[[arxiv](https://arxiv.org/abs/2102.13042), [code](https://github.com/g-benton/loss-surface-simplexes)]
 
 [Stochastic Damped L-BFGS with Controlled Norm of the Hessian Approximation](https://arxiv.org/pdf/2012.05783.pdf) \
 Sanae Lotfi, Tiphaine B. de Ruisselet, Dominique Orban, Andrea Lodi \
