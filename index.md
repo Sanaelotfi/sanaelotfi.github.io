@@ -12,6 +12,11 @@ You can contact me at sl8160@nyu.edu
 ---
 ### Publications 
 
+[Bayesian Model Selection, the Marginal Likelihood, and Generalization](https://arxiv.org/pdf/2202.11678.pdf) \
+Sanae Lotfi, Pavel Izmailov, Gregory Benton, Micah Goldblum, Andrew Gordon Wilson \
+Under review \
+[[arxiv](https://arxiv.org/pdf/2202.11678.pdf), [code](https://github.com/Sanaelotfi/Bayesian_model_comparison)]
+
 [Dangers of Bayesian Model Averaging under Covariate Shift](https://arxiv.org/pdf/2106.11905.pdf) \
 Pavel Izmailov, Patrick Nicholson, Sanae Lotfi, Andrew Gordon Wilson \
 _Neural Information Processing Systems (NeurIPS), 2021_ \
@@ -26,6 +31,11 @@ _NeurIPS 2021 Competition_ \
 Gregory W. Benton, Wesley J. Maddox, Sanae Lotfi, Andrew Gordon Wilson \
 _International Conference on Machine Learning (ICML), 2021_ \
 [[arxiv](https://arxiv.org/abs/2102.13042), [code](https://github.com/g-benton/loss-surface-simplexes)]
+
+[Adaptive First-and Second-Order Algorithms for Large-Scale Machine Learning](https://arxiv.org/pdf/2111.14761.pdf) \
+Sanae Lotfi, Tiphaine Bonniot de Ruisselet, Dominique Orban, Andrea Lodi \
+Journal of Information by MDPI, under review \
+[[arxiv](https://arxiv.org/pdf/2111.14761.pdf)]
 
 [Stochastic Damped L-BFGS with Controlled Norm of the Hessian Approximation](https://arxiv.org/pdf/2012.05783.pdf) \
 Sanae Lotfi, Tiphaine B. de Ruisselet, Dominique Orban, Andrea Lodi \
