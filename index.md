@@ -14,7 +14,8 @@ You can contact me at sl8160@nyu.edu
 
 [Bayesian Model Selection, the Marginal Likelihood, and Generalization](https://arxiv.org/pdf/2202.11678.pdf) \
 Sanae Lotfi, Pavel Izmailov, Gregory Benton, Micah Goldblum, Andrew Gordon Wilson \
-_Under review_ \
+_International Conference on Machine Learning (ICML), 2022_ \
+**Long oral presentation, top 2% submissions** \
 [[arxiv](https://arxiv.org/pdf/2202.11678.pdf), [code](https://github.com/Sanaelotfi/Bayesian_model_comparison)]
 
 [Dangers of Bayesian Model Averaging under Covariate Shift](https://arxiv.org/pdf/2106.11905.pdf) \
@@ -36,10 +37,11 @@ _International Conference on Machine Learning (ICML), 2021_ \
 [Stochastic Damped L-BFGS with Controlled Norm of the Hessian Approximation](https://arxiv.org/pdf/2012.05783.pdf) \
 Sanae Lotfi, Tiphaine B. de Ruisselet, Dominique Orban, Andrea Lodi \
 _NeurIPS Optimization for Machine Learning Workshop, 2020_ \
-Spotlight presentation \
+**Spotlight presentation** \
 [[arxiv](https://arxiv.org/abs/2012.05783)]
 
 [Stochastic First and Second Order Optimization Methods for Machine Learning](https://publications.polymtl.ca/5457/) \
 Sanae Lotfi \
 _Master's Thesis, 2020_ \
+**Best Thesis in Applied Mathematics at Polytechnique Montreal** \
 Polytechnique Montreal 
