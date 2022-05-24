@@ -25,8 +25,9 @@ _Neural Information Processing Systems (NeurIPS), 2021_ \
 
 [Adaptive First-and Second-Order Algorithms for Large-Scale Machine Learning](https://arxiv.org/pdf/2111.14761.pdf) \
 Sanae Lotfi, Tiphaine Bonniot de Ruisselet, Dominique Orban, Andrea Lodi \
-_Journal of Information by MDPI, under review_ \
 _Annual Conference on Machine Learning, Optimization, and Data Science (LOD), 2022_ \
+**Oral presentation** \
+_Journal of Information by MDPI, under review_ \
 [[arxiv](https://arxiv.org/pdf/2111.14761.pdf)]
 
 [Loss Surface Simplexes for Mode Connecting Volumes and Fast Ensembling](https://arxiv.org/pdf/2102.13042.pdf) \
