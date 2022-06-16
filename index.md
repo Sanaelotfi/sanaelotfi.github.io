@@ -18,17 +18,17 @@ _International Conference on Machine Learning (ICML), 2022_ \
 Long oral presentation, top 2% submissions \
 [[arxiv](https://arxiv.org/pdf/2202.11678.pdf), [code](https://github.com/Sanaelotfi/Bayesian_model_comparison)]
 
-[Dangers of Bayesian Model Averaging under Covariate Shift](https://arxiv.org/pdf/2106.11905.pdf) \
-Pavel Izmailov, Patrick Nicholson, Sanae Lotfi, Andrew Gordon Wilson \
-_Neural Information Processing Systems (NeurIPS), 2021_ \
-[[arxiv](https://arxiv.org/abs/2106.11905), [code](https://github.com/izmailovpavel/bnn_covariate_shift)]
-
 [Adaptive First-and Second-Order Algorithms for Large-Scale Machine Learning](https://arxiv.org/pdf/2111.14761.pdf) \
 Sanae Lotfi, Tiphaine Bonniot de Ruisselet, Dominique Orban, Andrea Lodi \
 _Annual Conference on Machine Learning, Optimization, and Data Science (LOD), 2022_ \
 Oral presentation \
 _Journal of Information by MDPI, under review_ \
 [[arxiv](https://arxiv.org/pdf/2111.14761.pdf)]
+
+[Dangers of Bayesian Model Averaging under Covariate Shift](https://arxiv.org/pdf/2106.11905.pdf) \
+Pavel Izmailov, Patrick Nicholson, Sanae Lotfi, Andrew Gordon Wilson \
+_Neural Information Processing Systems (NeurIPS), 2021_ \
+[[arxiv](https://arxiv.org/abs/2106.11905), [code](https://github.com/izmailovpavel/bnn_covariate_shift)]
 
 [Loss Surface Simplexes for Mode Connecting Volumes and Fast Ensembling](https://arxiv.org/pdf/2102.13042.pdf) \
 Gregory W. Benton, Wesley J. Maddox, Sanae Lotfi, Andrew Gordon Wilson \
