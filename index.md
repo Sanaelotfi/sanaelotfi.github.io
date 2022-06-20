@@ -21,7 +21,7 @@ _International Conference on Machine Learning (**ICML**), 2022_ \
 **[Adaptive First-and Second-Order Algorithms for Large-Scale Machine Learning](https://arxiv.org/pdf/2111.14761.pdf)** \
 **Sanae Lotfi**, Tiphaine Bonniot de Ruisselet, Dominique Orban, Andrea Lodi \
 _Annual Conference on Machine Learning, Optimization, and Data Science (**LOD**), 2022_ \
-**Oral presentation** \
+Oral presentation \
 _Journal of Information by MDPI, under review_ \
 [[arxiv](https://arxiv.org/pdf/2111.14761.pdf)]
 
@@ -33,13 +33,13 @@ _Neural Information Processing Systems (**NeurIPS**), 2021_ \
 **[Loss Surface Simplexes for Mode Connecting Volumes and Fast Ensembling](https://arxiv.org/pdf/2102.13042.pdf)** \
 Gregory W. Benton, Wesley J. Maddox, **Sanae Lotfi**, Andrew Gordon Wilson \
 _International Conference on Machine Learning (**ICML**), 2021_ \
-**Spotlight presentation** \
+Spotlight presentation \
 [[arxiv](https://arxiv.org/abs/2102.13042), [code](https://github.com/g-benton/loss-surface-simplexes)]
 
 **[Stochastic Damped L-BFGS with Controlled Norm of the Hessian Approximation](https://arxiv.org/pdf/2012.05783.pdf)**\
 **Sanae Lotfi**, Tiphaine B. de Ruisselet, Dominique Orban, Andrea Lodi \
 _NeurIPS Optimization for Machine Learning Workshop, 2020_ \
-**Spotlight presentation** \
+Spotlight presentation \
 [[arxiv](https://arxiv.org/abs/2012.05783)]
 
 **[Stochastic First and Second Order Optimization Methods for Machine Learning](https://publications.polymtl.ca/5457/)** \
