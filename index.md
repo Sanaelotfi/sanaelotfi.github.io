@@ -49,3 +49,11 @@ Spotlight presentation \
 _Master's Thesis, 2020_ \
 **Best Thesis in Applied Mathematics at Polytechnique Montreal** \
 Polytechnique Montreal 
+
+
+---
+### Surveys
+**<a href="https://github.com/Sanaelotfi/PAC-Bayes-Survey/blob/main/pac_bayes_bounds_survey." target="_blank">Understanding the Generalization of Deep Neural Networks through PAC-Bayes bounds: A Survey</a>**\
+ Andres Potapczynski, **Sanae Lotfi**, Anthony Chen, Chris Ick. \
+_NeurIPS Optimization for Machine Learning Workshop, 2020_ \
+
