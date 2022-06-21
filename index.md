@@ -53,7 +53,7 @@ Polytechnique Montreal
 
 ---
 ### Surveys
-**<a href="https://github.com/Sanaelotfi/PAC-Bayes-Survey/blob/main/pac_bayes_bounds_survey." target="_blank">Understanding the Generalization of Deep Neural Networks through PAC-Bayes bounds: A Survey</a>**\
+**<a href="https://github.com/Sanaelotfi/PAC-Bayes-Survey/blob/main/pac_bayes_bounds_survey.pdf" target="_blank">Understanding the Generalization of Deep Neural Networks through PAC-Bayes bounds: A Survey</a>**\
  Andres Potapczynski, **Sanae Lotfi**, Anthony Chen, Chris Ick. \
 _NeurIPS Optimization for Machine Learning Workshop, 2020_ \
 
