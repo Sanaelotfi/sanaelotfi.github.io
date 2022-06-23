@@ -58,7 +58,7 @@ Polytechnique Montreal
 Andres Potapczynski, **Sanae Lotfi**, Anthony Chen, Chris Ick \
 Class Project for the Mathematics of Deep Learning, CS-GA 3033, Spring 2022
 
-**<a href="https://sanaelotfi.github.io/pdf/main/causal_representation_learning_survey.pdf" target="_blank">Causal Representation Learning: A Survey </a>**\
+**<a href="https://sanaelotfi.github.io/pdf/causal_representation_learning_survey.pdf" target="_blank">Causal Representation Learning: A Survey </a>**\
 **Sanae Lotfi**, Taro Makino, Lily Zhang \
 Class Project for Inference and Representation, DS-GA 1005, Fall 2021
 
