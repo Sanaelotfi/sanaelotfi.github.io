@@ -15,37 +15,37 @@ You can contact me at sl8160@nyu.edu
 ### Publications 
 
 **[Bayesian Model Selection, the Marginal Likelihood, and Generalization](https://arxiv.org/pdf/2202.11678.pdf)** \
-**Sanae Lotfi**, Pavel Izmailov, Gregory Benton, Micah Goldblum, Andrew Gordon Wilson \
-_International Conference on Machine Learning (**ICML**), 2022_ \
+Sanae Lotfi, Pavel Izmailov, Gregory Benton, Micah Goldblum, Andrew Gordon Wilson \
+_International Conference on Machine Learning (ICML), 2022_ \
 **Long oral presentation, top 2% submissions** \
 [[arxiv](https://arxiv.org/pdf/2202.11678.pdf), [code](https://github.com/Sanaelotfi/Bayesian_model_comparison)]
 
 **[Adaptive First-and Second-Order Algorithms for Large-Scale Machine Learning](https://arxiv.org/pdf/2111.14761.pdf)** \
-**Sanae Lotfi**, Tiphaine Bonniot de Ruisselet, Dominique Orban, Andrea Lodi \
-_Annual Conference on Machine Learning, Optimization, and Data Science (**LOD**), 2022_ \
+Sanae Lotfi, Tiphaine Bonniot de Ruisselet, Dominique Orban, Andrea Lodi \
+_Annual Conference on Machine Learning, Optimization, and Data Science (LOD), 2022_ \
 **Oral presentation**\
 _Journal of Information by MDPI, under review_ \
 [[arxiv](https://arxiv.org/pdf/2111.14761.pdf)]
 
 **[Dangers of Bayesian Model Averaging under Covariate Shift](https://arxiv.org/pdf/2106.11905.pdf)** \
-Pavel Izmailov, Patrick Nicholson, **Sanae Lotfi**, Andrew Gordon Wilson \
-_Neural Information Processing Systems (**NeurIPS**), 2021_ \
+Pavel Izmailov, Patrick Nicholson, Sanae Lotfi, Andrew Gordon Wilson \
+_Neural Information Processing Systems (NeurIPS), 2021_ \
 [[arxiv](https://arxiv.org/abs/2106.11905), [code](https://github.com/izmailovpavel/bnn_covariate_shift)]
 
 **[Loss Surface Simplexes for Mode Connecting Volumes and Fast Ensembling](https://arxiv.org/pdf/2102.13042.pdf)** \
-Gregory W. Benton, Wesley J. Maddox, **Sanae Lotfi**, Andrew Gordon Wilson \
-_International Conference on Machine Learning (**ICML**), 2021_ \
+Gregory W. Benton, Wesley J. Maddox, Sanae Lotfi, Andrew iordon Wilson \
+_International Conference on Machine Learning (ICML),021_
 **Spotlight presentation** \
 [[arxiv](https://arxiv.org/abs/2102.13042), [code](https://github.com/g-benton/loss-surface-simplexes)]
 
 **[Stochastic Damped L-BFGS with Controlled Norm of the Hessian Approximation](https://arxiv.org/pdf/2012.05783.pdf)**\
-**Sanae Lotfi**, Tiphaine B. de Ruisselet, Dominique Orban, Andrea Lodi \
+Sanae Lotfi, Tiphaine B. de Ruisselet, Dominique Orban, Andrea Lodi \
 _NeurIPS Optimization for Machine Learning Workshop, 2020_ \
 **Spotlight presentation** \
 [[arxiv](https://arxiv.org/abs/2012.05783)]
 
 **[Stochastic First and Second Order Optimization Methods for Machine Learning](https://publications.polymtl.ca/5457/)** \
-**Sanae Lotfi** \
+Sanae Lotfi \
 _Master's Thesis, 2020_ \
 **Best Thesis in Applied Mathematics at Polytechnique Montreal** \
 Polytechnique Montreal 
@@ -55,10 +55,10 @@ Polytechnique Montreal
 ### Surveys
 
 **<a href="https://sanaelotfi.github.io/pdf/pac_bayes_bounds_survey.pdf" target="_blank">Understanding the Generalization of Deep Neural Networks through PAC-Bayes bounds </a>**\
-Andres Potapczynski, **Sanae Lotfi**, Anthony Chen, Chris Ick \
+Andres Potapczynski, Sanae Lotfi, Anthony Chen, Chris Ick \
 Class Project for the Mathematics of Deep Learning, CS-GA 3033, Spring 2022
 
 **<a href="https://sanaelotfi.github.io/pdf/causal_representation_learning_survey.pdf" target="_blank">Causal Representation Learning </a>**\
-**Sanae Lotfi**, Taro Makino, Lily Zhang \
+Sanae Lotfi, Taro Makino, Lily Zhang \
 Class Project for Inference and Representation, DS-GA 1005, Fall 2021
 
