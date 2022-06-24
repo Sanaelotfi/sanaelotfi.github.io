@@ -42,8 +42,7 @@ _International Conference on Machine Learning (ICML),2021_ \
 Sanae Lotfi, Tiphaine B. de Ruisselet, Dominique Orban, Andrea Lodi \
 _NeurIPS Optimization for Machine Learning Workshop, 2020_ \
 **Spotlight presentation** \
-_SIAM Conference on Optimization, 2021_ \
-**Oral presentation** \
+_SIAM Conference on Optimization, 2021_, **Oral presentation** \
 [[arxiv](https://arxiv.org/abs/2012.05783)]
 
 **[Stochastic First and Second Order Optimization Methods for Machine Learning](https://publications.polymtl.ca/5457/)** \
