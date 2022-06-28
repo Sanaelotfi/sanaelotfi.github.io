@@ -24,7 +24,6 @@ _International Conference on Machine Learning (ICML), 2022_ \
 Sanae Lotfi, Tiphaine Bonniot de Ruisselet, Dominique Orban, Andrea Lodi \
 _Annual Conference on Machine Learning, Optimization, and Data Science (LOD), 2022_ \
 **Oral presentation**\
-_Journal of Information by MDPI, under review_ \
 [[arxiv](https://arxiv.org/pdf/2111.14761.pdf)]
 
 **[Dangers of Bayesian Model Averaging under Covariate Shift](https://arxiv.org/pdf/2106.11905.pdf)** \
