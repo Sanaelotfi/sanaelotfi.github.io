@@ -7,7 +7,7 @@ In summer 2022, I am excited to work with [Bernie Wang](http://web.mit.edu/~ywan
 ---
 You can contact me at sl8160@nyu.edu
 
-<a href="https://sanaelotfi.github.io/pdf/cv_sanae_lotfi_0705.pdf" target="_blank">CV</a>, [Google Scholar](https://scholar.google.com/citations?user=0GyjMX4AAAAJ&hl=fr&authuser=2), [LinkedIn](https://www.linkedin.com/in/sanae-lotfi-636825127), [Twitter](https://twitter.com/lotfisanae), [Github](https://github.com/Sanaelotfi)
+<a href="https://sanaelotfi.github.io/pdf/cv_sanae_lotfi_0706.pdf" target="_blank">CV</a>, [Google Scholar](https://scholar.google.com/citations?user=0GyjMX4AAAAJ&hl=fr&authuser=2), [LinkedIn](https://www.linkedin.com/in/sanae-lotfi-636825127), [Twitter](https://twitter.com/lotfisanae), [Github](https://github.com/Sanaelotfi)
 <!-- Remove above link if you don't want to attibute -->
 
 
