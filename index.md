@@ -49,7 +49,7 @@ _NeurIPS Optimization for Machine Learning Workshop, 2020_ \
 **[Stochastic First and Second Order Optimization Methods for Machine Learning](https://publications.polymtl.ca/5457/)** \
 **Sanae Lotfi** \
 _Master's Thesis, 2020_ \
-**Best Thesis in Applied Mathematics at Polytechnique Montreal** \
+**Best Thesis Award in Applied Mathematics at Polytechnique Montreal** \
 Polytechnique Montreal 
 
 
