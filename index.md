@@ -29,6 +29,13 @@ _Annual Conference on Machine Learning, Optimization, and Data Science (LOD), 20
 **Oral presentation**\
 [[arxiv](https://arxiv.org/pdf/2111.14761.pdf)]
 
+
+**[Evaluating Approximate Inference in Bayesian Deep Learning](https://proceedings.mlr.press/v176/wilson22a/wilson22a.pdf)** \
+Andrew Gordon Wilson, **Sanae Lotfi**, Sharad Vikram, Matthew D. Hoffman, Yarin Gal, Yingzhen Li, Melanie F. Pradier, Andrew Foong, Sebastian Farquhar, Pavel Izmailov \
+_NeurIPS Competition and Demonstration Track, Proceedings of Machine Learning Research (PMLR), 2022_ \
+[[link](https://proceedings.mlr.press/v176/wilson22a/wilson22a.pdf)]
+
+
 **[Dangers of Bayesian Model Averaging under Covariate Shift](https://arxiv.org/pdf/2106.11905.pdf)** \
 Pavel Izmailov, Patrick Nicholson, **Sanae Lotfi**, Andrew Gordon Wilson \
 _Neural Information Processing Systems (NeurIPS), 2021_ \
