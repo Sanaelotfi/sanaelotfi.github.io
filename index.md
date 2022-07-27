@@ -9,7 +9,7 @@ In summer 2022, I am excited to work with [Bernie Wang](http://web.mit.edu/~ywan
 ---
 You can contact me at sl8160@nyu.edu
  
-<a href="https://sanaelotfi.github.io/pdf/cv_lotfi.pdf" target="_blank">CV</a>, [Google Scholar](https://scholar.google.com/citations?user=0GyjMX4AAAAJ&authuser=2), [LinkedIn](https://www.linkedin.com/in/sanae-lotfi-636825127), [Twitter](https://twitter.com/lotfisanae), [Github](https://github.com/Sanaelotfi)
+<a href="https://sanaelotfi.github.io/pdf/cv_sanae_lotfi.pdf" target="_blank">CV</a>, [Google Scholar](https://scholar.google.com/citations?user=0GyjMX4AAAAJ&authuser=2), [LinkedIn](https://www.linkedin.com/in/sanae-lotfi-636825127), [Twitter](https://twitter.com/lotfisanae), [Github](https://github.com/Sanaelotfi)
 <!-- Remove above link if you don't want to attibute -->
 
 
@@ -24,16 +24,16 @@ _International Conference on Machine Learning (ICML), 2022_ \
 [[arxiv](https://arxiv.org/pdf/2202.11678.pdf), [code](https://github.com/Sanaelotfi/Bayesian_model_comparison)]
 
 
-**[Evaluating Approximate Inference in Bayesian Deep Learning](https://proceedings.mlr.press/v176/wilson22a/wilson22a.pdf)** \
-Andrew Gordon Wilson, **Sanae Lotfi**, Sharad Vikram, Matthew D. Hoffman, Yarin Gal, Yingzhen Li, Melanie F. Pradier, Andrew Foong, Sebastian Farquhar, Pavel Izmailov \
-_NeurIPS Competition and Demonstration Track, Proceedings of Machine Learning Research (PMLR), 2022_ \
-[[pdf](https://proceedings.mlr.press/v176/wilson22a/wilson22a.pdf), [code](https://github.com/izmailovpavel/neurips_bdl_starter_kit), [website](https://izmailovpavel.github.io/neurips_bdl_competition/)]
-
 **[Adaptive First-and Second-Order Algorithms for Large-Scale Machine Learning](https://arxiv.org/pdf/2111.14761.pdf)** \
 **Sanae Lotfi**, Tiphaine Bonniot de Ruisselet, Dominique Orban, Andrea Lodi \
 _Annual Conference on Machine Learning, Optimization, and Data Science (LOD), 2022_ \
 **Oral presentation**\
 [[arxiv](https://arxiv.org/pdf/2111.14761.pdf)]
+
+**[Evaluating Approximate Inference in Bayesian Deep Learning](https://proceedings.mlr.press/v176/wilson22a/wilson22a.pdf)** \
+Andrew Gordon Wilson, **Sanae Lotfi**, Sharad Vikram, Matthew D. Hoffman, Yarin Gal, Yingzhen Li, Melanie F. Pradier, Andrew Foong, Sebastian Farquhar, Pavel Izmailov \
+_NeurIPS Competition and Demonstration Track, Proceedings of Machine Learning Research (PMLR), 2022_ \
+[[plmr](https://proceedings.mlr.press/v176/wilson22a/wilson22a.pdf), [code](https://github.com/izmailovpavel/neurips_bdl_starter_kit), [website](https://izmailovpavel.github.io/neurips_bdl_competition/)]
 
 
 **[Dangers of Bayesian Model Averaging under Covariate Shift](https://arxiv.org/pdf/2106.11905.pdf)** \
