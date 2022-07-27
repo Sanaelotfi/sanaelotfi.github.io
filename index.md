@@ -23,17 +23,17 @@ _International Conference on Machine Learning (ICML), 2022_ \
 **Outstanding Paper Award** \
 [[arxiv](https://arxiv.org/pdf/2202.11678.pdf), [code](https://github.com/Sanaelotfi/Bayesian_model_comparison)]
 
-**[Adaptive First-and Second-Order Algorithms for Large-Scale Machine Learning](https://arxiv.org/pdf/2111.14761.pdf)** \
-**Sanae Lotfi**, Tiphaine Bonniot de Ruisselet, Dominique Orban, Andrea Lodi \
-_Annual Conference on Machine Learning, Optimization, and Data Science (LOD), 2022_ \
-**Oral presentation**\
-[[arxiv](https://arxiv.org/pdf/2111.14761.pdf)]
-
 
 **[Evaluating Approximate Inference in Bayesian Deep Learning](https://proceedings.mlr.press/v176/wilson22a/wilson22a.pdf)** \
 Andrew Gordon Wilson, **Sanae Lotfi**, Sharad Vikram, Matthew D. Hoffman, Yarin Gal, Yingzhen Li, Melanie F. Pradier, Andrew Foong, Sebastian Farquhar, Pavel Izmailov \
 _NeurIPS Competition and Demonstration Track, Proceedings of Machine Learning Research (PMLR), 2022_ \
 [[pdf](https://proceedings.mlr.press/v176/wilson22a/wilson22a.pdf), [code](https://github.com/izmailovpavel/neurips_bdl_starter_kit), [website](https://izmailovpavel.github.io/neurips_bdl_competition/)]
+
+**[Adaptive First-and Second-Order Algorithms for Large-Scale Machine Learning](https://arxiv.org/pdf/2111.14761.pdf)** \
+**Sanae Lotfi**, Tiphaine Bonniot de Ruisselet, Dominique Orban, Andrea Lodi \
+_Annual Conference on Machine Learning, Optimization, and Data Science (LOD), 2022_ \
+**Oral presentation**\
+[[arxiv](https://arxiv.org/pdf/2111.14761.pdf)]
 
 
 **[Dangers of Bayesian Model Averaging under Covariate Shift](https://arxiv.org/pdf/2106.11905.pdf)** \
