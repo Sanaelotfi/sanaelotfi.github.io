@@ -2,7 +2,7 @@ I am a PhD student at the [Center for Data Science](https://cds.nyu.edu/) at NYU
 
 Prior to NYU, I obtained a master’s degree in applied mathematics from [Polytechnique Montreal](https://www.polymtl.ca/). I was fortunate to work there with Professors [Andrea Lodi](https://tech.cornell.edu/people/andrea-lodi/) and [Dominique Orban](https://dpo.github.io/) to design stochastic first- and second-order algorithms with compelling theoretical and empirical properties for machine learning and large-scale optimization. I received the Best Master's Thesis Award in Applied Mathematics for this work. 
 
-I also hold an engineering degree in general engineering and applied mathematics from [CentraleSupélec](https://www.centralesupelec.fr/en).
+I also hold a master's degree in general engineering and applied mathematics from [CentraleSupélec](https://www.centralesupelec.fr/en).
 
 In summer 2022, I am excited to work with [Bernie Wang](http://web.mit.edu/~ywang02/www/) and [Richard Kurle](https://scholar.google.fr/citations?user=q2YBN34AAAAJ&hl=en) at Amazon as an Applied Scientist Intern. 
 
