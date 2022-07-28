@@ -16,7 +16,7 @@ You can contact me at sl8160@nyu.edu
 ---
 ### Publications 
 
-**[Bayesian Model Selection, the Marginal Likelihood, and Generalization](https://arxiv.org/pdf/2202.11678.pdf)** \
+**[Bayesian Model Selection, the Marginal Likelihood, and Generalization](https://arxiv.org/abs/2202.11678)** \
 **Sanae Lotfi**, Pavel Izmailov, Gregory Benton, Micah Goldblum, Andrew Gordon Wilson \
 _International Conference on Machine Learning (ICML), 2022_ \
 **Long oral presentation, top 2% submissions** \
@@ -24,7 +24,7 @@ _International Conference on Machine Learning (ICML), 2022_ \
 [[arxiv](https://arxiv.org/pdf/2202.11678.pdf), [code](https://github.com/Sanaelotfi/Bayesian_model_comparison)]
 
 
-**[Adaptive First-and Second-Order Algorithms for Large-Scale Machine Learning](https://arxiv.org/pdf/2111.14761.pdf)** \
+**[Adaptive First-and Second-Order Algorithms for Large-Scale Machine Learning](https://arxiv.org/abs/2111.14761)** \
 **Sanae Lotfi**, Tiphaine Bonniot de Ruisselet, Dominique Orban, Andrea Lodi \
 _Annual Conference on Machine Learning, Optimization, and Data Science (LOD), 2022_ \
 **Oral presentation**\
@@ -36,18 +36,18 @@ _NeurIPS Competition and Demonstration Track, Proceedings of Machine Learning Re
 [[plmr](https://proceedings.mlr.press/v176/wilson22a/wilson22a.pdf), [code](https://github.com/izmailovpavel/neurips_bdl_starter_kit), [website](https://izmailovpavel.github.io/neurips_bdl_competition/)]
 
 
-**[Dangers of Bayesian Model Averaging under Covariate Shift](https://arxiv.org/pdf/2106.11905.pdf)** \
+**[Dangers of Bayesian Model Averaging under Covariate Shift](https://arxiv.org/abs/2106.11905)** \
 Pavel Izmailov, Patrick Nicholson, **Sanae Lotfi**, Andrew Gordon Wilson \
 _Neural Information Processing Systems (NeurIPS), 2021_ \
 [[arxiv](https://arxiv.org/abs/2106.11905), [code](https://github.com/izmailovpavel/bnn_covariate_shift)]
 
-**[Loss Surface Simplexes for Mode Connecting Volumes and Fast Ensembling](https://arxiv.org/pdf/2102.13042.pdf)** \
+**[Loss Surface Simplexes for Mode Connecting Volumes and Fast Ensembling](https://arxiv.org/abs/2102.13042)** \
 Gregory W. Benton, Wesley J. Maddox, **Sanae Lotfi**, Andrew Gordon Wilson \
 _International Conference on Machine Learning (ICML), 2021_ \
 **Spotlight presentation** \
 [[arxiv](https://arxiv.org/abs/2102.13042), [code](https://github.com/g-benton/loss-surface-simplexes)]
 
-**[Stochastic Damped L-BFGS with Controlled Norm of the Hessian Approximation](https://arxiv.org/pdf/2012.05783.pdf)**\
+**[Stochastic Damped L-BFGS with Controlled Norm of the Hessian Approximation](https://arxiv.org/abs/2012.05783)**\
 **Sanae Lotfi**, Tiphaine B. de Ruisselet, Dominique Orban, Andrea Lodi \
 _SIAM Conference on Optimization, 2021_ \
 **Oral presentation** \
