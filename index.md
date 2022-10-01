@@ -68,6 +68,7 @@ _Master's Thesis, 2020_ \
 **Best Thesis Award in Applied Mathematics at Polytechnique Montreal** \
 Polytechnique Montreal 
 
+<sup>*</sup>: Equal first authorship. 
 ---
 ### Surveys
 
