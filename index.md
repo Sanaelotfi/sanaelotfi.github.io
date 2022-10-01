@@ -1,6 +1,6 @@
 I am a PhD student at the [Center for Data Science](https://cds.nyu.edu/) at NYU and a [DeepMind fellow](https://nyudatascience.medium.com/deepmind-fellow-profile-sanae-lotfi-9197c0c5fb94), advised by Professor [Andrew Gordon Wilson](https://cims.nyu.edu/~andrewgw/).  
 
-I am interested in designing robust models that can generalize well in-distribution and out-of-distribution. I also work on the closely related question of understanding and quantifying the generalization properties of deep neural networks. Our latest work on model comparison and generalization received the Outstanding Paper Award at ICML 2022. More broadly, my research interests include Bayesian learning, large-scale optimization, and time series modeling.
+I am currently interested in designing robust models that can generalize well in-distribution and out-of-distribution. I also work on the closely related question of understanding and quantifying the generalization properties of deep neural networks. Our latest work on [Bayesian model comparison](https://arxiv.org/abs/2202.11678) received the Outstanding Paper Award at ICML 2022. 
 
 Prior to NYU, I obtained a master’s degree in applied mathematics from [Polytechnique Montreal](https://www.polymtl.ca/). I was fortunate to work there with Professors [Andrea Lodi](https://tech.cornell.edu/people/andrea-lodi/) and [Dominique Orban](https://dpo.github.io/) to design stochastic first- and second-order algorithms with compelling theoretical and empirical properties for machine learning and large-scale optimization. I received the Best Master's Thesis Award in Applied Mathematics for this work. 
 
@@ -19,7 +19,7 @@ You can contact me at sl8160@nyu.edu
 ### Publications 
 
 **PAC-Bayes Compression Bounds So Tight That They Can Explain Generalization** \
-**Sanae Lotfi^***, Sanyam Kapoor^*, Marc Anton Finzi, Andres Potapczynski, Micah Goldblum, Andrew Gordon Wilson \
+**Sanae Lotfi<sup>*</sup>**, Sanyam Kapoor, Marc Anton Finzi, Andres Potapczynski, Micah Goldblum, Andrew Gordon Wilson \
 _Neural Information Processing Systems (NeurIPS), 2022_
 
 
