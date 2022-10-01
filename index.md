@@ -66,9 +66,10 @@ _NeurIPS Optimization for Machine Learning Workshop, 2020_ \
 **Sanae Lotfi** \
 _Master's Thesis, 2020_ \
 **Best Thesis Award in Applied Mathematics at Polytechnique Montreal** \
-Polytechnique Montreal 
+Polytechnique Montreal
 
 <sup>*</sup>: Equal first authorship. 
+
 ---
 ### Surveys
 
