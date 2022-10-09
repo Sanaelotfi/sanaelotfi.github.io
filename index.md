@@ -2,10 +2,10 @@ I am a PhD student at the [Center for Data Science](https://cds.nyu.edu/) at NYU
 
 I am currently interested in designing robust models that can generalize well in-distribution and out-of-distribution. I also work on the closely related question of understanding and quantifying the generalization properties of deep neural networks. Our latest work on [Bayesian model comparison](https://arxiv.org/abs/2202.11678) received the Outstanding Paper Award at ICML 2022! 
 
-Prior to NYU, I obtained a master’s degree in applied mathematics from [Polytechnique Montreal](https://www.polymtl.ca/). I was fortunate to work there with Professors [Andrea Lodi](https://tech.cornell.edu/people/andrea-lodi/) and [Dominique Orban](https://dpo.github.io/) to design stochastic first- and second-order algorithms with compelling theoretical and empirical properties for machine learning and large-scale optimization. I received the [Best Master's Thesis Award in Applied Mathematics and Industrial Engineering](https://www.gerad.ca/en/posts/903) for this work. I also hold a master's degree in general engineering and applied mathematics from [CentraleSupélec](https://www.centralesupelec.fr/en).
+Prior to NYU, I obtained a master’s degree in applied mathematics from [Polytechnique Montreal](https://www.polymtl.ca/). I was fortunate to work there with Professors [Andrea Lodi](https://tech.cornell.edu/people/andrea-lodi/) and [Dominique Orban](https://dpo.github.io/) to design stochastic first- and second-order algorithms with compelling theoretical and empirical properties for machine learning and large-scale optimization. I received the **[Best Master's Thesis Award in Applied Mathematics and Industrial Engineering](https://www.gerad.ca/en/posts/903)** for this work. I also hold a master's degree in general engineering and applied mathematics from [CentraleSupélec](https://www.centralesupelec.fr/en).
 
 - Starting October 2022, I will join the **Fundamental AI Research (FAIR)** group at **Meta AI** to work with [Brandon Amos](http://bamos.github.io/) as a **Visiting Researcher**.
-- In summer 2022, I was fortunate to work with [Bernie Wang](http://web.mit.edu/~ywang02/www/) and [Richard Kurle](https://scholar.google.fr/citations?user=q2YBN34AAAAJ&hl=en) at **Amazon as an Applied Scientist Intern**. 
+- In summer 2022, I was fortunate to work with [Bernie Wang](http://web.mit.edu/~ywang02/www/) and [Richard Kurle](https://scholar.google.fr/citations?user=q2YBN34AAAAJ&hl=en) at **Amazon** an **Applied Scientist Intern**. 
 
 ---
 You can contact me at sl8160@nyu.edu
