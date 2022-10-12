@@ -27,7 +27,7 @@ _Neural Information Processing Systems (NeurIPS), 2022_
 _International Conference on Machine Learning (ICML), 2022_ \
 **Long oral presentation, top 2% submissions** \
 **Outstanding Paper Award** \
-[[arxiv](https://arxiv.org/pdf/2202.11678.pdf), [code](https://github.com/Sanaelotfi/Bayesian_model_comparison), <a href="https://sanaelotfi.github.io/pdf/posters/LML_Poster_ICML_2022.pdf" target="_blank">poster</a>, [talk](https://slideslive.com/38983095/bayesian-model-selection-the-marginal-likelihood-and-generalization)]
+[[arxiv](https://arxiv.org/pdf/2202.11678.pdf), [code](https://github.com/Sanaelotfi/Bayesian_model_comparison), <a href="https://sanaelotfi.github.io/pdf/posters/LML_Poster_ICML_2022.pdf" target="_blank">poster</a>, [talk](https://slideslive.com/38983095/bayesian-model-selection-the-marginal-likelihood-and-generalization), <a href="https://sanaelotfi.github.io/pdf/slides/conference_presentations/LML_Sanae_Lotfi_ICML_2022.pdf" target="_blank">slides</a>]
 
 
 **[Adaptive First-and Second-Order Algorithms for Large-Scale Machine Learning](https://arxiv.org/abs/2111.14761)** \
