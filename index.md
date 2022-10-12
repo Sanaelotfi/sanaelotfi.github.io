@@ -10,7 +10,7 @@ Prior to NYU, I obtained a master’s degree in applied mathematics from [Polyte
 ---
 You can contact me at sl8160@nyu.edu
  
-<a href="https://sanaelotfi.github.io/pdf/CV_oct_2022.pdf" target="_blank">CV</a>, [Google Scholar](https://scholar.google.com/citations?user=0GyjMX4AAAAJ&authuser=2), [LinkedIn](https://www.linkedin.com/in/sanae-lotfi-636825127), [Twitter](https://twitter.com/lotfisanae), [Github](https://github.com/Sanaelotfi)
+<a href="https://sanaelotfi.github.io/pdf/cv/CV_oct_2022.pdf" target="_blank">CV</a>, [Google Scholar](https://scholar.google.com/citations?user=0GyjMX4AAAAJ&authuser=2), [LinkedIn](https://www.linkedin.com/in/sanae-lotfi-636825127), [Twitter](https://twitter.com/lotfisanae), [Github](https://github.com/Sanaelotfi)
 <!-- Remove above link if you don't want to attibute -->
 
 
@@ -72,11 +72,11 @@ Polytechnique Montreal
 ---
 ### Surveys
 
-**<a href="https://sanaelotfi.github.io/pdf/pac_bayes_bounds_survey.pdf" target="_blank">Understanding the Generalization of Deep Neural Networks through PAC-Bayes bounds </a>**\
+**<a href="https://sanaelotfi.github.io/pdf/project_reports/pac_bayes_bounds_survey.pdf" target="_blank">Understanding the Generalization of Deep Neural Networks through PAC-Bayes bounds </a>**\
 Andres Potapczynski, Sanae Lotfi, Anthony Chen, Chris Ick \
 Class Project for the Mathematics of Deep Learning, CS-GA 3033, Spring 2022
 
-**<a href="https://sanaelotfi.github.io/pdf/causal_representation_learning_survey.pdf" target="_blank">Causal Representation Learning </a>**\
+**<a href="https://sanaelotfi.github.io/pdf/project_reports/causal_representation_learning_survey.pdf" target="_blank">Causal Representation Learning </a>**\
 Sanae Lotfi, Taro Makino, Lily Zhang \
 Class Project for Inference and Representation, DS-GA 1005, Fall 2021
 
