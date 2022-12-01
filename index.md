@@ -16,7 +16,7 @@ You can contact me at sl8160@nyu.edu
 ---
 ### Publications 
 
-PAC-Bayes Compression Bounds So Tight That They Can Explain Generalization \
+**[PAC-Bayes Compression Bounds So Tight That They Can Explain Generalization](https://arxiv.org/abs/2211.13609)** \
 **Sanae Lotfi<sup>\*</sup>**, Marc Finzi<sup>\*</sup>, Sanyam Kapoor<sup>\*</sup>, Andres Potapczynski<sup>\*</sup>, Micah Goldblum, Andrew Gordon Wilson \
 _Neural Information Processing Systems (NeurIPS), 2022_
 
