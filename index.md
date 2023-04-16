@@ -81,9 +81,9 @@ Polytechnique Montreal
 - The Data Science and Machine Learning Research Group
 - ML Collective, Deep Learning: Classics and Trends
 - Amazon Web Services, Forecast Science Talks
-- International Conference on Machine Learning (ICML), Long Oral, [[video](https://slideslive.com/38983095/bayesian-model-selection-the-marginal-likelihood-and-generalization)]
+- International Conference on Machine Learning (ICML), Long Oral
 - INRIA Social Data Group
-- Morocco AI, Webinar Series, [[video](https://www.youtube.com/watch?v=wrmz7sozapg&ab_channel=MoroccoAI)]
+- Morocco AI, Webinar Series
 
 **Robustness of Deep Learning Models to Distribution Shift**
 - ICML 2022 Women in Machine Learning Workshop, Session Leader
