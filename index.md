@@ -75,22 +75,22 @@ Polytechnique Montreal
 - Massachusetts Institute of Technology (MIT), CSAIL seminar
 - Harvard University, Data to Actionable Knowledge Lab
 - Fundamental AI Research (FAIR), Meta AI NYC
-- NeurIPS North Africans in ML Workshop, **Invited Talk**
+- NeurIPS North Africans in ML Workshop, Invited Talk
 
 **Bayesian Model Selection, the Marginal Likelihood, and Generalization**
 - The Data Science and Machine Learning Research Group
 - ML Collective, Deep Learning: Classics and Trends
 - Amazon Web Services, Forecast Science Talks
-- International Conference on Machine Learning (ICML), **Long Oral**, [video](https://slideslive.com/38983095/bayesian-model-selection-the-marginal-likelihood-and-generalization)
+- International Conference on Machine Learning (ICML), Long Oral, [[video](https://slideslive.com/38983095/bayesian-model-selection-the-marginal-likelihood-and-generalization)]
 - INRIA Social Data Group
-- Morocco AI, Webinar Series, [video](https://www.youtube.com/watch?v=wrmz7sozapg&ab_channel=MoroccoAI)
+- Morocco AI, Webinar Series, [[video](https://www.youtube.com/watch?v=wrmz7sozapg&ab_channel=MoroccoAI)]
 
 **Robustness of Deep Learning Models to Distribution Shift**
-- ICML 2022 Women in Machine Learning Workshop, **Session Leader**
+- ICML 2022 Women in Machine Learning Workshop, Session Leader
 
 **Adaptive First and Second Order Algorithms for Large-Scale Machine Learning**
 - SIAM Conference on Optimization
-- NeurIPS 2020 Optimization for ML Workshop, **Spotlight Presentation**
+- NeurIPS 2020 Optimization for ML Workshop, Spotlight Presentation
 - Montreal Machine Learning and Optimization Group
 
 ---
