@@ -80,7 +80,7 @@ Polytechnique Montreal
 **Bayesian Model Selection, the Marginal Likelihood, and Generalization**
 - The Data Science and Machine Learning Research Group
 - ML Collective, Deep Learning: Classics and Trends
-- Amazon Web Services, Forecast Science Talks
+- Amazon, Forecast Science Talks
 - International Conference on Machine Learning (ICML), Long Oral
 - INRIA Social Data Group
 - Morocco AI, Webinar Series
