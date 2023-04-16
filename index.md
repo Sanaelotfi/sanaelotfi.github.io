@@ -104,10 +104,3 @@ Class Project for the Mathematics of Deep Learning, CS-GA 3033, Spring 2022
 Sanae Lotfi, Taro Makino, Lily Zhang \
 Class Project for Inference and Representation, DS-GA 1005, Fall 2021
 
----
-### Selected Media Coverage
-
-**[Scholar Q&A: Sanae](https://www.deepmind.com/scholarships/scholars/sanae)**, DeepMind, 2021 
-
-**[DeepMind Fellow Profile: Sanae Lotfi](https://nyudatascience.medium.com/deepmind-fellow-profile-sanae-lotfi-9197c0c5fb94)**, NYU Center for Data Science, 2020
-
