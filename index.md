@@ -83,7 +83,7 @@ Polytechnique Montreal
 - Amazon Web Services, Forecast Science Talks
 - International Conference on Machine Learning (ICML), _Long Oral_, [video](https://slideslive.com/38983095/bayesian-model-selection-the-marginal-likelihood-and-generalization)
 - INRIA Social Data Group
-- Morocco AI, Webinar Series [video](https://www.youtube.com/watch?v=wrmz7sozapg&ab_channel=MoroccoAI)
+- Morocco AI, Webinar Series, [video](https://www.youtube.com/watch?v=wrmz7sozapg&ab_channel=MoroccoAI)
 
 **Robustness of Deep Learning Models to Distribution Shift**
 - ICML 2022 Women in Machine Learning Workshop, Session Leader
