@@ -69,6 +69,15 @@ Polytechnique Montreal
 <sup>*</sup>: Equal first authorship. 
 
 ---
+### Selected Talks 
+
+**Are the Marginal Likelihood and PAC-Bayes Bounds the Right Proxies for Generalization?**
+- Massachusetts Institute of Technology (MIT), CSAIL seminar
+- Harvard University, Data to Actionable Knowledge Lab
+- Fundamental AI Research (FAIR), Meta AI NYC
+- North Africans in ML Workshop, Neural Information Processing Systems (NeurIPS), Invited Talk
+
+---
 ### Surveys
 
 **<a href="https://sanaelotfi.github.io/pdf/project_reports/pac_bayes_bounds_survey.pdf" target="_blank">Understanding the Generalization of Deep Neural Networks through PAC-Bayes bounds </a>**\
