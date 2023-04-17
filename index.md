@@ -72,7 +72,7 @@ Polytechnique Montreal
 ### Selected Talks 
 
 **Are the Marginal Likelihood and PAC-Bayes Bounds the Right Proxies for Generalization?**
-- Massachusetts Institute of Technology (MIT), CSAIL seminar
+- MIT, CSAIL seminar
 - Harvard University, Data to Actionable Knowledge Lab
 - Fundamental AI Research (FAIR), Meta AI NYC
 - NeurIPS North Africans in ML Workshop, Invited Talk
@@ -86,11 +86,11 @@ Polytechnique Montreal
 - Morocco AI, Webinar Series
 
 **Robustness of Deep Learning Models to Distribution Shift**
-- ICML 2022 Women in Machine Learning Workshop, Session Leader
+- ICML Women in Machine Learning Workshop, Session Leader
 
 **Adaptive First and Second Order Algorithms for Large-Scale Machine Learning**
 - SIAM Conference on Optimization
-- NeurIPS 2020 Optimization for ML Workshop, Spotlight Presentation
+- NeurIPS Optimization for ML Workshop, Spotlight Presentation
 - Montreal Machine Learning and Optimization Group
 
 ---
