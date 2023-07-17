@@ -70,19 +70,31 @@ Polytechnique Montreal
 <sup>*</sup>: Equal first authorship. 
 
 ---
+### Selected Awards and Honors 
+
+- **Microsoft Research PhD Fellowship, 2023-2025**
+- **ICML Outstanding Paper Award, 2022**
+- **Meta AI Mentorship Program, 2022-2023**
+- **DeepMind Fellowship, 2020-2021**
+- **McKinsey First Generation Achievement Award, 2020**
+- **Best Master’s Thesis Award, 2020**
+- **French Government Scholarship for Excellence, 2015–2018**
+- **Académie Hassan II Scholarship for Excellence, 2013-2021**
+  
+---
 ### Selected Talks 
 
 **Are the Marginal Likelihood and PAC-Bayes Bounds the Right Proxies for Generalization?**
 - MIT, CSAIL seminar
 - Harvard University, Data to Actionable Knowledge Lab
-- Fundamental AI Research (FAIR), Meta AI NYC
+- FAIR, Meta AI NYC
 - NeurIPS North Africans in ML Workshop, Invited Talk
 
 **Bayesian Model Selection, the Marginal Likelihood, and Generalization**
 - The Data Science and Machine Learning Research Group
 - ML Collective, Deep Learning: Classics and Trends
 - Amazon, Forecast Science Talks
-- International Conference on Machine Learning (ICML), Long Oral
+- ICML, Long Oral
 - INRIA Social Data Group
 - Morocco AI, Webinar Series
 
