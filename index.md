@@ -75,7 +75,7 @@ Polytechnique Montreal
 - Microsoft Research PhD Fellowship, 2023-2025
 - ICML Outstanding Paper Award, 2022
 - Meta AI Mentorship Program, 2022-2023
-- DeepMind Fellowship, 2020-2021
+- DeepMind Fellowship, 2021
 - McKinsey First Generation Achievement Award, 2020
 - Best Master’s Thesis Award, 2020
 - French Government Scholarship for Excellence, 2015–2018
