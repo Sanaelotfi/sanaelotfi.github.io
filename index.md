@@ -99,21 +99,10 @@ Polytechnique Montreal
 - Morocco AI, Webinar Series
 
 **Robustness of Deep Learning Models to Distribution Shift**
-- ICML Women in Machine Learning Workshop, Session Leader
+- ICML Women in Machine Learning Workshop, Session Co-Leader
 
 **Adaptive First and Second Order Algorithms for Large-Scale Machine Learning**
 - SIAM Conference on Optimization
 - NeurIPS Optimization for ML Workshop, Spotlight Presentation
 - Montreal Machine Learning and Optimization Group
-
----
-### Surveys
-
-**<a href="https://sanaelotfi.github.io/pdf/project_reports/pac_bayes_bounds_survey.pdf" target="_blank">Understanding the Generalization of Deep Neural Networks through PAC-Bayes bounds </a>**\
-Andres Potapczynski, Sanae Lotfi, Anthony Chen, Chris Ick \
-Class Project for the Mathematics of Deep Learning, CS-GA 3033, Spring 2022
-
-**<a href="https://sanaelotfi.github.io/pdf/project_reports/causal_representation_learning_survey.pdf" target="_blank">Causal Representation Learning </a>**\
-Sanae Lotfi, Taro Makino, Lily Zhang \
-Class Project for Inference and Representation, DS-GA 1005, Fall 2021
 
