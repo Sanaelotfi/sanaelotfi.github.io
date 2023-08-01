@@ -16,10 +16,16 @@ You can contact me at sl8160@nyu.edu
 ---
 ### Publications 
 
+**[Bayesian Model Selection, the Marginal Likelihood, and Generalization (Extended Paper)](https://arxiv.org/abs/2202.11678)** \
+**Sanae Lotfi**, Pavel Izmailov, Gregory Benton, Micah Goldblum, Andrew Gordon Wilson \
+_Journal of Machine Learning Research (JMLR), 2023_ \
+**Best Papers Track** \
+[[arxiv](https://arxiv.org/pdf/2202.11678.pdf), [code](https://github.com/Sanaelotfi/Bayesian_model_comparison)]
+
 **[PAC-Bayes Compression Bounds So Tight That They Can Explain Generalization](https://arxiv.org/abs/2211.13609)** \
 **Sanae Lotfi<sup>\*</sup>**, Marc Finzi<sup>\*</sup>, Sanyam Kapoor<sup>\*</sup>, Andres Potapczynski<sup>\*</sup>, Micah Goldblum, Andrew Gordon Wilson \
-_Neural Information Processing Systems (NeurIPS), 2022_
-
+_Neural Information Processing Systems (NeurIPS), 2022_ \
+[[arxiv](https://arxiv.org/abs/2211.13609), [code](https://github.com/activatedgeek/tight-pac-bayes)]
 
 **[Bayesian Model Selection, the Marginal Likelihood, and Generalization](https://arxiv.org/abs/2202.11678)** \
 **Sanae Lotfi**, Pavel Izmailov, Gregory Benton, Micah Goldblum, Andrew Gordon Wilson \
