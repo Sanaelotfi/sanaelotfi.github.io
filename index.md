@@ -114,8 +114,6 @@ Polytechnique Montreal
 
 ---
 ### Surveys
----
-### Surveys
 **<a href="https://sanaelotfi.github.io/pdf/pac_bayes_bounds_survey.pdf" target="_blank">Understanding the Generalization of Deep Neural Networks through PAC-Bayes bounds </a>**\
 Andres Potapczynski, Sanae Lotfi, Anthony Chen, Chris Ick \
 Mathematics of Deep Learning, CS-GA 3033, Spring 2022
