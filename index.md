@@ -114,11 +114,11 @@ Polytechnique Montreal
 
 ---
 ### Surveys
-**<a href="https://sanaelotfi.github.io/pdf/pac_bayes_bounds_survey.pdf" target="_blank">Understanding the Generalization of Deep Neural Networks through PAC-Bayes bounds </a>**\
+**<a href="https://sanaelotfi.github.io/project_reports/pac_bayes_bounds_survey.pdf" target="_blank">Understanding the Generalization of Deep Neural Networks through PAC-Bayes bounds </a>**\
 Andres Potapczynski, Sanae Lotfi, Anthony Chen, Chris Ick \
 Mathematics of Deep Learning, CS-GA 3033, Spring 2022
 
-**<a href="https://sanaelotfi.github.io/pdf/causal_representation_learning_survey.pdf" target="_blank">Causal Representation Learning </a>**\
+**<a href="https://sanaelotfi.github.io/project_reports/causal_representation_learning_survey.pdf" target="_blank">Causal Representation Learning </a>**\
 Sanae Lotfi, Taro Makino, Lily Zhang \
 Inference and Representation, DS-GA 1005, Fall 2021
 
