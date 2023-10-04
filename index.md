@@ -1,4 +1,4 @@
-I am a PhD student at the [Center for Data Science](https://cds.nyu.edu/) at NYU advised by Professor [Andrew Gordon Wilson](https://cims.nyu.edu/~andrewgw/) and a Visiting Researcher in the Fundamental AI Research (FAIR) group at Meta AI where I work with [Brandon Amos](http://bamos.github.io/).  I am currently interested in designing robust models that can generalize well in-distribution and out-of-distribution, alongside the closely related question of understanding and quantifying the generalization properties of deep neural networks. 
+I am a PhD student at the [Center for Data Science](https://cds.nyu.edu/) at NYU advised by Professor [Andrew Gordon Wilson](https://cims.nyu.edu/~andrewgw/) and a Visiting Researcher in the Fundamental AI Research (FAIR) group at Meta AI where I work with [Brandon Amos](http://bamos.github.io/). I work on the foundations of deep learning, and my goal is to use my understanding of generalization in deep learning to build more robust and reliable models that can generalize well in- and out-of-distribution. 
 
 My PhD research has been recognized with an [ICML Outstanding Paper Award](https://icml.cc/virtual/2022/poster/17991) and is generously supported by the [Microsoft Research PhD Fellowship](https://nyudatascience.medium.com/cds-students-sanae-lotfi-and-lucius-bynum-receive-the-microsoft-research-phd-fellowship-63ce04660227), the [DeepMind Fellowship](https://nyudatascience.medium.com/deepmind-fellow-profile-sanae-lotfi-9197c0c5fb94), the Meta AI Mentorship Program and the NYU Center for Data Science Fellowship! 
 
@@ -73,7 +73,7 @@ _Master's Thesis, 2020_ \
 **Best Thesis Award in Applied Mathematics at Polytechnique Montreal** \
 Polytechnique Montreal
 
-<sup>*</sup>: Equal first authorship. 
+<sup>*</sup> denotes equal contribution. 
 
 ---
 ### Selected Awards and Honors 
