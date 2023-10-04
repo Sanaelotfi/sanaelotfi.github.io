@@ -16,6 +16,15 @@ You can contact me at sl8160@nyu.edu
 ---
 ### Publications 
 
+**More Than Stochastic Parrots: Non-Vacuous Generalization Bounds for Large Language Models** \
+**Sanae Lotfi<sup>\*</sup>**, Marc Finzi<sup>\*</sup>, Yilun Kuang<sup>\*</sup>, Tim G. J. Rudner, Micah Goldblum, Andrew Gordon Wilson \
+_Under review._ 
+
+**Mitigating Augmentation Bias with Input-Dependent Distributions over Augmentations** \
+**Sanae Lotfi**, Tim G. J. Rudner, Brandon Amos, Andrew Gordon Wilson \
+_Under review._ 
+
+
 **[Bayesian Model Selection, the Marginal Likelihood, and Generalization (Extended Paper)](https://arxiv.org/abs/2202.11678)** \
 **Sanae Lotfi**, Pavel Izmailov, Gregory Benton, Micah Goldblum, Andrew Gordon Wilson \
 _Journal of Machine Learning Research (JMLR), 2023_ \
@@ -33,7 +42,6 @@ _International Conference on Machine Learning (ICML), 2022_ \
 **Long oral presentation, top 2% submissions** \
 **Outstanding Paper Award** \
 [[arxiv](https://arxiv.org/pdf/2202.11678.pdf), [code](https://github.com/Sanaelotfi/Bayesian_model_comparison), <a href="https://sanaelotfi.github.io/pdf/posters/LML_Poster_ICML_2022.pdf" target="_blank">poster</a>, [talk](https://slideslive.com/38983095/bayesian-model-selection-the-marginal-likelihood-and-generalization), <a href="https://sanaelotfi.github.io/pdf/slides/conference_presentations/LML_Sanae_Lotfi_ICML_2022.pdf" target="_blank">slides</a>]
-
 
 **[Evaluating Approximate Inference in Bayesian Deep Learning](https://proceedings.mlr.press/v176/wilson22a/wilson22a.pdf)** \
 Andrew Gordon Wilson, **Sanae Lotfi**, Sharad Vikram, Matthew D. Hoffman, Yarin Gal, Yingzhen Li, Melanie F. Pradier, Andrew Foong, Sebastian Farquhar, Pavel Izmailov \
