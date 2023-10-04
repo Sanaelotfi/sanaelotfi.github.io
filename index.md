@@ -16,7 +16,7 @@ You can contact me at sl8160@nyu.edu
 ---
 ### Publications 
 
-**More Than Stochastic Parrots: Non-Vacuous Generalization Bounds for Large Language Models** \
+**Non-Vacuous Generalization Bounds for Large Language Models** \
 **Sanae Lotfi<sup>\*</sup>**, Marc Finzi<sup>\*</sup>, Yilun Kuang<sup>\*</sup>, Tim G. J. Rudner, Micah Goldblum, Andrew Gordon Wilson \
 _Under review._ 
 
