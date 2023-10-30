@@ -1,10 +1,10 @@
-I am a PhD student at the [Center for Data Science](https://cds.nyu.edu/) at NYU advised by Professor [Andrew Gordon Wilson](https://cims.nyu.edu/~andrewgw/) and a Visiting Researcher in the Fundamental AI Research (FAIR) group at Meta AI where I work with [Brandon Amos](http://bamos.github.io/). I work on the foundations of deep learning. My goal is to understand and quantify generalization in deep learning, and use this understanding to build more robust and reliable machine learning models.
+I am a PhD student at the Center for Data Science at NYU advised by Professor [Andrew Gordon Wilson](https://cims.nyu.edu/~andrewgw/) and a Visiting Researcher in the Fundamental AI Research (FAIR) group at Meta AI where I work with [Brandon Amos](http://bamos.github.io/). I work on the foundations of deep learning. My goal is to understand and quantify generalization in deep learning, and use this understanding to build more robust and reliable machine learning models.
 
-My PhD research has been recognized with an [ICML Outstanding Paper Award](https://icml.cc/virtual/2022/poster/17991) and is generously supported by the [Microsoft Research PhD Fellowship](https://nyudatascience.medium.com/cds-students-sanae-lotfi-and-lucius-bynum-receive-the-microsoft-research-phd-fellowship-63ce04660227), the [DeepMind Fellowship](https://nyudatascience.medium.com/deepmind-fellow-profile-sanae-lotfi-9197c0c5fb94), the Meta AI Mentorship Program and the NYU Center for Data Science Fellowship! 
+My PhD research has been recognized with an [ICML Outstanding Paper Award](https://icml.cc/virtual/2022/poster/17991) and is generously supported by the [Microsoft Research PhD Fellowship](https://nyudatascience.medium.com/cds-students-sanae-lotfi-and-lucius-bynum-receive-the-microsoft-research-phd-fellowship-63ce04660227), the [DeepMind Fellowship](https://nyudatascience.medium.com/deepmind-fellow-profile-sanae-lotfi-9197c0c5fb94), and the Meta AI Mentorship Program! 
 
-Prior to NYU, I obtained a master’s degree in applied mathematics from [Polytechnique Montreal](https://www.polymtl.ca/). I was fortunate to work there with Professors [Andrea Lodi](https://tech.cornell.edu/people/andrea-lodi/) and [Dominique Orban](https://dpo.github.io/) to design stochastic first- and second-order algorithms with compelling theoretical and empirical properties for machine learning and large-scale optimization. I was awarded the [Best Master's Thesis Award](https://www.gerad.ca/en/posts/903) for this work. I also hold a master's degree in general engineering and applied mathematics from [CentraleSupélec](https://www.centralesupelec.fr/en).
+Prior to NYU, I obtained a master’s degree in applied mathematics from Polytechnique Montreal. I was fortunate to work there with Professors Andrea Lodi and Dominique Orban to design stochastic first- and second-order algorithms with compelling theoretical and empirical properties for machine learning and large-scale optimization. I was awarded the [Best Master's Thesis Award](https://www.gerad.ca/en/posts/903) for this work. I also hold a master's degree in general engineering and applied mathematics from CentraleSupélec.
 
-In summer 2022, I was fortunate to work with [Bernie Wang](http://web.mit.edu/~ywang02/www/) and [Richard Kurle](https://scholar.google.fr/citations?user=q2YBN34AAAAJ&hl=en) at Amazon as an Applied Scientist Intern. 
+In summer 2022, I was fortunate to work with Bernie Wang and Richard Kurle at Amazon as an Applied Scientist Intern. 
 
 ---
 You can contact me at sl8160@nyu.edu
@@ -86,6 +86,7 @@ Polytechnique Montreal
 ---
 ### Selected Awards and Honors 
 
+- Rising Star in ML by the University of Maryland, 2023
 - Microsoft Research PhD Fellowship, 2023-2025
 - ICML Outstanding Paper Award, 2022
 - Meta AI Mentorship Program, 2022-2023
@@ -99,7 +100,8 @@ Polytechnique Montreal
 ### Selected Talks 
 
 **Are the Marginal Likelihood and PAC-Bayes Bounds the Right Proxies for Generalization?**
-- MIT, CSAIL seminar
+- CMU, Artificial Intelligence Seminar Series
+- MIT, CSAIL Seminar
 - Harvard University, Data to Actionable Knowledge Lab
 - FAIR, Meta AI NYC
 - NeurIPS North Africans in ML Workshop, Invited Talk
