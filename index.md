@@ -16,9 +16,10 @@ You can contact me at sl8160@nyu.edu
 ---
 ### Publications 
 
-**Non-Vacuous Generalization Bounds for Large Language Models** \
+**[Non-Vacuous Generalization Bounds for Large Language Models](https://openreview.net/pdf?id=GY1fKFXG5i)** \
 **Sanae Lotfi<sup>\*</sup>**, Marc Finzi<sup>\*</sup>, Yilun Kuang<sup>\*</sup>, Tim G. J. Rudner, Micah Goldblum, Andrew Gordon Wilson \
-_Under review._ 
+_Mathematics of Modern Machine Learning (M3L) Workshop, NeurIPS 2023_ 
+_Under review at ICLR._ 
 
 **Mitigating Augmentation Bias with Input-Dependent Distributions over Augmentations** \
 **Sanae Lotfi**, Tim G. J. Rudner, Brandon Amos, Andrew Gordon Wilson \
