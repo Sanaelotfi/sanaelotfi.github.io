@@ -16,7 +16,7 @@ You can contact me at sl8160@nyu.edu
 ---
 ### Publications 
 
-**[Non-Vacuous Generalization Bounds for Large Language Models](https://openreview.net/pdf?id=GY1fKFXG5i)** \
+**[Non-Vacuous Generalization Bounds for Large Language Models](https://arxiv.org/abs/2312.17173)** \
 **Sanae Lotfi<sup>\*</sup>**, Marc Finzi<sup>\*</sup>, Yilun Kuang<sup>\*</sup>, Tim G. J. Rudner, Micah Goldblum, Andrew Gordon Wilson \
 _Mathematics of Modern Machine Learning (M3L) Workshop, NeurIPS 2023_ \
 _Under conference review._ 
