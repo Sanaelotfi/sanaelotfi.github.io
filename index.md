@@ -9,7 +9,7 @@ In 2022-2023, I was fortunate to work with [Brandon Amos](http://bamos.github.io
 ---
 You can contact me at sl8160@nyu.edu
  
-<a href="https://sanaelotfi.github.io/pdf/cv/cv_sanae_lotfi_2023.pdf" target="_blank">CV</a>, [Google Scholar](https://scholar.google.com/citations?user=0GyjMX4AAAAJ&authuser=2), [LinkedIn](https://www.linkedin.com/in/sanae-lotfi-636825127), [Twitter](https://twitter.com/lotfisanae), [Github](https://github.com/Sanaelotfi)
+<a href="https://sanaelotfi.github.io/pdf/cv/cv_sanae_lotfi.pdf" target="_blank">CV</a>, [Google Scholar](https://scholar.google.com/citations?user=0GyjMX4AAAAJ&authuser=2), [LinkedIn](https://www.linkedin.com/in/sanae-lotfi-636825127), [Twitter](https://twitter.com/lotfisanae), [Github](https://github.com/Sanaelotfi)
 <!-- Remove above link if you don't want to attibute -->
 
 
