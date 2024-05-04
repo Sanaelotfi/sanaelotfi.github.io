@@ -97,19 +97,24 @@ Polytechnique Montreal
 ### Selected Talks 
 
 **Are the Marginal Likelihood and PAC-Bayes Bounds the Right Proxies for Generalization?**
-- CMU, Artificial Intelligence Seminar Series
-- MIT, CSAIL Seminar
 - Harvard University, Data to Actionable Knowledge Lab
+- MIT, CSAIL Seminar
+- CMU, Artificial Intelligence Seminar Series
 - FAIR, Meta AI NYC
+- Rising Stars in Machine Learning Workshop, UMD 
 - NeurIPS North Africans in ML Workshop, Invited Talk
 
-**Bayesian Model Selection, the Marginal Likelihood, and Generalization**
-- The Data Science and Machine Learning Research Group
+**Non-Vacuous Generalization Bounds for Large Language Models**
+- Cohere For AI, Guest Talk
 - ML Collective, Deep Learning: Classics and Trends
-- Amazon, Forecast Science Talks
+- UIUC, ML Seminar
+
+**Bayesian Model Selection, the Marginal Likelihood, and Generalization**
 - ICML, Long Oral
+- Amazon, Forecast Science Talks
 - INRIA Social Data Group
 - Morocco AI, Webinar Series
+- ML Collective, Deep Learning: Classics and Trends
 
 **Robustness of Deep Learning Models to Distribution Shift**
 - ICML Women in Machine Learning Workshop, Session Co-Leader
