@@ -21,11 +21,21 @@ ________
 
 ### Recent News 
 
-📢 December 2024: I will be a **keynote speaker** at the [Machine Learning and Compression Workshop](https://neuralcompression.github.io/workshop24) @ NeurIPS 2024. 
+📑 July 2025: _[Small Batch Size Training for Language Models](https://arxiv.org/abs/2507.07101)_ is now on arxiv!
 
-📆 December 2024: I'm co-organizing the [Scientific Methods for Understanding Neural Networks Workshop](https://scienceofdlworkshop.github.io/) @ NeurIPS 2024. 
+⭐ May 2025: I gave a **Rising Star** talk at the [International Symposium on Trustworthy Foundation Models](https://istfm.github.io/index.html) @ MBZUAI. 
 
-🥳 September 2024: _[Unlocking Tokens as Data Points for Generalization Bounds on Larger Language Models](https://arxiv.org/abs/2407.18158)_ got accepted to NeurIPS as a **spotlight**! 
+🥳 May 2025: _[Customizing the Inductive Biases of Softmax Attention using
+Structured Matrices](https://openreview.net/pdf?id=Roc5O1ECEt)_ got accepted to ICML 2025!
+
+👩‍🎓 April 2025: I successfully defended my Ph.D. thesis on _[Understanding Generalization in Deep Learning Through Occam's Razor
+]_!
+
+📢 December 2024: I'm a **keynote speaker** and **panelist** at the [Machine Learning and Compression Workshop](https://neuralcompression.github.io/workshop24) @ NeurIPS 2024. 
+
+📆 December 2024: I'm organizing the [Scientific Methods for Understanding Neural Networks Workshop](https://scienceofdlworkshop.github.io/) @ NeurIPS 2024. 
+
+🥳 September 2024: Our latest work _[Unlocking Tokens as Data Points for Generalization Bounds on Larger Language Models](https://arxiv.org/abs/2407.18158)_ got accepted to NeurIPS as a **spotlight**! 
 
 ⭐ August 2024: I was selected as a **[Rising Star in EECS](https://risingstars-eecs.mit.edu/current-workshop/)** by MIT. 
 
