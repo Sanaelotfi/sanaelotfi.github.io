@@ -26,10 +26,9 @@ ________
 ⭐ May 2025: I gave a **Rising Star** talk at the [International Symposium on Trustworthy Foundation Models](https://istfm.github.io/index.html) @ MBZUAI. 
 
 🥳 May 2025: _[Customizing the Inductive Biases of Softmax Attention using
-Structured Matrices](https://openreview.net/pdf?id=Roc5O1ECEt)_ got accepted to ICML 2025!
+Structured Matrices](https://openreview.net/pdf?id=Roc5O1ECEt)_ got accepted to ICML!
 
-👩‍🎓 April 2025: I successfully defended my Ph.D. thesis on _[Understanding Generalization in Deep Learning Through Occam's Razor
-]_!
+👩‍🎓 April 2025: I successfully defended my Ph.D. thesis on _Understanding Generalization in Deep Learning Through Occam's Razor_!
 
 📢 December 2024: I'm a **keynote speaker** and **panelist** at the [Machine Learning and Compression Workshop](https://neuralcompression.github.io/workshop24) @ NeurIPS 2024. 
 
