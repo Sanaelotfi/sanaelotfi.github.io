@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-I am a research scientist in the Fundamental AI Research (FAIR) group at Meta, based in Menlo Park, California. I work on the science of deep learning and focus on **understanding the generalization properties of deep neural networks** using notions that relate to generalization such as model compression and loss surface analysis. Using insights about generalization, **my goal is to build improved, scalable and robust deep learning models.**
+I am a research scientist in the Fundamental AI Research (FAIR) group at Meta, based in Menlo Park, California. I work on the science of deep learning and focus on **understanding the generalization properties of deep neural networks** using notions that relate to generalization such as model compression and loss surface analysis. Using insights about generalization, **my goal is to build efficient, optimized and robust deep learning models.**
 
 My research was recognized with an **ICML 2022 Outstanding Paper Award** for my work on _[Bayesian model selection](https://arxiv.org/abs/2202.11678)_ and a **Best Paper Award** at the ICML 2024 Theoretical Foundations Workshop for my work on _[understanding generalization in LLMs through the lens of compression](https://arxiv.org/abs/2407.18158)_. I was recently distinguished as a [Rising Star in EECS](https://risingstars-eecs.mit.edu/) by MIT and a [Rising Star in Machine Learning](https://ml.umd.edu/rising-stars-workshop) by the University of Maryland.
 
