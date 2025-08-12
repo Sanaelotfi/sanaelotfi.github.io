@@ -17,7 +17,7 @@ In summer 2024, I was a research intern at **Microsoft Research** where I worked
 
 Prior to NYU, I worked with [Andrea Lodi](https://tech.cornell.edu/people/andrea-lodi/) and [Dominique Orban](https://dpo.github.io/) at Polytechnique Montreal to design stochastic algorithms with compelling theoretical and empirical properties for large-scale optimization. I received the [Best Master's Thesis Award](https://www.gerad.ca/en/posts/903) for this work.
  
-**You can contact me at sl8160[at]nyu[dot]edu**
+**You can contact me at sanaelotfi[at]meta[dot]com**
 
 ________
 
