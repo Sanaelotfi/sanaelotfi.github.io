@@ -21,6 +21,10 @@ ________
 
 ### Recent News 
 
+📢 October 2025: I gave a talk on _Understanding Generalization through the Lens of Compression_ at the [Princeton Alg-ML Seminar](https://princeton-alg-ml.github.io/). 
+
+🥳 September 2025: _[Small Batch Size Training for Language Models](https://arxiv.org/abs/2507.07101)_ got accepted to NeurIPS!
+
 📑 July 2025: _[Small Batch Size Training for Language Models](https://arxiv.org/abs/2507.07101)_ is now on arxiv!
 
 ⭐ May 2025: I gave a **Rising Star** talk at the [International Symposium on Trustworthy Foundation Models](https://istfm.github.io/index.html) @ MBZUAI. 
@@ -52,13 +56,18 @@ ________
 
 ### Selected Publications  
 
+**[Small Batch Size Training for Language Models: When Vanilla SGD Works, and Why Gradient Accumulation Is Wasteful](https://arxiv.org/abs/2507.07101)** \
+Martin Marek, **Sanae Lotfi**, Aditya Somasundaram, Andrew Gordon Wilson, Micah Goldblum \
+_NeurIPS 2025_ \
+[[arxiv](https://arxiv.org/abs/2407.18158), [code](https://github.com/martin-marek/batch-size)]
+
 **[Unlocking Tokens as Data Points for Generalization Bounds on Larger Language Models](https://arxiv.org/abs/2407.18158)** \
 **Sanae Lotfi<sup>\*</sup>**, Yilun Kuang<sup>\*</sup>, Brandon Amos, Micah Goldblum, Marc Finzi, Andrew Gordon Wilson \
 _NeurIPS 2024_ \
 🌟 **Spotlight Presentation**  \
 _ICML Workshop on Theoretical Foundations of Foundation Models, 2024_ \
 🏆 **Best Paper Award** \
-[[arxiv](https://arxiv.org/abs/2407.18158)]
+[[arxiv](https://arxiv.org/abs/2407.18158), [code](https://github.com/YilunKuang/token-bounds-for-llms)]
 
 **[Non-Vacuous Generalization Bounds for Large Language Models](https://arxiv.org/abs/2312.17173)** \
 **Sanae Lotfi<sup>\*</sup>**, Marc Finzi<sup>\*</sup>, Yilun Kuang<sup>\*</sup>, Tim G. J. Rudner, Micah Goldblum, Andrew Gordon Wilson \
