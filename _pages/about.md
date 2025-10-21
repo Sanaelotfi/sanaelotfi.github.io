@@ -25,6 +25,8 @@ ________
 
 🥳 September 2025: _[Small Batch Size Training for Language Models](https://arxiv.org/abs/2507.07101)_ got accepted to NeurIPS!
 
+🥳 July 2025: I joined Meta Superintelligence Labs as a Research Scientist, working in the Fundamental AI Research (FAIR) team. 
+
 📑 July 2025: _[Small Batch Size Training for Language Models](https://arxiv.org/abs/2507.07101)_ is now on arxiv!
 
 ⭐ May 2025: I gave a **Rising Star** talk at the [International Symposium on Trustworthy Foundation Models](https://istfm.github.io/index.html) @ MBZUAI. 
