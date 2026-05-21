@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- Keep this page out of search engines while we share it privately -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="referrer" content="no-referrer">
+
+  <meta name="description" content="Quantized Reasoning Models Think They Need to Think Longer, but They Do Not">
+  <meta property="og:title" content="Quantized Reasoning Models Think They Need to Think Longer, but They Do Not"/>
+  <meta property="og:description" content="Aggressive post-training quantization makes reasoning models overthink: they reach correct intermediate answers but keep second-guessing instead of committing."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quantized Reasoning Models Think They Need to Think Longer, but They Do Not</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    body { background-color: #ffffff; font-family: 'Noto Sans', sans-serif; color: #222; }
+    .hero.is-light { background-color: #ffffff !important; }
+    .container.is-fluid { margin-left: 15px; margin-right: 15px; max-width: 1280px; margin-left: auto; margin-right: auto; }
+    .section { padding: 2.25rem 0; }
+    .hero .hero-body { padding: 2.5rem 0 1.5rem 0; }
+    .publication-title { font-family: 'Google Sans', sans-serif; }
+    h2.title.is-3 { font-family: 'Google Sans', sans-serif; }
+    p, li { font-size: 16px; line-height: 1.6; }
+    .content figure { margin: 1.2rem 0; }
+    figcaption { color: #555; font-size: 13.5px; text-align: center; line-height: 1.4; }
+    .fig-card {
+      background: #fff;
+      padding: 14px 14px 10px 14px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .fig-row {
+      display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; align-items: stretch;
+    }
+    .fig-row > div { flex: 1 1 320px; min-width: 280px; }
+    .note-box {
+      border: 2px solid #a57bb3;
+      border-radius: 10px;
+      padding: 1.1em 1.2em;
+      background-color: #fefefe;
+      position: relative;
+      max-width: 100%;
+      margin: 2em 0 1.6em 0;
+      line-height: 1.55;
+    }
+    .note-box::before {
+      content: "Note";
+      position: absolute;
+      top: -1.15em; left: 0;
+      background-color: #a57bb3;
+      color: white;
+      padding: 0.30em 0.9em;
+      border-radius: 6px;
+      font-weight: 700; font-size: 0.95em;
+    }
+    .tldr {
+      background: #f7faff;
+      border-left: 5px solid #4b6cb7;
+      border-radius: 6px;
+      padding: 14px 20px;
+      margin: 14px 0;
+    }
+    .intro-box {
+      background: #ffffff;
+      border-left: 4px solid #4b6cb7;
+      border-radius: 6px;
+      padding: 16px 24px;
+      font-size: 16px; line-height: 1.6; color: #333;
+    }
+    code {
+      background: #f1f5f9; color: #b91c1c; padding: 1px 4px; border-radius: 3px;
+    }
+    .takeaway {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      padding: 12px 16px;
+      border-radius: 4px;
+      margin: 14px 0;
+      font-size: 14.5px;
+    }
+    .takeaway.warning { background: #fef3f2; border-left-color: #f87171; }
+    .takeaway.info { background: #f0f9ff; border-left-color: #60a5fa; }
+    .takeaway.purple { background: #faf5ff; border-left-color: #a855f7; }
+    .author-block { white-space: nowrap; }
+    .private-banner {
+      background: #fff7ed;
+      border: 1px dashed #fb923c;
+      color: #9a3412;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+    table { font-size: 14px; }
+    .hl-green { color:#16a34a; font-weight:700; }
+    .hl-red { color:#b91c1c; font-weight:700; }
+    .hl-blue { color:#1e88e5; font-weight:700; }
+    .hl-purple { color:#7c3aed; font-weight:700; }
+    .hl-pink { color:#ec4899; font-weight:700; }
+  </style>
+</head>
+<body>
+
+<!-- ======================= TITLE ======================= -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-fluid">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths has-text-centered">
+
+          <div class="private-banner">
+            Unlisted preview &mdash; please do not share publicly yet.
+          </div>
+
+          <h1 class="title is-2 publication-title" style="margin-bottom: 0.6rem;">
+            Quantized Reasoning Models Think They Need to Think Longer, <em>but They Do Not</em>
+          </h1>
+
+          <p style="color:#666; font-size: 15px; margin-bottom: 1rem;">
+            A token-level look at why aggressive post-training quantization makes reasoning models <em>overthink</em>.
+          </p>
+
+          <div class="is-size-5 publication-authors" style="margin-top: 0.5rem;">
+            <span class="author-block"><a href="https://sanaelotfi.github.io/" target="_blank">Sanae Lotfi</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://polkirichenko.github.io/" target="_blank">Polina Kirichenko</a><sup>1</sup>,</span>
+            <span class="author-block">Steven Li<sup>2</sup>,</span>
+            <span class="author-block"><a href="https://zechunliu.com/" target="_blank">Zechun Liu</a><sup>2</sup></span>
+          </div>
+
+          <div class="is-size-6 publication-authors" style="color:#666; margin-top: 0.25rem;">
+            <sup>1</sup>FAIR at Meta &nbsp; <sup>2</sup>Meta AI
+          </div>
+
+          <div class="column has-text-centered" style="margin-top: 1rem;">
+            <span class="link-block" style="margin: 0 4px;">
+              <a href="https://drive.google.com/file/d/1JnuIkfAenb_CEB86IN51BbN0dIqV36DO/view" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><i class="ai ai-arxiv"></i></span>
+                <span>Paper</span>
+              </a>
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= HEADLINE FIGURES (acc + length) ======================= -->
+<section class="section" style="background: #f7faff; padding-top: 28px; padding-bottom: 18px;">
+  <div class="container is-fluid">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+
+        <h3 class="title is-5 has-text-centered" style="color:#4b6cb7; margin-bottom: 14px;">
+          Aggressive PTQ drops accuracy <em>and</em> blows up reasoning length
+        </h3>
+
+        <div class="fig-row">
+          <div class="fig-card">
+            <img src="images/ptq_bars_v3_acc.png" alt="Accuracy drops under PTQ" style="width:100%; border-radius:6px;">
+            <figcaption><em>(a) Accuracy drops as quantization gets more aggressive.</em></figcaption>
+          </div>
+          <div class="fig-card">
+            <img src="images/ptq_bars_v3_len.png" alt="CoT length increases under PTQ" style="width:100%; border-radius:6px;">
+            <figcaption><em>(b) Chain-of-thought length grows by up to <strong>4.5&times;</strong> under 3-bit AWQ.</em></figcaption>
+          </div>
+        </div>
+
+        <p style="text-align:center; color:#555; margin-top: 10px; font-size: 13.5px;">
+          DeepSeek-R1-Distill-Qwen-1.5B in BF16 vs. various PTQ methods.
+          More aggressive quantization &rArr; <span class="hl-red">lower accuracy</span> <em>and</em> <span class="hl-red">longer reasoning</span>.
+        </p>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= TLDR ======================= -->
+<section class="section hero is-light" style="padding-top: 18px; padding-bottom: 18px;">
+  <div class="container is-fluid">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <div class="tldr">
+            <p style="margin: 0;">
+              <strong style="font-weight: 900; color: #0f598a;">TL;DR.</strong>
+              Aggressive post-training quantization (PTQ) doesn't just erode reasoning models &mdash; it pushes them to <span class="hl-blue">overthink</span>.
+              In up to <strong>52%</strong> of failures under 3-bit AWQ, the quantized model <span class="hl-purple">reaches the correct answer in an intermediate step but never commits to it</span>, opening new reasoning branches until it runs out of tokens.
+              Token-level KL divergence between the BF16 and quantized models is dominated by hesitation tokens (<em>&ldquo;Wait&rdquo;</em>, <em>&ldquo;But&rdquo;</em>, <em>&ldquo;Alternatively&rdquo;</em>) and concentrates at <span class="hl-blue">high-entropy positions</span> &mdash; exactly where quantization noise has the most leverage.
+              As a diagnostic, we show that a tiny, training-free logit penalty on 50 such markers cuts chain-of-thought length by <strong>12&ndash;23%</strong> on average while preserving or improving accuracy, and reduces overthinking errors by up to <strong>58%</strong> under 3-bit AWQ.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= INTRO ======================= -->
+<section class="section">
+  <div class="container is-fluid">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+
+        <h2 class="title is-3 has-text-centered">
+          <i class="fa-solid fa-lightbulb" style="color:#f59e0b; margin-right:8px;"></i>
+          Why this paper
+        </h2>
+
+        <div class="content has-text-justified">
+          <div class="intro-box">
+            <p>
+              Post-training quantization (PTQ) is the workhorse of efficient LLM deployment: no gradient updates, no training pipeline, just a calibration pass over a handful of sequences. Methods like <a href="https://arxiv.org/abs/2210.17323" target="_blank">GPTQ</a>, <a href="https://arxiv.org/abs/2306.00978" target="_blank">AWQ</a>, and <a href="https://arxiv.org/abs/2410.09426" target="_blank">FlatQuant</a> ship 3&ndash;4 bit models that mostly &ldquo;just work&rdquo; on standard benchmarks.
+            </p>
+            <p>
+              When a quantized <em>reasoning</em> model fails, the natural assumption is that quantization eroded its capability &mdash; the model can no longer find the answer. We looked closely and found the opposite. Under aggressive PTQ, the model often <em>does</em> find the correct answer mid-trace, then talks itself out of it: it questions its own assumptions, opens new reasoning branches, and never commits.
+            </p>
+            <p style="margin-bottom: 0;">
+              <strong>Quantized reasoning models do not fail because they cannot think; they fail because they cannot <em>stop</em> thinking.</strong>
+            </p>
+          </div>
+
+          <div class="note-box">
+            We treat the overthinking penalty in this work as a <strong>diagnostic</strong>, not a proposed method. Its job is to confirm that the high-KL hesitation tokens we identify really are the ones driving post-quantization degradation. The fact that suppressing them recovers accuracy <em>and</em> shortens chains is evidence that our story is right &mdash; not a claim to a new SOTA inference recipe.
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 1: ACC + LEN ======================= -->
+<section class="section hero is-light">
+  <div class="container is-fluid">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+
+        <h2 class="title is-3 has-text-centered">
+          <i class="fa-solid fa-chart-line" style="color:#4b6cb7; margin-right:8px;"></i>
+          Aggressive quantization makes models longer <em>and</em> worse
+        </h2>
+
+        <div class="content has-text-justified">
+
+          <p>
+            We evaluate five reasoning-specialized LLMs (1.5B&ndash;32B) across five benchmarks (GSM8K, MATH-500, AIME-120, GPQA-Diamond, LiveCodeBench), under three PTQ methods (GPTQ, AWQ, FlatQuant) at 3&ndash;4 bits.
+            The pattern is consistent: mild quantization (FlatQuant W8A8KV8, 4-bit weight-only) is essentially free, but as we push to 3-bit weights or W4A4KV4, <strong>accuracy degrades and chain-of-thought (CoT) length explodes</strong>.
+          </p>
+
+          <ul>
+            <li>On MATH-500, 3-bit AWQ on Qwen-1.5B drops accuracy from <strong>85.6&rarr;47.0%</strong> while inflating CoT from <strong>5.2K&rarr;23.4K</strong> tokens (a <strong>4.5&times;</strong> increase).</li>
+            <li>On LiveCodeBench, the same model goes from 17.5% to 4.5% while CoT grows from 19.1K to 38.8K tokens.</li>
+            <li>Across all <strong>28 model&times;quantization pairs</strong>, the Spearman correlation between accuracy loss and CoT length increase is <strong>&rho; = &minus;0.73</strong>: the models that lose the most accuracy also generate the longest reasoning traces.</li>
+          </ul>
+
+          <p>
+            That correlation is the seed of our hypothesis: <em>the extra reasoning isn't a side effect of failure &mdash; it actively causes it</em>.
+          </p>
+
+          <details style="margin-top: 18px;">
+            <summary style="cursor:pointer; font-weight:700; color:#1e88e5;">Bigger picture &mdash; same effect across five models &nbsp;<span style="font-size:11px;color:#666">(click to expand)</span></summary>
+            <div class="fig-row" style="margin-top: 14px;">
+              <div class="fig-card">
+                <img src="images/ptq_bars_main_acc.png" alt="Accuracy across 5 models and PTQ methods" style="width:100%; border-radius:6px;">
+                <figcaption><em>Accuracy (% &uarr;) across five reasoning models. 3-bit weight-only and W4A4KV4 consistently hurt smaller models the most.</em></figcaption>
+              </div>
+              <div class="fig-card">
+                <img src="images/ptq_bars_main_len.png" alt="CoT length across 5 models and PTQ methods" style="width:100%; border-radius:6px;">
+                <figcaption><em>Average CoT length (&darr; is better). Smaller models &times; harder benchmarks produce the largest length blow-ups.</em></figcaption>
+              </div>
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 2: ERROR ANALYSIS ======================= -->
+<section class="section">
+  <div class="container is-fluid">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+
+        <h2 class="title is-3 has-text-centered">
+          <i class="fa-solid fa-magnifying-glass-chart" style="color:#9333ea; margin-right:8px;"></i>
+          What kind of errors does quantization add?
+        </h2>
+
+        <div class="content has-text-justified">
+          <p>
+            To understand <em>which</em> errors quantization introduces, we hand-annotated a subset of failures on MATH-500, then used GPT-5 as an LLM judge (calibrated to &gt;95% agreement with our annotations) to scale the analysis. We bucket each failure into one of four categories:
+          </p>
+
+          <div class="takeaway purple" style="margin-bottom: 16px;">
+            <strong>(i) Overthinking.</strong> The model reaches the correct answer in some intermediate step but then opens new branches, doubts itself, and never commits.<br>
+            <strong>(ii) Logical error.</strong> The plan was wrong from the start.<br>
+            <strong>(iii) Arithmetic error.</strong> The plan was right but the computation slipped.<br>
+            <strong>(iv) Formatting / hallucination / other.</strong>
+          </div>
+
+          <p>
+            <strong>Quantization increases the absolute number of overthinking errors across all three methods.</strong>
+            BF16 has 19 overthinking errors on MATH-500 (26% of 72 errors). Under 3-bit AWQ, overthinking errors jump to <strong>139</strong>, a <span class="hl-red">7.3&times; increase</span>, becoming the dominant failure mode (52% of 265 errors). GPTQ-3 doubles them; FlatQuant W4A4KV4 more than triples them.
+          </p>
+
+          <div class="fig-row" style="margin-top: 8px;">
+            <div class="fig-card">
+              <img src="images/error_distribution_full_precision.png" alt="BF16 error distribution" style="width:100%; border-radius:6px;">
+              <figcaption><em>BF16</em></figcaption>
+            </div>
+            <div class="fig-card">
+              <img src="images/error_distribution_awq_3bit.png" alt="AWQ 3-bit error distribution" style="width:100%; border-radius:6px;">
+              <figcaption><em>3-bit AWQ</em></figcaption>
+            </div>
+          </div>
+          <div class="fig-row" style="margin-top: 14px;">
+            <div class="fig-card">
+              <img src="images/error_distribution_gptq_3bit.png" alt="GPTQ 3-bit error distribution" style="width:100%; border-radius:6px;">
+              <figcaption><em>3-bit GPTQ</em></figcaption>
+            </div>
+            <div class="fig-card">
+              <img src="images/error_distribution_flatquant_4bit.png" alt="FlatQuant W4A4KV4 error distribution" style="width:100%; border-radius:6px;">
+              <figcaption><em>FlatQuant W4A4KV4</em></figcaption>
+            </div>
+          </div>
+
+          <figure style="margin-top: 4px;">
+            <img src="images/error_distribution_legend.png" alt="Legend" style="width:100%; max-width:700px; display:block; margin:0 auto;">
+            <figcaption style="margin-top: 8px;">
+              <em><strong>Quantization inflates overthinking errors</strong> on MATH-500 (DeepSeek-R1-Distill-Qwen-1.5B). The diagnostic penalty (see below) brings them back down without hurting the other error categories.</em>
+            </figcaption>
+          </figure>
+
+          <div class="takeaway info" style="margin-top: 18px;">
+            <strong>What this rules out.</strong> If quantization were just &ldquo;making the model dumber&rdquo;, you'd expect a uniform inflation across all four error categories. Instead, overthinking errors grow disproportionately while arithmetic and logical errors stay roughly flat. The quantized model isn't losing its math ability &mdash; it's losing its ability to <em>stop</em>.
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 3: KL DIVERGENCE ======================= -->
+<section class="section hero is-light">
+  <div class="container is-fluid">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+
+        <h2 class="title is-3 has-text-centered">
+          <i class="fa-solid fa-arrows-split-up-and-left" style="color:#0ea5e9; margin-right:8px;"></i>
+          Where exactly do the two models diverge?
+        </h2>
+
+        <div class="content has-text-justified">
+
+          <p>
+            We treat the BF16 model as the reference and run both BF16 and 3-bit AWQ on the same MATH-500 prompts under <em>identical generation prefixes</em>, so any difference we see is purely the effect of quantization. At every decoding position $t$ we compute
+          </p>
+
+          <div class="box" style="background:#fafafa; padding: 12px 18px;">
+            $$
+              D_{\mathrm{KL}}\!\left(p_t \,\|\, q_t\right) \;=\; \sum_{v \in \mathcal V} p_t(v)\,\log\frac{p_t(v)}{q_t(v)},
+            $$
+          </div>
+
+          <p>
+            where $p_t$ and $q_t$ are the next-token distributions of the full-precision and quantized models. We then associate each KL value with the token the quantized model actually sampled, and average per token across all positions where it appeared.
+          </p>
+
+          <div class="fig-row" style="margin-top: 14px;">
+            <div class="fig-card">
+              <img src="images/kl_highest_tokens.png" alt="Top 20 highest KL tokens" style="width:100%; border-radius:6px;">
+              <figcaption><em>Highest-KL tokens.</em></figcaption>
+            </div>
+            <div class="fig-card">
+              <img src="images/kl_lowest_tokens.png" alt="Top 20 lowest KL tokens" style="width:100%; border-radius:6px;">
+              <figcaption><em>Lowest-KL tokens.</em></figcaption>
+            </div>
+            <div class="fig-card">
+              <img src="images/scatter_kl_vs_entropy.png" alt="KL vs entropy" style="width:100%; border-radius:6px;">
+              <figcaption><em>Position-level KL vs. BF16 next-token entropy. Spearman <strong>&rho; = 0.92</strong>.</em></figcaption>
+            </div>
+          </div>
+
+          <p style="margin-top: 16px;">
+            Two clean patterns fall out:
+          </p>
+
+          <ul>
+            <li>
+              <strong>High-KL tokens are <span class="hl-pink">hesitation and branching</span> tokens</strong> &mdash;
+              <em>&ldquo;Wait&rdquo;</em>, <em>&ldquo;But&rdquo;</em>, <em>&ldquo;Alternatively&rdquo;</em>, <em>&ldquo;maybe&rdquo;</em>, <em>&ldquo;verify&rdquo;</em>, <em>&ldquo;think&rdquo;</em>. Many of these open a new reasoning branch or express self-doubt.
+            </li>
+            <li>
+              <strong>Low-KL tokens are <span class="hl-green">mathematical and formatting</span> tokens</strong> &mdash; digits, operators, LaTeX scaffolding, function-call syntax. Quantization barely changes how the model samples these execution tokens.
+            </li>
+            <li>
+              <strong>Position-level KL correlates almost perfectly with BF16 next-token entropy</strong> (&rho; = 0.92). The places where the two models diverge most are the places where the BF16 model itself is already uncertain.
+            </li>
+          </ul>
+
+          <div class="fig-row" style="margin-top: 18px;">
+            <div class="fig-card">
+              <img src="images/wordcloud_high_kl.png" alt="High-KL token word cloud" style="width:100%; border-radius:6px;">
+              <figcaption><em>50 highest-KL tokens &mdash; size &propto; average KL.</em></figcaption>
+            </div>
+            <div class="fig-card">
+              <img src="images/wordcloud_low_kl.png" alt="Low-KL token word cloud" style="width:100%; border-radius:6px;">
+              <figcaption><em>50 lowest-KL tokens.</em></figcaption>
+            </div>
+          </div>
+
+          <p style="margin-top: 14px;">
+            We can also look at the <em>density</em> of high-KL vs. low-KL tokens in the generated trace. In BF16, math tokens dominate (ratio 0.57 of hesitation/math). Under 3-bit AWQ, that flips to 1.15 &mdash; per unit of reasoning, the quantized model is producing more hesitation than math.
+          </p>
+
+          <div class="takeaway">
+            <strong>Why this is a satisfying signal.</strong>
+            If quantization noise were broadly destructive, we'd expect KL to be high everywhere and uncorrelated with what kind of token sat at that position. Instead it's concentrated, structured, and lines up with positions where the BF16 model's logit margin was already small. That's a very specific failure mode, not a generic capability loss.
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 4: WHY ======================= -->
+<section class="section">
+  <div class="container is-fluid">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+
+        <h2 class="title is-3 has-text-centered">
+          <i class="fa-solid fa-circle-question" style="color:#a855f7; margin-right:8px;"></i>
+          Why is it <em>these</em> tokens?
+        </h2>
+
+        <div class="content has-text-justified">
+
+          <p>
+            The pattern is consistent with a simple mechanism. <a href="https://arxiv.org/abs/2410.12343" target="_blank">Yayla et&nbsp;al. (2026)</a> show that the robustness of a quantized network to weight perturbations is governed by the output-layer <em>logit margin</em>: the gap $m = z_{(1)} - z_{(2)}$ between the top-1 and top-2 logits. Large margin &rArr; small chance of flipping the argmax. Small margin (high entropy) &rArr; even a moderate perturbation can change the selected token. The same structural argument extends to autoregressive decoding under stochastic quantization noise.
+          </p>
+
+          <p>
+            In our setting, position-level KL has &rho; = 0.92 with BF16 next-token entropy. So <strong>quantization noise has the most leverage precisely at high-entropy positions</strong>. That's half of the story. The other half is what happens to live at high-entropy positions in a reasoning trace.
+          </p>
+
+          <figure>
+            <img src="images/thinking_tokens_high_vs_low_entropy.png" alt="Thinking tokens at high- vs low-entropy positions" style="width: 100%; max-width: 700px; display:block; margin: 8px auto; border-radius: 6px;">
+            <figcaption style="margin-top: 6px;">
+              <em>Across DeepSeek-R1-Distill-Qwen-1.5B, QwQ-32B and their 3-bit AWQ/GPTQ variants, <strong>thinking tokens are 2&ndash;4&times; more likely to appear in the top-20 at high-entropy positions</strong> than at low-entropy ones &mdash; despite vocabularies of size ~152K.</em>
+            </figcaption>
+          </figure>
+
+          <div class="takeaway purple">
+            <strong>Putting the two halves together.</strong>
+            High-entropy decoding positions are (1) where quantization perturbs the distribution the most and (2) where hesitation tokens are already concentrated in the top of the distribution. Quantization noise pushes a marginal &ldquo;Wait&rdquo; or &ldquo;But&rdquo; over the line into the sample &mdash; and the model dutifully opens a new reasoning branch, overwriting the correct intermediate answer it just produced.
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 5: DIAGNOSTIC PENALTY ======================= -->
+<section class="section hero is-light">
+  <div class="container is-fluid">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+
+        <h2 class="title is-3 has-text-centered">
+          <i class="fa-solid fa-vial" style="color:#16a34a; margin-right:8px;"></i>
+          A diagnostic, not a method
+        </h2>
+
+        <div class="content has-text-justified">
+
+          <p>
+            We now want to <em>verify</em> the story above. If hesitation tokens at high-entropy positions are really the lever quantization is pulling, then suppressing those tokens at decode time should:
+          </p>
+          <ol>
+            <li>shorten the chain of thought,</li>
+            <li>reduce specifically the overthinking error bucket,</li>
+            <li>and leave non-overthinking errors roughly alone.</li>
+          </ol>
+
+          <p>
+            We hand-curate $|\mathcal S| = 50$ &ldquo;overthinking markers&rdquo; (<em>&ldquo;Wait&rdquo;</em>, <em>&ldquo;But&rdquo;</em>, <em>&ldquo;Alternatively&rdquo;</em>, <em>&ldquo;perhaps&rdquo;</em>, <em>&ldquo;maybe&rdquo;</em>, <em>&ldquo;however&rdquo;</em>, <em>&ldquo;reconsider&rdquo;</em>, <em>&ldquo;backtrack&rdquo;</em>, &hellip;), and at each decoding step subtract a fixed penalty $\lambda &gt; 0$ from their logits:
+          </p>
+
+          <div class="box" style="background:#f7fbff; padding: 12px 18px;">
+            $$
+              z'_t(v) \;=\;
+              \begin{cases}
+              z_t(v) - \lambda & \text{if } v \in \mathcal S, \\
+              z_t(v)           & \text{otherwise.}
+              \end{cases}
+            $$
+          </div>
+
+          <p>
+            Zero extra forward passes, zero training, one hyperparameter. Importantly, we deliberately <strong>exclude</strong> high-KL tokens that aren't overthinking-related (e.g. <em>&ldquo;so&rdquo;</em>, which actually helps the model conclude). Several recent works have flagged similar token sets as overthinking signals (<a href="https://arxiv.org/abs/2505.22617" target="_blank">Zhao et&nbsp;al. 2025</a>; <a href="https://arxiv.org/abs/2506.08644" target="_blank">Fan et&nbsp;al. 2025</a>).
+          </p>
+
+          <div class="note-box">
+            We are <strong>not</strong> claiming the overthinking penalty as a new inference method. We use it here as a controlled probe: if our token-level diagnosis is right, suppressing exactly these tokens should produce a specific, predictable change. If we were wrong about which tokens matter, the penalty would either do nothing (random tokens) or make things worse (low-KL math tokens). Both of these &ldquo;null&rdquo; experiments are reported below.
+          </div>
+
+          <h3 class="title is-5" style="margin-top: 1.5rem;">What happens when we sweep $\lambda$</h3>
+
+          <p>
+            On Qwen-1.5B, averaged over <strong>six</strong> quantization configurations and <strong>five</strong> benchmarks, we sweep $\lambda \in \{0.5, 0.7, 1.0, 1.5, 2.0, 2.6, 3.0, 4.0\}$ over four token lists of equal size (50 tokens each):
+          </p>
+          <ul>
+            <li><strong>Overthinking markers</strong> (our curated list).</li>
+            <li><strong>High-KL tokens</strong> (top 50 by average KL, frequency &ge; 50).</li>
+            <li><strong>Low-KL tokens</strong> (bottom 50 by average KL, frequency &ge; 50).</li>
+            <li><strong>Random tokens</strong> (50 vocabulary tokens not in any other list).</li>
+          </ul>
+
+          <div class="fig-row" style="margin-top: 14px;">
+            <div class="fig-card">
+              <img src="images/ablation_acc_vs_lambda.png" alt="Accuracy vs lambda" style="width:100%; border-radius:6px;">
+              <figcaption><em>(a) Accuracy vs. $\lambda$.</em></figcaption>
+            </div>
+            <div class="fig-card">
+              <img src="images/ablation_len_vs_lambda.png" alt="Length vs lambda" style="width:100%; border-radius:6px;">
+              <figcaption><em>(b) CoT length vs. $\lambda$.</em></figcaption>
+            </div>
+            <div class="fig-card">
+              <img src="images/ablation_pareto.png" alt="Pareto frontier" style="width:100%; border-radius:6px;">
+              <figcaption><em>(c) Accuracy&ndash;length Pareto frontier.</em></figcaption>
+            </div>
+          </div>
+
+          <p style="margin-top: 14px;">
+            The pattern is exactly what the diagnostic predicts:
+          </p>
+
+          <div class="takeaway">
+            <strong><span class="hl-green">Overthinking markers.</span></strong>
+            Every $\lambda \ge 0.5$ shortens CoT by <strong>12&ndash;23%</strong> while accuracy is preserved or slightly improved. This list owns the upper-left of the Pareto frontier.
+          </div>
+          <div class="takeaway info">
+            <strong><span class="hl-blue">Random tokens.</span></strong>
+            Negligible effect on both accuracy and length &mdash; clustered around the no-penalty baseline.
+          </div>
+          <div class="takeaway warning">
+            <strong><span class="hl-red">Low-KL (math) tokens.</span></strong>
+            Catastrophic: CoT increases by up to <strong>+41%</strong> and accuracy drops by up to <strong>&minus;9.5%</strong>. Suppressing the tokens that <em>compute</em> the answer destroys reasoning.
+          </div>
+          <div class="takeaway purple">
+            <strong><span class="hl-purple">High-KL tokens.</span></strong>
+            Shortens CoT at small $\lambda$ but starts hurting accuracy at larger $\lambda$. This list contains some useful tokens like &ldquo;so&rdquo; that genuinely help conclude reasoning &mdash; which is why we curated $\mathcal S$ rather than using high-KL tokens directly.
+          </div>
+
+          <h3 class="title is-5" style="margin-top: 1.5rem;">Reversing the penalty: a sanity check</h3>
+
+          <p>
+            If hesitation tokens really drive overthinking, then <em>boosting</em> them (negative $\lambda$) should explode the chain of thought. It does.
+          </p>
+
+          <div class="fig-row" style="margin-top: 12px;">
+            <div class="fig-card">
+              <img src="images/neg_sweep_acc_new.png" alt="Negative sweep accuracy" style="width:100%; border-radius:6px;">
+              <figcaption><em>Accuracy when <strong>boosting</strong> each token list.</em></figcaption>
+            </div>
+            <div class="fig-card">
+              <img src="images/neg_sweep_len_new.png" alt="Negative sweep length" style="width:100%; border-radius:6px;">
+              <figcaption><em>CoT length when <strong>boosting</strong> each token list.</em></figcaption>
+            </div>
+          </div>
+
+          <p style="margin-top: 12px;">
+            Boosting overthinking markers increases CoT length by up to <strong>+445%</strong> and drops accuracy by up to <strong>&minus;34%</strong>. High-KL tokens behave nearly identically (the two lists overlap substantially). Random and low-KL tokens stay flat. The two-sided effect confirms that overthinking markers and high-KL tokens are the lever &mdash; suppress them, the chain shrinks; amplify them, it blows up.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 6: HEADLINE TABLE ======================= -->
+<section class="section">
+  <div class="container is-fluid">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+
+        <h2 class="title is-3 has-text-centered">
+          <i class="fa-solid fa-table" style="color:#0ea5e9; margin-right:8px;"></i>
+          Does the diagnostic generalize?
+        </h2>
+
+        <div class="content has-text-justified">
+
+          <p>
+            We apply the same penalty (with $\lambda$ swept and the best value reported per configuration) across 5 models, 3 quantization methods, and 5 benchmarks. Across <strong>all</strong> configurations the penalty reduces CoT length, by between 4.1% and 28.0% on average across benchmarks. Accuracy is preserved or improved in most cases.
+          </p>
+
+          <div class="table-container">
+            <table class="table is-striped is-hoverable is-fullwidth is-narrow">
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Quant</th>
+                  <th>Base Acc / Len</th>
+                  <th>+Pen Acc / Len</th>
+                  <th>&Delta;Acc</th>
+                  <th>&Delta;Len%</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>Qwen-1.5B</b></td>
+                  <td>AWQ W3</td>
+                  <td>29.0 / 28.0k</td>
+                  <td><span class="hl-green">35.2</span> / <span class="hl-green">21.6k</span></td>
+                  <td><span class="hl-green">+6.2</span></td>
+                  <td><span class="hl-green">&minus;28.0%</span></td>
+                </tr>
+                <tr>
+                  <td><b>Qwen-1.5B</b></td>
+                  <td>GPTQ W3</td>
+                  <td>37.8 / 15.0k</td>
+                  <td><span class="hl-green">39.7</span> / <span class="hl-green">11.8k</span></td>
+                  <td><span class="hl-green">+1.9</span></td>
+                  <td><span class="hl-green">&minus;22.6%</span></td>
+                </tr>
+                <tr>
+                  <td><b>Qwen-1.5B</b></td>
+                  <td>FQ W4A4KV4</td>
+                  <td>38.2 / 15.0k</td>
+                  <td><span class="hl-green">40.5</span> / <span class="hl-green">13.3k</span></td>
+                  <td><span class="hl-green">+2.3</span></td>
+                  <td><span class="hl-green">&minus;17.6%</span></td>
+                </tr>
+                <tr>
+                  <td><b>Qwen-7B</b></td>
+                  <td>GPTQ W3</td>
+                  <td>56.0 / 11.0k</td>
+                  <td><span class="hl-green">58.3</span> / <span class="hl-green">10.1k</span></td>
+                  <td><span class="hl-green">+2.2</span></td>
+                  <td><span class="hl-green">&minus;13.1%</span></td>
+                </tr>
+                <tr>
+                  <td><b>Qwen-14B</b></td>
+                  <td>GPTQ W3</td>
+                  <td>65.5 / 8.3k</td>
+                  <td><span class="hl-green">67.5</span> / 8.0k</td>
+                  <td><span class="hl-green">+2.0</span></td>
+                  <td><span class="hl-green">&minus;4.8%</span></td>
+                </tr>
+                <tr>
+                  <td><b>Llama-8B</b></td>
+                  <td>GPTQ W3</td>
+                  <td>49.7 / 12.7k</td>
+                  <td><span class="hl-green">53.0</span> / <span class="hl-green">11.9k</span></td>
+                  <td><span class="hl-green">+3.2</span></td>
+                  <td><span class="hl-green">&minus;7.9%</span></td>
+                </tr>
+                <tr>
+                  <td><b>QwQ-32B</b></td>
+                  <td>AWQ W3</td>
+                  <td>72.9 / 10.5k</td>
+                  <td><span class="hl-green">73.7</span> / <span class="hl-green">9.5k</span></td>
+                  <td><span class="hl-green">+0.7</span></td>
+                  <td><span class="hl-green">&minus;9.6%</span></td>
+                </tr>
+                <tr>
+                  <td><b>QwQ-32B</b></td>
+                  <td>BF16</td>
+                  <td>79.0 / 9.9k</td>
+                  <td><span class="hl-green">80.7</span> / <span class="hl-green">9.0k</span></td>
+                  <td><span class="hl-green">+1.7</span></td>
+                  <td><span class="hl-green">&minus;9.6%</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:13px; color:#666; text-align:center; margin-top: 6px;">
+            Selected rows from Table&nbsp;1 of the paper; full table covers all five models &times; four PTQ settings &times; five benchmarks.
+          </p>
+
+          <p style="margin-top: 14px;">
+            Overthinking-error count drops accordingly: on MATH-500 under 3-bit AWQ, overthinking errors fall from 139&rarr;58 (<strong>&minus;58%</strong>), and total errors from 265&rarr;194. The penalty also shortens BF16 chains by 5.6&ndash;10% depending on the model &mdash; consistent with our reading that <em>quantization amplifies a failure mode already present in full-precision reasoning models</em>, rather than introducing a new one.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= QUALITATIVE ======================= -->
+<section class="section hero is-light">
+  <div class="container is-fluid">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered">
+          <i class="fa-solid fa-comment-dots" style="color:#f97316; margin-right:8px;"></i>
+          What an overthinking failure looks like
+        </h2>
+        <div class="content has-text-justified">
+          <div style="display:flex; gap:20px; flex-wrap: wrap;">
+
+            <div style="flex: 1 1 300px; background: #fff; padding: 16px 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+              <p style="font-weight: 700; color: #16a34a;">BF16 &mdash; ~1,124 tokens <i class="fa fa-check"></i></p>
+              <div style="background:#f8fafc; padding: 10px 14px; border-radius:6px; font-size: 14px; line-height: 1.55;">
+                <ol style="padding-left: 1.2em; margin: 0;">
+                  <li>An "eight-digit base 2 integer" means a binary number with exactly 8 digits.</li>
+                  <li>The largest such number is $11111111_2$.</li>
+                  <li>Convert to base 10: $128+64+32+16+8+4+2+1 = 255$.</li>
+                  <li>Therefore the answer is $\boxed{255}$.</li>
+                </ol>
+              </div>
+            </div>
+
+            <div style="flex: 1 1 300px; background: #fff; padding: 16px 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+              <p style="font-weight: 700; color: #b91c1c;">3-bit AWQ &mdash; 5,494 tokens, never terminates <i class="fa fa-times"></i></p>
+              <div style="background:#f8fafc; padding: 10px 14px; border-radius:6px; font-size: 14px; line-height: 1.55;">
+                <p style="margin-bottom: 8px;"><em>Correct reasoning start (early):</em></p>
+                <blockquote style="border-left: 3px solid #16a34a; margin: 0 0 10px 0; padding: 2px 10px; background:#f0fdf4;">
+                  &ldquo;The largest eight-digit binary number is $11111111_2$. Each digit represents a power of two&hellip; $128+64+32+16+8+4+2+1 = 255$.&rdquo;
+                </blockquote>
+                <p style="margin-bottom: 8px;"><em>Then the path-forking begins:</em></p>
+                <blockquote style="border-left: 3px solid #b91c1c; margin: 0; padding: 2px 10px; background:#fef3f2;">
+                  &ldquo;<strong>Wait</strong>, <strong>but</strong> maybe `eight-digit' means something else? &hellip; <strong>Wait</strong>, maybe it means eight digits in base 10 restricted to 0s and 1s? &hellip; <strong>Wait</strong>, what if the phrasing is tricky?&rdquo;
+                </blockquote>
+              </div>
+            </div>
+
+          </div>
+
+          <p style="text-align: center; color:#555; margin-top: 12px; font-size: 13.5px;">
+            Same question, same model architecture, only the quantization differs. The quantized model reaches 255 within the first paragraph and then talks itself out of committing.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= LIMITATIONS / TAKEAWAYS ======================= -->
+<section class="section">
+  <div class="container is-fluid">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+
+        <h2 class="title is-3 has-text-centered">
+          <i class="fa-solid fa-flag-checkered" style="color:#7c3aed; margin-right:8px;"></i>
+          What we think this paper contributes
+        </h2>
+
+        <div class="content has-text-justified">
+          <ul>
+            <li>
+              <strong>A specific characterization of how aggressive PTQ degrades reasoning models.</strong> Not a generic capability loss &mdash; an inflation of <em>overthinking</em> errors (up to 7.3&times; in absolute count under 3-bit AWQ on MATH-500).
+            </li>
+            <li>
+              <strong>A token-level localization of the damage.</strong> The KL divergence between BF16 and quantized output distributions concentrates on hesitation tokens at high-entropy positions, with &rho; = 0.92 between position-level KL and BF16 next-token entropy.
+            </li>
+            <li>
+              <strong>A diagnostic that confirms the story.</strong> Suppressing exactly these tokens cuts CoT length by 12&ndash;23% while preserving or improving accuracy; suppressing math tokens or random tokens does not. Boosting the same tokens explodes CoT by up to +445%.
+            </li>
+            <li>
+              <strong>A reusable analysis recipe.</strong> Token-level KL between a reference model and its compressed variant could serve as a general diagnostic for which aspects of generation are most vulnerable to compression &mdash; whether the compression comes from quantization, pruning, distillation, or low-rank approximation.
+            </li>
+          </ul>
+
+          <div class="note-box">
+            <strong>Limitations we're explicit about.</strong> Our $\mathcal S$ is hand-curated for English reasoning models &mdash; automatically constructing it per model is an obvious next step. We use a single fixed $\lambda$ per decoding step; an entropy-adaptive $\lambda$ is a natural extension. And our evaluation is restricted to math, coding, and science. Whether the same pattern shows up in agentic planning or other reasoning domains is open.
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= BIBTEX ======================= -->
+<section class="section" id="BibTeX">
+  <div class="container is-fluid">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title">BibTeX</h2>
+        <pre><code>@article{lotfi2026quantized,
+  title   = {Quantized Reasoning Models Think They Need to Think Longer, but They Do Not},
+  author  = {Lotfi, Sanae and Kirichenko, Polina and Li, Steven and Liu, Zechun},
+  year    = {2026},
+}</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" style="background: #fafafa; padding: 1.5rem 0;">
+  <div class="container is-fluid">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths has-text-centered" style="color:#666; font-size: 13px;">
+        Page layout adapted from the <a href="https://infini-ai-lab.github.io/STEM/" target="_blank">STEM project page</a>, which is itself adapted from <a href="https://nerfies.github.io/" target="_blank">Nerfies</a>.
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
