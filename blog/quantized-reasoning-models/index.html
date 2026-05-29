@@ -342,8 +342,8 @@
         <figcaption><em>Highest-KL tokens are hesitation and branching tokens.</em></figcaption>
       </div>
       <div class="fig-card">
-        <img src="images/kl_lowest_tokens.png" alt="Top 20 tokens with the lowest KL divergence; these are mathematical and formatting tokens, with KL values well under 0.02">
-        <figcaption><em>Lowest-KL tokens are mathematical and formatting tokens. Note the much smaller x-axis range.</em></figcaption>
+        <img src="images/kl_lowest_tokens.png" alt="Top 20 tokens with the lowest KL divergence; these are mathematical and formatting tokens, all with KL well under 0.02">
+        <figcaption><em>Lowest-KL tokens are mathematical and formatting tokens. Note the x-axis only reaches 0.06.</em></figcaption>
       </div>
       <div class="fig-card">
         <img src="images/scatter_kl_vs_entropy.png" alt="Per-position KL divergence vs. BF16 next-token entropy; correlation rho = 0.92">
@@ -353,7 +353,7 @@
     <h3 class="title is-5">Three observations</h3>
     <ul>
       <li><strong>The highest-KL tokens are hesitation or branching tokens</strong> (&ldquo;Wait&rdquo;, &ldquo;But&rdquo;, &ldquo;Alternatively&rdquo;, &ldquo;maybe&rdquo;, &ldquo;verify&rdquo;, &ldquo;think&rdquo;). Many of them open new reasoning paths or express doubt.</li>
-      <li><strong>The lowest-KL tokens are mathematical and formatting tokens.</strong> Quantization barely changes how the model samples digits, operators, or LaTeX markup. Note the x-axis range: low-KL values are roughly 100&times; smaller than the high-KL ones.</li>
+      <li><strong>The lowest-KL tokens are mathematical and formatting tokens.</strong> Quantization barely changes how the model samples digits, operators, or LaTeX markup. Note the x-axis range: low-KL values are nearly 100&times; smaller than the high-KL ones (the largest low-KL value is around 0.015, while the largest high-KL value is around 1.30).</li>
       <li><strong>Position-level KL tracks BF16 next-token entropy</strong> at Spearman &rho; = 0.92. Quantization noise has the most leverage at high-entropy positions, where the BF16 model is already uncertain.</li>
     </ul>
     <p>
