@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="referrer" content="no-referrer">
+
+  <meta name="description" content="Quantized Reasoning Models Think They Need to Think Longer, but They Do Not">
+  <meta property="og:title" content="Quantized Reasoning Models Think They Need to Think Longer, but They Do Not"/>
+  <meta property="og:description" content="Aggressive post-training quantization makes reasoning models reach correct intermediate answers and then talk themselves out of them. A simple decode-time intervention fixes this specific failure mode."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quantized Reasoning Models Think They Need to Think Longer, but They Do Not</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    body { background:#fff; font-family:'Noto Sans',sans-serif; color:#1f2937; }
+    .container.is-fluid { margin: 0 auto; max-width: 1080px; padding: 0 20px; }
+    section { padding: 1.4rem 0; }
+    section.hero-section { padding: 2rem 0 0.5rem 0; }
+    .publication-title { font-family: 'Google Sans', sans-serif; }
+    h2.title.is-3 { font-family: 'Google Sans', sans-serif; margin: 0.4rem 0 0.9rem 0; }
+    h3.title.is-5 { font-family: 'Google Sans', sans-serif; margin: 1rem 0 0.5rem 0; color: #1f2937; }
+    p, li { font-size: 16px; line-height: 1.65; }
+    figcaption { color:#475569; font-size:13.5px; text-align:center; line-height:1.5; margin-top:8px; }
+    .fig-row { display:flex; gap:18px; flex-wrap:wrap; justify-content:center; align-items:flex-start; margin-top:12px; }
+    .fig-row > div { flex:1 1 320px; min-width:280px; }
+    .fig-card { background:#fff; padding:12px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.06); }
+    .fig-card img { width:100%; height:auto; border-radius:4px; display:block; }
+    .tldr { background:#f7faff; border-left:4px solid #4b6cb7; border-radius:4px; padding:14px 20px; margin:8px 0 4px 0; }
+    .tldr p { margin:0; }
+    .note-box { border:2px solid #a57bb3; border-radius:10px; padding:1em 1.2em 0.9em; background:#fefefe; position:relative; margin:2em 0 1.2em; line-height:1.6; }
+    .note-box::before { content:"Scope of this work"; position:absolute; top:-0.95em; left:0; background:#a57bb3; color:#fff; padding:0.2em 0.75em; border-radius:6px; font-weight:700; font-size:0.82em; }
+    .note-box.diagnostic::before { content:"A test of the mechanism"; }
+    .note-box p { margin:0; }
+    .private-banner { background:#fff7ed; border:1px dashed #fb923c; color:#9a3412; padding:7px 12px; border-radius:6px; font-size:12.5px; margin-bottom:14px; text-align:center; }
+    .author-block { white-space:nowrap; }
+    .eq-box { background:#f7fbff; padding:8px 14px; border-radius:6px; margin:10px 0; }
+    .term { font-weight:700; color:#1e3a8a; }
+    hr.subtle { border:0; border-top:1px solid #eef2f7; margin:18px 0; }
+    pre code { background:#f6f8fa; border-radius:6px; padding:12px; display:block; font-size:13px; line-height:1.5; overflow-x:auto; }
+    section.tldr-section { padding: 0.4rem 0; }
+
+    .accent-box { border-left:6px solid #4b6cb7; background:#fff; padding:14px 20px; border-radius:6px; margin:14px 0; box-shadow:0 1px 6px rgba(0,0,0,0.04); }
+    .accent-box.green  { border-left-color:#16a34a; }
+    .accent-box.amber  { border-left-color:#ea580c; }
+    .accent-box.slate  { border-left-color:#475569; }
+    .accent-box.purple { border-left-color:#7c3aed; }
+
+    /* ===================== HERO: 3-panel branching tree ===================== */
+    .tree-hero { display:flex; gap:16px; flex-wrap:wrap; justify-content:center; max-width:1040px; margin:0 auto; }
+    .tree-panel {
+      flex:1 1 300px; min-width:260px;
+      background:#fff; border-radius:10px; padding:18px 16px 14px;
+      box-shadow:0 2px 14px rgba(15,23,42,0.06);
+      display:flex; flex-direction:column;
+    }
+    .tree-panel.bf16 { border-top: 4px solid #16a34a; }
+    .tree-panel.awq  { border-top: 4px solid #dc2626; }
+    .tree-panel.pen  { border-top: 4px solid #2563eb; }
+    .tree-panel h3 {
+      font-family:'Google Sans',sans-serif; font-weight:600; font-size:14.5px;
+      margin:0 0 2px; color:#1f2937;
+    }
+    .tree-panel .sub { font-size:12px; color:#6b7280; margin-bottom:10px; }
+    .tree-svg { width:100%; height:280px; }
+    .tree-footer { margin-top:6px; font-size:12px; color:#475569; }
+    .tree-footer .tk { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-weight:700; color:#1f2937; }
+
+    /* SVG styling for trees */
+    .trunk { fill:none; stroke:#475569; stroke-width:2; }
+    .trunk-fade { opacity:0.35; }
+    .node-box { fill:#fff; stroke:#475569; stroke-width:1; rx:4; }
+    .node-text { font-family: ui-monospace, monospace; font-size:11px; fill:#1f2937; text-anchor:middle; }
+    .ans-box { fill:#dcfce7; stroke:#16a34a; stroke-width:1.5; rx:6; }
+    .ans-text { font-family: ui-monospace, monospace; font-size:13px; font-weight:700; fill:#15803d; text-anchor:middle; }
+    .check { font-size:14px; fill:#16a34a; }
+    .terminate { font-size:11px; fill:#16a34a; text-anchor:middle; font-weight:600; }
+
+    /* Branch animations */
+    .br-red { fill:none; stroke:#dc2626; stroke-width:1.5; opacity:0;
+              stroke-dasharray: 100; stroke-dashoffset: 100;
+              animation: drawRed 8s linear infinite; }
+    .br-r1 { animation-delay: 2.0s; }
+    .br-r2 { animation-delay: 2.3s; }
+    .br-r3 { animation-delay: 2.6s; }
+    .br-r4 { animation-delay: 2.9s; }
+    .br-r5 { animation-delay: 3.2s; }
+    @keyframes drawRed { 0%,18% { opacity:0; stroke-dashoffset:100 } 22%,75% { opacity:0.85; stroke-dashoffset:0 } 100% { opacity:0.85; stroke-dashoffset:0 } }
+    .branch-label { font-family: ui-monospace, monospace; font-size: 10px; fill:#b91c1c; opacity: 0;
+                    animation: labelIn 8s linear infinite; }
+    .lbl-1 { animation-delay: 2.3s; } .lbl-2 { animation-delay: 2.6s; }
+    .lbl-3 { animation-delay: 2.9s; } .lbl-4 { animation-delay: 3.2s; }
+    .lbl-5 { animation-delay: 3.5s; }
+    @keyframes labelIn { 0%,25% { opacity:0 } 32%,100% { opacity:0.95 } }
+    .dead-x { font-family: monospace; font-size:11px; fill:#9ca3af; opacity:0;
+              animation: deadIn 8s linear infinite; }
+    .d1 { animation-delay: 3.0s; } .d2 { animation-delay: 3.3s; }
+    .d3 { animation-delay: 3.6s; } .d4 { animation-delay: 3.9s; }
+    .d5 { animation-delay: 4.2s; }
+    @keyframes deadIn { 0%,35% { opacity:0 } 42%,100% { opacity:1 } }
+
+    /* Pruning animation: branches appear then fade */
+    .br-prune { fill:none; stroke:#2563eb; stroke-width:1.3; opacity:0;
+                stroke-dasharray:80; stroke-dashoffset:80;
+                animation: drawPrune 8s linear infinite; }
+    .p1 { animation-delay: 2.0s; } .p2 { animation-delay: 2.4s; }
+    @keyframes drawPrune {
+      0%,18% { opacity:0; stroke-dashoffset:80 }
+      22%,40% { opacity:0.55; stroke-dashoffset:0 }
+      55%,100% { opacity:0; stroke-dashoffset:0 }
+    }
+    .scissors { font-size:13px; fill:#2563eb; opacity:0;
+                animation: scissorsIn 8s linear infinite; }
+    .s1 { animation-delay: 3.5s; } .s2 { animation-delay: 3.9s; }
+    @keyframes scissorsIn { 0%,40% { opacity:0 } 45%,55% { opacity:1 } 65%,100% { opacity:0 } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .br-red, .branch-label, .dead-x, .br-prune, .scissors { animation: none; opacity: 1; stroke-dashoffset: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<section class="hero-section">
+  <div class="container is-fluid">
+    <div class="has-text-centered">
+      <div class="private-banner">Unlisted preview. Please do not share publicly yet.</div>
+      <h1 class="title is-2 publication-title" style="margin-bottom: 0.5rem;">
+        Quantized Reasoning Models Think They Need to Think Longer, <em>but They Do Not</em>
+      </h1>
+      <p style="color:#475569; font-size: 15px; margin-bottom: 0.9rem;">
+        When we compress reasoning models, they find the right answer and then talk themselves out of it.
+      </p>
+      <div class="is-size-5 publication-authors">
+        <span class="author-block"><a href="https://sanaelotfi.github.io/" target="_blank">Sanae Lotfi</a><sup>1</sup>,</span>
+        <span class="author-block"><a href="https://polkirichenko.github.io/" target="_blank">Polina Kirichenko</a><sup>1</sup>,</span>
+        <span class="author-block">Steven Li<sup>2</sup>,</span>
+        <span class="author-block"><a href="https://zechunliu.com/" target="_blank">Zechun Liu</a><sup>2</sup></span>
+      </div>
+      <div class="is-size-6 publication-authors" style="color:#666;">
+        <sup>1</sup>FAIR at Meta &nbsp; <sup>2</sup>Meta AI
+      </div>
+      <div style="margin-top: 0.9rem;">
+        <a href="https://drive.google.com/file/d/1JnuIkfAenb_CEB86IN51BbN0dIqV36DO/view" target="_blank"
+           class="external-link button is-normal is-rounded is-dark">
+          <span class="icon"><i class="ai ai-arxiv"></i></span><span>Paper</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top: 6px; padding-bottom: 6px;">
+  <div class="container is-fluid">
+
+    <div class="tree-hero" role="img"
+         aria-label="Animation: three side-by-side reasoning trees on the same MATH-500 problem. Full precision: short trunk leading to a green answer node. AWQ 3-bit: same short trunk reaches the green answer node, then sprouts a fan of red hesitation branches leading to dead ends. AWQ + penalty: same short trunk reaches the answer node, with two faint branches snipped away.">
+
+      <div class="tree-panel bf16">
+        <h3>BF16</h3>
+        <p class="sub">full precision</p>
+        <svg class="tree-svg" viewBox="0 0 280 280" preserveAspectRatio="xMidYMid meet">
+          <!-- Trunk: 4 steps then answer -->
+          <line class="trunk" x1="140" y1="20"  x2="140" y2="55"/>
+          <rect class="node-box" x="100" y="55"  width="80" height="22"/>
+          <text class="node-text" x="140" y="70">let x = 2^8-1</text>
+          <line class="trunk" x1="140" y1="77"  x2="140" y2="95"/>
+          <rect class="node-box" x="100" y="95"  width="80" height="22"/>
+          <text class="node-text" x="140" y="110">simplify</text>
+          <line class="trunk" x1="140" y1="117" x2="140" y2="135"/>
+          <rect class="node-box" x="100" y="135" width="80" height="22"/>
+          <text class="node-text" x="140" y="150">sum 2^k</text>
+          <line class="trunk" x1="140" y1="157" x2="140" y2="175"/>
+          <!-- Answer node -->
+          <rect class="ans-box" x="100" y="175" width="80" height="30"/>
+          <text class="ans-text" x="135" y="195">= 255</text>
+          <text class="check" x="172" y="195">&#x2713;</text>
+          <!-- Terminate -->
+          <text class="terminate" x="140" y="225">terminates</text>
+        </svg>
+        <div class="tree-footer">~<span class="tk">5.2K</span> tokens · commits</div>
+      </div>
+
+      <div class="tree-panel awq">
+        <h3>3-bit AWQ</h3>
+        <p class="sub">no penalty</p>
+        <svg class="tree-svg" viewBox="0 0 280 280" preserveAspectRatio="xMidYMid meet">
+          <!-- Same trunk -->
+          <line class="trunk" x1="140" y1="20"  x2="140" y2="55"/>
+          <rect class="node-box" x="100" y="55"  width="80" height="22"/>
+          <text class="node-text" x="140" y="70">let x = 2^8-1</text>
+          <line class="trunk" x1="140" y1="77"  x2="140" y2="95"/>
+          <rect class="node-box" x="100" y="95"  width="80" height="22"/>
+          <text class="node-text" x="140" y="110">simplify</text>
+          <line class="trunk" x1="140" y1="117" x2="140" y2="135"/>
+          <rect class="node-box" x="100" y="135" width="80" height="22"/>
+          <text class="node-text" x="140" y="150">sum 2^k</text>
+          <line class="trunk" x1="140" y1="157" x2="140" y2="175"/>
+          <!-- Answer node (slightly faded after branches appear) -->
+          <rect class="ans-box" x="100" y="175" width="80" height="30"/>
+          <text class="ans-text" x="140" y="195">= 255</text>
+          <!-- Five red branches sprouting from below the answer node -->
+          <path class="br-red br-r1" d="M 140 205 Q 100 220 60 235"/>
+          <path class="br-red br-r2" d="M 140 205 Q 115 222 85 245"/>
+          <path class="br-red br-r3" d="M 140 205 Q 140 225 140 250"/>
+          <path class="br-red br-r4" d="M 140 205 Q 165 222 195 245"/>
+          <path class="br-red br-r5" d="M 140 205 Q 180 220 220 235"/>
+          <!-- Labels at branch tips -->
+          <text class="branch-label lbl-1" x="30"  y="245">Wait...</text>
+          <text class="branch-label lbl-2" x="55"  y="258">But...</text>
+          <text class="branch-label lbl-3" x="110" y="263">Alt...</text>
+          <text class="branch-label lbl-4" x="170" y="258">Maybe...</text>
+          <text class="branch-label lbl-5" x="220" y="245">Hmm...</text>
+          <!-- Dead-end x marks -->
+          <text class="dead-x d1" x="60"  y="240">&#x2715;</text>
+          <text class="dead-x d2" x="85"  y="250">&#x2715;</text>
+          <text class="dead-x d3" x="140" y="255">&#x2715;</text>
+          <text class="dead-x d4" x="195" y="250">&#x2715;</text>
+          <text class="dead-x d5" x="220" y="240">&#x2715;</text>
+        </svg>
+        <div class="tree-footer">~<span class="tk">23.4K</span> tokens · keeps going</div>
+      </div>
+
+      <div class="tree-panel pen">
+        <h3>3-bit AWQ + penalty</h3>
+        <p class="sub">diagnostic</p>
+        <svg class="tree-svg" viewBox="0 0 280 280" preserveAspectRatio="xMidYMid meet">
+          <line class="trunk" x1="140" y1="20"  x2="140" y2="55"/>
+          <rect class="node-box" x="100" y="55"  width="80" height="22"/>
+          <text class="node-text" x="140" y="70">let x = 2^8-1</text>
+          <line class="trunk" x1="140" y1="77"  x2="140" y2="95"/>
+          <rect class="node-box" x="100" y="95"  width="80" height="22"/>
+          <text class="node-text" x="140" y="110">simplify</text>
+          <line class="trunk" x1="140" y1="117" x2="140" y2="135"/>
+          <rect class="node-box" x="100" y="135" width="80" height="22"/>
+          <text class="node-text" x="140" y="150">sum 2^k</text>
+          <line class="trunk" x1="140" y1="157" x2="140" y2="175"/>
+          <rect class="ans-box" x="100" y="175" width="80" height="30"/>
+          <text class="ans-text" x="135" y="195">= 255</text>
+          <text class="check" x="172" y="195">&#x2713;</text>
+          <!-- Two faint blue branches that appear and get snipped -->
+          <path class="br-prune p1" d="M 140 205 Q 120 220 100 235"/>
+          <path class="br-prune p2" d="M 140 205 Q 160 220 180 235"/>
+          <text class="scissors s1" x="103" y="240">&#x2702;</text>
+          <text class="scissors s2" x="176" y="240">&#x2702;</text>
+          <text class="terminate" x="140" y="262">terminates</text>
+        </svg>
+        <div class="tree-footer">~<span class="tk">16.8K</span> tokens · commits</div>
+      </div>
+
+    </div>
+
+    <p style="text-align:center; color:#475569; font-size: 13px; margin-top: 16px; max-width: 900px; margin-left:auto; margin-right:auto;">
+      <strong>Figure 1.</strong> Schematic. The model's chain of thought is a single sequential token stream. The fan of red "branches" in the middle panel represents the spurious reasoning paths the AWQ model opens <em>after</em> already reaching the correct answer. Bar lengths in the footer correspond to the mean MATH-500 chain length on DeepSeek-R1-Distill-Qwen-1.5B. The error analysis in Section 5 of the paper shows the correct answer is reached and abandoned in 52% of AWQ failures on MATH-500.
+    </p>
+
+  </div>
+</section>
+
+<section class="tldr-section">
+  <div class="container is-fluid">
+    <div class="tldr">
+      <p>
+        <strong style="color:#0f598a;">TL;DR.</strong>
+        Post-training quantization (PTQ) makes reasoning models more compact and faster to deploy. It also produces, in our experiments, much longer chains of thought and lower accuracy on reasoning benchmarks. We perform a token-level analysis to identify one mechanism behind both effects, which we call <span class="term">overthinking</span>: the quantized model reaches the correct answer in an intermediate reasoning step, then opens new branches, second-guesses itself, and never commits. Token-level KL divergence between the full-precision and quantized models concentrates on hesitation tokens (&ldquo;Wait&rdquo;, &ldquo;But&rdquo;, &ldquo;Alternatively&rdquo;), at the decoding positions where the full-precision model was already uncertain. A simple decode-time penalty on a curated set of 50 hesitation tokens shortens chains by 12 to 23% on average across models and benchmarks, while preserving or improving accuracy. We do not claim overthinking is the only effect of PTQ on reasoning models. We claim it is a specific, measurable, and addressable one.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container is-fluid">
+    <h2 class="title is-3">What we observe under aggressive PTQ</h2>
+    <p>
+      We evaluate five reasoning models (DeepSeek-R1-Distill-Qwen 1.5B, 7B, 14B, DeepSeek-R1-Distill-Llama 8B, and QwQ-32B), three PTQ methods (GPTQ, AWQ, FlatQuant), and five benchmarks (AIME-120, MATH-500, GSM8K, GPQA-Diamond, LiveCodeBench). Mild quantization is essentially free. Once we push to 3-bit weights or W4A4KV4, accuracy drops and chains of thought grow at the same time.
+    </p>
+    <div class="fig-row">
+      <div class="fig-card"><img src="images/ptq_bars_v3_acc.png" alt="Accuracy drops under PTQ"></div>
+      <div class="fig-card"><img src="images/ptq_bars_v3_len.png" alt="Chain length grows under PTQ"></div>
+    </div>
+    <p style="text-align:center; color:#475569; font-size: 13.5px; margin-top: 8px;">
+      DeepSeek-R1-Distill-Qwen-1.5B on three benchmarks. On MATH-500, 3-bit AWQ drops accuracy from <strong>85.6% to 47.0%</strong> and inflates CoT from <strong>5.2K to 23.4K tokens</strong> (4.5&times;). Full per-model results are in Section 4 of the paper.
+    </p>
+    <div class="accent-box slate">
+      <p style="margin:0;">
+        Across all 28 model and quantization pairs, the Spearman correlation between accuracy loss and CoT length increase is <strong>&rho; = -0.73</strong>. The models that lose the most accuracy also generate the longest chains. This is suggestive but not diagnostic on its own. Longer chains could be a symptom of degraded capability, or they could actively cause the degradation. To distinguish these, we look at the errors directly.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section style="background:#fafbfc;">
+  <div class="container is-fluid">
+    <h2 class="title is-3">An error analysis isolates overthinking</h2>
+    <p>
+      We define an <span class="term">overthinking error</span> as a failure where the model reaches the correct answer at some point in its chain of thought, then opens new reasoning paths, questions its own assumptions, or reverses the correct conclusion before producing a final answer. We annotated a subset of MATH-500 failures by hand and used GPT-5 (calibrated to over 95% agreement with our annotation) to scale labels into four buckets: <strong>overthinking</strong>, <strong>logical error</strong> (wrong plan from the start), <strong>arithmetic error</strong> (right plan, wrong computation), and <strong>formatting / hallucination / other</strong>.
+    </p>
+    <div class="fig-row">
+      <div class="fig-card">
+        <img src="images/error_distribution_full_precision.png" alt="BF16 error breakdown">
+        <figcaption><em>BF16: 72 errors total, 19 overthinking (26%).</em></figcaption>
+      </div>
+      <div class="fig-card">
+        <img src="images/error_distribution_awq_3bit.png" alt="AWQ 3-bit error breakdown">
+        <figcaption><em>3-bit AWQ: 265 errors total, 139 overthinking (52%). A 7.3&times; jump in absolute count.</em></figcaption>
+      </div>
+    </div>
+    <div class="accent-box amber">
+      <p style="margin:0;">
+        The error categories do not grow in proportion. Overthinking errors inflate disproportionately under quantization. Arithmetic and logical errors stay roughly flat in absolute count. The longer chains under PTQ are not just slower correct reasoning. They contain qualitatively different failures, in which the answer was reached and then abandoned.
+      </p>
+    </div>
+    <div class="note-box">
+      <p>
+        <strong>What we claim and what we do not.</strong>
+        Overthinking is one effect of PTQ on reasoning models, isolated through our error analysis. Quantization may degrade reasoning in other ways we do not measure here (changes to retrieval, attention behavior, calibration on harder problems). The contribution of this work is to identify this one mode, characterize its token-level signature, and show that it can be addressed with a targeted decode-time intervention. Other errors are not addressed by our method.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container is-fluid">
+    <h2 class="title is-3">Where the quantized and full-precision models diverge</h2>
+    <p>
+      To localize the source of the overthinking errors, we run BF16 and 3-bit AWQ on the same MATH-500 prompts under identical generation prefixes and measure per-position <span class="term">KL divergence</span> $D_{\mathrm{KL}}(p_t \,\|\, q_t)$ between the BF16 and quantized next-token distributions. KL divergence is a standard measure of how much one distribution differs from another. A large KL at position $t$ means the two models disagree sharply about what to say next at that position. We then associate each KL value with the token the quantized model actually sampled, and average across all positions where each unique token appears (with a minimum count of 50).
+    </p>
+    <div class="fig-row">
+      <div class="fig-card">
+        <img src="images/kl_highest_tokens.png" alt="Top KL tokens (hesitation)">
+        <figcaption><em>Highest-KL tokens are hesitation and branching tokens.</em></figcaption>
+      </div>
+      <div class="fig-card">
+        <img src="images/kl_lowest_tokens.png" alt="Lowest KL tokens (math)">
+        <figcaption><em>Lowest-KL tokens are mathematical and formatting tokens.</em></figcaption>
+      </div>
+      <div class="fig-card">
+        <img src="images/scatter_kl_vs_entropy.png" alt="KL vs BF16 next-token entropy">
+        <figcaption><em>Position-level KL vs. BF16 next-token entropy. Spearman &rho; = 0.92.</em></figcaption>
+      </div>
+    </div>
+    <h3 class="title is-5">Three observations</h3>
+    <ul>
+      <li><strong>The highest-KL tokens are hesitation or branching tokens</strong> (&ldquo;Wait&rdquo;, &ldquo;But&rdquo;, &ldquo;Alternatively&rdquo;, &ldquo;maybe&rdquo;, &ldquo;verify&rdquo;, &ldquo;think&rdquo;). Many of them open new reasoning paths or express doubt.</li>
+      <li><strong>The lowest-KL tokens are mathematical and formatting tokens.</strong> Quantization barely changes how the model samples digits, operators, or LaTeX markup.</li>
+      <li><strong>Position-level KL tracks BF16 next-token entropy</strong> at Spearman &rho; = 0.92. Quantization noise has the most leverage at positions where the BF16 model is already uncertain.</li>
+    </ul>
+    <div class="accent-box purple">
+      <p style="margin:0;">
+        <strong>What we mean by a high-entropy position.</strong> At a high-entropy position, the full-precision model spreads probability across many roughly comparable next-token candidates rather than concentrating it on one. The model has not made up its mind about what to say next. Low-entropy positions are the opposite: one token (a digit, an operator, the next step of an arithmetic chain) dominates and the rest of the distribution is essentially zero.
+      </p>
+    </div>
+    <p>
+      At high-entropy positions, two things happen at once. First, the logit gap between the top token and a hesitation token like &ldquo;Wait&rdquo; is small, so a modest perturbation to the logits can flip which token is sampled. Second, hesitation tokens are 2 to 4&times; more likely to appear among the top-20 candidates at high-entropy positions than at low-entropy ones (see Section 6 of the paper for the per-bin breakdown). Quantization noise has its largest effect exactly at these uncertain positions, so the quantized model is more likely to sample a &ldquo;Wait&rdquo; or &ldquo;But&rdquo;, open a new reasoning branch, and overwrite the answer it had already found.
+    </p>
+  </div>
+</section>
+
+<section style="background:#fafbfc;">
+  <div class="container is-fluid">
+    <h2 class="title is-3">Confirming the mechanism with a targeted intervention</h2>
+    <p>
+      If hesitation tokens at high-entropy positions really drive the overthinking errors, suppressing them at decode time should shorten chains, shrink the overthinking error bucket specifically, and leave the other error categories alone. We curate a set $\mathcal S$ of 50 overthinking markers (&ldquo;Wait&rdquo;, &ldquo;But&rdquo;, &ldquo;Alternatively&rdquo;, &ldquo;perhaps&rdquo;, &ldquo;maybe&rdquo;, &ldquo;however&rdquo;, &ldquo;reconsider&rdquo;, &ldquo;backtrack&rdquo;, &ldquo;wrong&rdquo;, ...; the full list is in the paper) and subtract a fixed penalty $\lambda &gt; 0$ from their logits at every decoding step:
+    </p>
+    <div class="eq-box">
+      $$ z'_t(v) = z_t(v) - \lambda \;\;\text{if}\;\; v \in \mathcal S, \quad z'_t(v) = z_t(v) \;\;\text{otherwise.} $$
+    </div>
+    <div class="note-box diagnostic">
+      <p>
+        We use this penalty as a diagnostic for the mechanism we identified, not as a proposed inference method. If the diagnosis is right, suppressing exactly these tokens should produce a specific, predictable change in the overthinking error count. Suppressing other token lists (random tokens, lowest-KL math tokens) should produce nothing or the opposite. Both controls are run below.
+      </p>
+    </div>
+    <p style="margin-top: 18px;">
+      We sweep $\lambda \in [0.5, 4.0]$ over four token lists of equal size (50 tokens each): our overthinking markers, the 50 highest-KL tokens, the 50 lowest-KL tokens, and 50 randomly selected tokens. Results are averaged over six quantization configurations and five benchmarks on Qwen-1.5B. The story we want to tell here is about <strong>chain-of-thought length and the efficiency–accuracy Pareto frontier</strong>; accuracy is preserved or improved on average.
+    </p>
+    <div class="fig-row">
+      <div class="fig-card">
+        <img src="images/ablation_len_vs_lambda.png" alt="CoT length under positive penalty">
+        <figcaption><em>Positive penalty: shortens CoT.</em></figcaption>
+      </div>
+      <div class="fig-card">
+        <img src="images/neg_sweep_len_new.png" alt="CoT length under negative penalty (boosting hesitation tokens)">
+        <figcaption><em>Negative penalty: inflates CoT (sanity check on direction).</em></figcaption>
+      </div>
+      <div class="fig-card">
+        <img src="images/ablation_pareto.png" alt="Accuracy vs. length Pareto frontier">
+        <figcaption><em>Pareto frontier: overthinking markers occupy the upper-left.</em></figcaption>
+      </div>
+    </div>
+    <div class="accent-box green">
+      <p style="margin:0;"><strong>Overthinking markers.</strong> Shorten CoT by 12 to 23% at every $\lambda$ we tried. The list occupies the upper-left of the Pareto frontier across all $\lambda$ values. Accuracy is preserved or improved on average.</p>
+    </div>
+    <div class="accent-box slate">
+      <p style="margin:0;"><strong>Random tokens.</strong> Negligible effect on CoT length or accuracy. The configuration stays near the no-penalty baseline.</p>
+    </div>
+    <div class="accent-box amber">
+      <p style="margin:0;"><strong>Lowest-KL math tokens.</strong> CoT grows by up to 41% and accuracy drops by up to 9.5%. Suppressing the tokens that compute the answer hurts reasoning, as expected.</p>
+    </div>
+    <hr class="subtle">
+    <p>
+      A symmetric sanity check (middle figure above): <em>boosting</em> the same overthinking markers with a negative $\lambda$ inflates CoT by up to 445% and drops accuracy by up to 34%. Random and lowest-KL tokens stay flat under boosting. The lever points in both directions when we expect it to, which closes the loop on the mechanism: the markers we identified are exactly the tokens that control reasoning length, and they control it monotonically in both directions.
+    </p>
+    <p>
+      The effect generalizes. Across all five models and all PTQ settings, the penalty reduces CoT length by 4.1 to 28.0% on average while preserving or improving accuracy. On MATH-500 under 3-bit AWQ, overthinking errors drop from 139 to 58, a 58% reduction, without inflating the other error categories. The same intervention reduces CoT in full-precision models by 5.6 to 10.0% as well. Overthinking is a tendency already present in reasoning models; quantization amplifies it.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container is-fluid">
+    <h2 class="title is-3">What we show, and what we do not</h2>
+    <ul>
+      <li><strong>We characterize one specific way PTQ degrades reasoning models.</strong> Overthinking errors (correct answer reached, not committed) inflate up to 7.3&times; in absolute count on MATH-500 under 3-bit AWQ. Other error categories grow much less.</li>
+      <li><strong>We localize the damage at the token level.</strong> KL divergence between BF16 and quantized output distributions concentrates on hesitation tokens at high-entropy positions (&rho; = 0.92 between position-level KL and BF16 next-token entropy).</li>
+      <li><strong>We confirm the mechanism with a targeted intervention.</strong> A 50-token logit penalty cuts CoT length by 12 to 23% while preserving or improving accuracy. Random and lowest-KL controls do not.</li>
+      <li><strong>We do not claim this is the only effect of PTQ on reasoning models</strong>, nor that the penalty is the right way to deploy quantized models. The penalty is a diagnostic that validates the mechanism. Other effects of quantization on reasoning, and a learned or entropy-adaptive variant of the intervention, are open questions.</li>
+    </ul>
+    <p style="margin-top: 12px; color:#475569; font-size: 14px;">
+      <strong>Caveats.</strong> The set $\mathcal S$ is curated for English reasoning models. The penalty $\lambda$ is fixed per decoding step rather than adapted to local entropy. Our evaluation is restricted to math, coding, and science benchmarks. Whether the same overthinking signature appears in agentic or open-domain reasoning is an open question.
+    </p>
+  </div>
+</section>
+
+<section id="BibTeX" style="padding-top: 6px;">
+  <div class="container is-fluid">
+    <h2 class="title is-4">BibTeX</h2>
+    <pre><code>@article{lotfi2026quantized,
+  title  = {Quantized Reasoning Models Think They Need to Think Longer, but They Do Not},
+  author = {Lotfi, Sanae and Kirichenko, Polina and Li, Steven and Liu, Zechun},
+  year   = {2026},
+}</code></pre>
+  </div>
+</section>
+
+<footer style="background: #fafafa; padding: 1rem 0;">
+  <div class="container is-fluid" style="text-align: center; color:#666; font-size: 12.5px;">
+    Page layout adapted from the
+    <a href="https://infini-ai-lab.github.io/STEM/" target="_blank">STEM project page</a>.
+  </div>
+</footer>
+
+</body>
+</html>
