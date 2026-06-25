@@ -7,16 +7,15 @@ redirect_from:
   - /about.html
 ---
 
-I am a research scientist in the Fundamental AI Research (FAIR) team at Meta, based in Menlo Park, California. I work on the science of deep learning and focus on **understanding the generalization properties of deep neural networks** using notions that relate to generalization such as model compression and loss surface analysis. Using insights about generalization, **my goal is to build efficient, optimized and robust deep learning models.**
+I'm a Research Scientist at Meta FAIR in Menlo Park. I study how to make **language models reason better while using less compute**. My current work focuses on two questions: how can we teach models to reflect on their own reasoning process using RL, and how can we serve capable models efficiently through quantization, compression, and compact architectures.
 
-My research was recognized with an **ICML 2022 Outstanding Paper Award** for my work on _[Bayesian model selection](https://arxiv.org/abs/2202.11678)_ and a **Best Paper Award** at the ICML 2024 Theoretical Foundations Workshop for my work on _[understanding generalization in LLMs through the lens of compression](https://arxiv.org/abs/2407.18158)_. I was recently distinguished as a [Rising Star in EECS](https://risingstars-eecs.mit.edu/) by MIT and a [Rising Star in Machine Learning](https://ml.umd.edu/rising-stars-workshop) by the University of Maryland.
+These questions are grounded in my PhD work at NYU, where I studied generalization through the lens of information theory and compression. I showed that compression is not just a practical tool for efficiency but can also explain when and how deep learning models generalize, producing the first non-vacuous generalization bounds for billion-parameter LLMs.
 
-I completed my PhD at NYU under the supervision of [Andrew Gordon Wilson](https://cims.nyu.edu/~andrewgw/). My PhD research was generously supported by the [Microsoft Research PhD Fellowship](https://nyudatascience.medium.com/cds-students-sanae-lotfi-and-lucius-bynum-receive-the-microsoft-research-phd-fellowship-63ce04660227), the [Google DeepMind Fellowship](https://nyudatascience.medium.com/deepmind-fellow-profile-sanae-lotfi-9197c0c5fb94), and the Meta AI Mentorship Program. During my PhD, I spent time as a research intern at Microsoft Research, Amazon, and Meta, where I worked on efficient LLM merging, input-dependent data augmentation, and distribution shifts in time series.
+My research was recognized with an **ICML 2022 Outstanding Paper Award** for my work on _[Bayesian model selection](https://arxiv.org/abs/2202.11678)_ and a **Best Paper Award** at the ICML 2024 Theoretical Foundations Workshop for my work on _[understanding generalization in LLMs through the lens of compression](https://arxiv.org/abs/2407.18158)_. I was distinguished as a [Rising Star in EECS by MIT](https://risingstars-eecs.mit.edu/participants/sanae-lotfi/ ) and a [Rising Star in Machine Learning](https://www.cs.umd.edu/rising-stars-in-ml-2023 ) by UMD.
 
-Prior to NYU, I worked with [Andrea Lodi](https://tech.cornell.edu/people/andrea-lodi/) and [Dominique Orban](https://dpo.github.io/) at Polytechnique Montreal to design stochastic algorithms with compelling theoretical and empirical properties for large-scale optimization. I received the [Best Master's Thesis Award](https://www.gerad.ca/en/posts/903) for this work.
- 
+I completed my PhD at NYU with [Andrew Gordon Wilson](https://cims.nyu.edu/~andrewgw/ ), supported by the [Microsoft Research PhD Fellowship](https://www.microsoft.com/en-us/research/academic-program/phd-fellowship/ ) and the [Google DeepMind Fellowship](https://www.deepmind.com/scholarships ). Prior to NYU, I worked with [Andrea Lodi](https://tech.cornell.edu/people/andrea-lodi/ ) and [Dominique Orban](https://dpo.github.io/ ) at Polytechnique Montreal on optimization for large-scale machine learning ([Best Master's Thesis Award](https://sanaelotfi.github.io/files/awards/best_thesis_award.pdf )).
+
 **You can contact me at sanaelotfi[at]meta[dot]com**
-
 ________
 
 ### Recent News 
