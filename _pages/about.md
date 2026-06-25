@@ -11,11 +11,12 @@ I'm a Research Scientist at Meta FAIR in Menlo Park. I study how to make **langu
 
 These questions are grounded in my PhD work at NYU, where I studied generalization through the lens of information theory and compression. I showed that compression is not just a practical tool for efficiency but can also explain when and how deep learning models generalize, producing the first non-vacuous generalization bounds for billion-parameter LLMs.
 
-My research was recognized with an **ICML 2022 Outstanding Paper Award** for my work on _[Bayesian model selection](https://arxiv.org/abs/2202.11678)_ and a **Best Paper Award** at the ICML 2024 Theoretical Foundations Workshop for my work on _[understanding generalization in LLMs through the lens of compression](https://arxiv.org/abs/2407.18158)_. I was distinguished as a [Rising Star in EECS by MIT](https://risingstars-eecs.mit.edu/participants/sanae-lotfi/ ) and a [Rising Star in Machine Learning](https://www.cs.umd.edu/rising-stars-in-ml-2023 ) by UMD.
+My research was recognized with an **ICML 2022 Outstanding Paper Award** for my work on _[Bayesian model selection](https://arxiv.org/abs/2202.11678)_ and a **Best Paper Award** at the ICML 2024 Theoretical Foundations Workshop for my work on _[understanding generalization in LLMs through the lens of compression](https://arxiv.org/abs/2407.18158)_. I was distinguished as a [Rising Star in EECS by MIT](https://risingstars-eecs.mit.edu/current-workshop/) and a [Rising Star in Machine Learning](https://ml.umd.edu/rising-stars-previous-winners) by UMD.
 
-I completed my PhD at NYU with [Andrew Gordon Wilson](https://cims.nyu.edu/~andrewgw/ ), supported by the [Microsoft Research PhD Fellowship](https://www.microsoft.com/en-us/research/academic-program/phd-fellowship/ ) and the [Google DeepMind Fellowship](https://www.deepmind.com/scholarships ). Prior to NYU, I worked with [Andrea Lodi](https://tech.cornell.edu/people/andrea-lodi/ ) and [Dominique Orban](https://dpo.github.io/ ) at Polytechnique Montreal on optimization for large-scale machine learning ([Best Master's Thesis Award](https://sanaelotfi.github.io/files/awards/best_thesis_award.pdf )).
+I completed my PhD at NYU with [Andrew Gordon Wilson](https://cims.nyu.edu/~andrewgw/), supported by the [Microsoft Research PhD Fellowship](https://nyudatascience.medium.com/cds-students-sanae-lotfi-and-lucius-bynum-receive-the-microsoft-research-phd-fellowship-63ce04660227) and the [Google DeepMind Fellowship](https://nyudatascience.medium.com/deepmind-fellow-profile-sanae-lotfi-9197c0c5fb94). Prior to NYU, I worked with Andrea Lodi and Dominique Orban at Polytechnique Montreal on optimization for large-scale machine learning. I received the [Best Master's Thesis Award](https://www.gerad.ca/en/posts/903) for this work.
 
 **You can contact me at sanaelotfi[at]meta[dot]com**
+
 ________
 
 ### Recent News 
