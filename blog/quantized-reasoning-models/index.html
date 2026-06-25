@@ -3,12 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="referrer" content="no-referrer-when-downgrade">
-
-  <meta name="description" content="Quantized Reasoning Models Think They Need to Think Longer, but They Do Not. A blog post on what aggressive post-training quantization does to reasoning models, and a targeted decode-time intervention that addresses one specific failure mode.">
+  <meta name="description" content="Quantized Reasoning Models Think They Need to Think Longer, but They Do Not. Under aggressive post training quantization, reasoning models lose accuracy and increase chain-of-thought (CoT) length at the same time, with overthinking errors accounting for up to 52% of failures. A training free logit penalty on 50 overthinking markers shortens CoT length by 4 to 28% across 5 models (1.5B to 32B), 3 quantization methods, and 5 benchmarks, and gives a better accuracy versus reasoning cost Pareto frontier, with up to 58% fewer overthinking errors.">
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://sanaelotfi.github.io/blog/quantized-reasoning-models/"/>
   <meta property="og:title" content="Quantized Reasoning Models Think They Need to Think Longer, but They Do Not"/>
-  <meta property="og:description" content="Aggressive post-training quantization makes reasoning models reach correct intermediate answers and then talk themselves out of them. A simple decode-time intervention addresses this specific failure mode."/>
+  <meta property="og:description" content="A training free logit penalty on overthinking markers shortens CoT length by 4 to 28% under aggressive quantization, and gives a better accuracy versus reasoning cost Pareto frontier, with up to 58% fewer overthinking errors.">
   <meta property="og:image" content="https://sanaelotfi.github.io/blog/quantized-reasoning-models/images/ptq_blog_accuracy.png"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,10 +43,6 @@
     .fig-full img { width:100%; height:auto; border-radius:4px; display:block; }
     .tldr { background:#f7faff; border-left:4px solid #4b6cb7; border-radius:4px; padding:14px 20px; margin:8px 0 4px 0; }
     .tldr p { margin:0; }
-    .note-box { border:2px solid #a57bb3; border-radius:10px; padding:1em 1.2em 0.9em; background:#fefefe; position:relative; margin:2em 0 1.2em; line-height:1.6; }
-    .note-box::before { content:"Scope of this work"; position:absolute; top:-0.95em; left:0; background:#a57bb3; color:#fff; padding:0.2em 0.75em; border-radius:6px; font-weight:700; font-size:0.82em; }
-    .note-box.diagnostic::before { content:"A diagnostic, not a deployment recipe"; }
-    .note-box p { margin:0; }
     .author-block { white-space:nowrap; }
     .eq-box { background:#f7fbff; padding:8px 14px; border-radius:6px; margin:10px 0; }
     .term { font-weight:700; color:#1e3a8a; }
@@ -141,7 +136,7 @@
         Quantized Reasoning Models Think They Need to Think Longer, <em>but They Do Not</em>
       </h1>
       <p style="color:#475569; font-size: 15px; margin-bottom: 0.9rem;">
-        When we compress reasoning models, they find the right answer and then talk themselves out of it.
+        Under aggressive post training quantization, reasoning models lose accuracy and increase chain-of-thought (CoT) length at the same time. We introduce a training free logit penalty on 50 overthinking markers that shortens CoT length by 4 to 28% across 5 models, 3 quantization methods, and 5 benchmarks, with a better accuracy versus reasoning cost Pareto frontier.
       </p>
       <div class="is-size-5 publication-authors">
         <span class="author-block"><a href="https://sanaelotfi.github.io/" target="_blank" rel="noopener">Sanae Lotfi</a><sup>1</sup>,</span>
@@ -166,10 +161,10 @@
   <div class="container is-fluid">
 
     <div class="commit-hero" role="img"
-         aria-label="Animation: three decoders attempt the same MATH-500 problem. All three reach the correct answer 255 at roughly the same token index. Only full-precision and the penalized 3-bit AWQ stop. Unpenalized 3-bit AWQ keeps generating until context limit.">
+         aria-label="Animation: three decoders attempt the same MATH-500 problem. All three reach the correct answer 255 at roughly the same token index. Only full precision and the penalized 3 bit AWQ stop. Unpenalized 3 bit AWQ keeps generating until the context limit.">
 
       <div class="commit-prompt">
-        <code>MATH-500 problem:</code> largest 8-digit base-2 integer, in base 10. Correct answer: <strong>255</strong>.
+        <code>MATH-500 problem:</code> What is the largest eight-digit base 2 integer? Express your answer in base 10. Correct answer: <strong>255</strong>.
       </div>
 
       <div class="commit-track">
@@ -182,7 +177,7 @@
       </div>
 
       <div class="commit-track">
-        <div class="commit-label">3-bit AWQ<span class="sub">no penalty</span></div>
+        <div class="commit-label">3 bit AWQ<span class="sub">no penalty</span></div>
         <div class="commit-bar-wrap">
           <div class="commit-bar awq"></div>
           <div class="commit-tick" style="left: 18%;"></div>
@@ -200,7 +195,7 @@
       </div>
 
       <div class="commit-track">
-        <div class="commit-label">3-bit AWQ<span class="sub">+ penalty</span></div>
+        <div class="commit-label">3 bit AWQ<span class="sub">+ penalty</span></div>
         <div class="commit-bar-wrap">
           <div class="commit-bar pen"></div>
           <div class="commit-tick" style="left: 18%;"></div>
@@ -212,14 +207,14 @@
       </div>
 
       <div class="commit-legend">
-        Green tick: the token index at which the correct answer (255) is first emitted.
-        <span class="swatch"></span>red marks: hesitation tokens sampled after the answer was already reached.
+        Green tick: first occurrence of the correct answer token sequence.
+        <span class="swatch"></span>red marks: overthinking markers sampled after the correct answer was reached.
       </div>
 
     </div>
 
     <p style="text-align:center; color:#475569; font-size: 13px; margin-top: 12px; max-width: 900px; margin-left:auto; margin-right:auto;">
-      <strong>Figure 1.</strong> Schematic. Bar widths are proportional to mean MATH-500 chain length on DeepSeek-R1-Distill-Qwen-1.5B (BF16: 5.2K, 3-bit AWQ: 23.4K, +Penalty: 12.9K tokens). The tick position is illustrative; the paper does not measure per-position answer-emission times. See the inline animation in the next section for token-level traces.
+      <strong>Figure 1. Quantization amplifies overthinking, and a logit penalty on overthinking markers fixes it without retraining.</strong> A quantized reasoning model can reach a correct intermediate answer, self-doubt, open a new reasoning branch, and never produce the final response. We apply a logit penalty to overthinking markers like &ldquo;but&rdquo; and &ldquo;wait&rdquo;. The penalty shifts the accuracy versus reasoning cost Pareto frontier in every configuration we test, with accuracy preserved or improved on average. Bar widths are proportional to mean MATH-500 CoT length on DeepSeek-R1-Distill-Qwen-1.5B (BF16: 5.2K, 3 bit AWQ: 23.4K, +Penalty: 12.9K tokens).
     </p>
 
   </div>
@@ -230,7 +225,7 @@
     <div class="tldr">
       <p>
         <strong style="color:#0f598a;">TL;DR.</strong>
-        Post-training quantization (PTQ) makes reasoning models more compact and faster to deploy. It also produces, in our experiments, much longer chains of thought and lower accuracy on reasoning benchmarks. We perform a token-level analysis to identify one mechanism behind both effects, which we call <span class="term">overthinking</span>: the quantized model reaches the correct answer in an intermediate reasoning step, then opens new branches, second-guesses itself, and never commits. Token-level KL divergence between the full-precision and quantized models concentrates on hesitation tokens (&ldquo;Wait&rdquo;, &ldquo;But&rdquo;, &ldquo;Alternatively&rdquo;), at the decoding positions where the full-precision model was already uncertain. A simple decode-time penalty on a curated set of 50 hesitation tokens shortens chains by 12 to 23% on average across models and benchmarks, while preserving or improving accuracy. We do not claim overthinking is the only effect of PTQ on reasoning models. We claim it is a specific, measurable, and addressable one.
+        Post training quantization (PTQ) is the standard way to deploy large language models efficiently, but its effect on reasoning models is poorly understood. Across math, coding, and science QA, we find that aggressive PTQ reduces accuracy <em>and</em> increases chain-of-thought (CoT) length, and the two move together (Spearman $\rho = -0.73$ across 28 model and quantization pairs). In up to 52% of quantized model failures, the model reaches the correct answer mid reasoning and then talks itself out of it. To understand why, we measure the token level KL divergence between the quantized and full precision output distributions: quantization most affects overthinking markers (&ldquo;wait&rdquo;, &ldquo;but&rdquo;, &ldquo;alternatively&rdquo;) at high entropy positions, while mathematical tokens are nearly unchanged. We use this to build a training free logit penalty on 50 curated overthinking markers. The penalty shortens CoT length in every one of the 5 models (1.5B to 32B) $\times$ 3 quantization methods $\times$ 5 benchmarks we test, by 4 to 28% on average, and gives the best accuracy versus reasoning cost Pareto frontier we observe. Accuracy is preserved or improved, with up to 58% fewer overthinking errors on AWQ 3 bit. The same penalty also reduces BF16 CoT length by 5.6 to 10.0%: quantization amplifies a failure mode that is already present in full precision reasoning models rather than introducing a new one.
       </p>
     </div>
   </div>
@@ -238,22 +233,22 @@
 
 <section>
   <div class="container is-fluid">
-    <h2 class="title is-3">What we observe under aggressive PTQ</h2>
+    <h2 class="title is-3">Accuracy drops while CoT length increases under PTQ</h2>
     <p>
-      We evaluate five reasoning models (DeepSeek-R1-Distill-Qwen 1.5B, 7B, 14B, DeepSeek-R1-Distill-Llama 8B, and QwQ-32B), three PTQ methods (GPTQ, AWQ, FlatQuant), and five benchmarks (AIME-120, MATH-500, GSM8K, GPQA-Diamond, LiveCodeBench). Mild quantization is essentially free. Once we push to 3-bit weights or W4A4KV4, accuracy drops and chains of thought grow at the same time. The figure below shows the effect for one model, three methods, on MATH-500, and how a simple decode-time penalty restores most of the lost accuracy and shortens chains substantially.
+      We evaluate five reasoning specialized models spanning 1.5B to 32B parameters (DeepSeek-R1-Distill-Qwen 1.5B, 7B, 14B, DeepSeek-R1-Distill-Llama 8B, and QwQ-32B), three PTQ methods (GPTQ, AWQ, FlatQuant), and five benchmarks across mathematics, coding, and science (AIME-120, MATH-500, GSM8K, GPQA-Diamond, LiveCodeBench). Mild quantization (FlatQuant W8A8KV8, 4 bit weight only AWQ and GPTQ) is largely benign: accuracy and CoT length both stay close to the BF16 baseline. As precision drops further, accuracy and reasoning efficiency degrade together. The figure below shows this for DeepSeek-R1-Distill-Qwen-1.5B on MATH-500, and how the overthinking penalty shifts the accuracy versus reasoning cost tradeoff.
     </p>
 
     <div class="fig-row" style="margin-top:12px;">
-      <div class="fig-card"><img src="images/ptq_blog_accuracy.png" alt="MATH-500 accuracy: BF16, FlatQuant W4A4, AWQ 3-bit, before and after the overthinking penalty"></div>
-      <div class="fig-card"><img src="images/ptq_blog_length.png" alt="MATH-500 chain length: BF16, FlatQuant W4A4, AWQ 3-bit, before and after the overthinking penalty"></div>
+      <div class="fig-card"><img src="images/ptq_blog_accuracy.png" alt="MATH-500 accuracy: BF16, FlatQuant W4A4, AWQ 3 bit, before and after the overthinking penalty"></div>
+      <div class="fig-card"><img src="images/ptq_blog_length.png" alt="MATH-500 CoT length: BF16, FlatQuant W4A4, AWQ 3 bit, before and after the overthinking penalty"></div>
     </div>
     <p style="text-align:center; color:#475569; font-size: 13.5px; margin-top: 8px; max-width: 900px; margin-left:auto; margin-right:auto;">
-      <strong>Figure 2.</strong> DeepSeek-R1-Distill-Qwen-1.5B on MATH-500. Gray bars: no penalty. Green bars: with the overthinking penalty (best $\lambda$ per configuration). 3-bit AWQ drops accuracy from <strong>85.6% to 47.0%</strong> and inflates CoT from <strong>5.2K to 23.4K tokens</strong>. The penalty recovers <strong>14.2 points of accuracy</strong> and cuts CoT length by <strong>45%</strong>. Full per-model, per-benchmark results in Section 4 of the paper.
+      <strong>Figure 2. Quantized reasoning models produce longer CoT while achieving lower accuracy.</strong> DeepSeek-R1-Distill-Qwen-1.5B on MATH-500. Gray bars: no penalty. Green bars: with the overthinking penalty (best $\lambda$ per configuration). 3 bit AWQ reduces accuracy from <strong>85.6% to 47.0%</strong> while increasing the average CoT from <strong>5.2K to 23.4K tokens</strong>, a <strong>4.5&times;</strong> increase. The penalty improves accuracy by <strong>14.2 points</strong> and reduces CoT length by <strong>45%</strong>. Full model and benchmark results are in Section 4 of the paper.
     </p>
 
-    <h3 class="title is-5" style="margin-top:22px;">What this looks like at the token level</h3>
+    <h3 class="title is-5" style="margin-top:22px;">A qualitative example from MATH-500</h3>
     <p style="color:#475569;">
-      Below, three decoders run the same MATH-500 problem (excerpts from real traces). All three reach <em>Answer: 255</em>. Only two stop near it.
+      The three generations below illustrate the overthinking failure mode. The BF16 model follows a concise solution. The 3 bit quantized model reaches the correct intermediate result, then samples repeated overthinking markers such as &ldquo;wait&rdquo; and &ldquo;but&rdquo;, which open alternative reasoning paths and delay termination. The penalized model reduces the probability of those tokens and terminates after reaching the answer. All three reach <em>Answer: 255</em>; only two commit to it.
     </p>
 
     <div class="stream-row">
@@ -267,8 +262,8 @@
       </div>
 
       <div class="stream-panel awq">
-        <h4>3-bit AWQ</h4>
-        <div class="meta">~23.4K tokens, hits max length</div>
+        <h4>3 bit AWQ</h4>
+        <div class="meta">~23.4K tokens, reaches context limit</div>
         <div class="stream-text">
           <span class="seg">Let x = 2^8 - 1 = 256 - 1<br><span class="answer">Answer: 255</span>.<br><span class="marker">Wait,</span> maybe 11111111 is 8 bits, so 2^8 means 256... no, it's 255.<br><span class="marker">But</span> what if the phrasing means 2^9-1?<br><span class="marker">Alternatively,</span> 0s and 1s could be...<br><span class="marker">Hmm,</span> let me reconsider. 11111111 binary is 128+64+32+16+8+4+2+1 = 255. So actually... </span><span class="cursor"></span>
         </div>
@@ -276,7 +271,7 @@
       </div>
 
       <div class="stream-panel pen">
-        <h4>3-bit AWQ + penalty</h4>
+        <h4>3 bit AWQ + penalty</h4>
         <div class="meta">~12.9K tokens, terminates</div>
         <div class="stream-text">
           <span class="seg">Let x = 2^8 - 1<br>= 256 - 1<br><span class="answer">Answer: 255</span>.<br><span class="cut">Wait, maybe</span> <span class="scissors">✂</span><br><span class="cut">But what if</span> <span class="scissors">✂</span><br><span class="cut">Alternatively</span> <span class="scissors">✂</span><br>&lt;done&gt;</span><span class="cursor" style="display:none"></span>
@@ -286,12 +281,12 @@
     </div>
 
     <p style="color:#475569; font-size:12.5px; text-align:center; margin-top:-6px;">
-      Excerpts from MATH-500 traces. Hesitation markers in red. The penalty suppresses their logits, so they fail to win the argmax and the model commits.
+      Excerpts from MATH-500 traces. Overthinking markers are shown in red. The penalty subtracts a fixed value from the logits of these tokens at every decoding step, reducing the probability that the model opens a new reasoning branch after it has already reached the answer.
     </p>
 
     <div class="accent-box slate">
       <p style="margin:0;">
-        Across all 28 model and quantization pairs, the Spearman correlation between accuracy loss and CoT length increase is <strong>&rho; = -0.73</strong>. The models that lose the most accuracy also generate the longest chains. This is suggestive but not diagnostic on its own. Longer chains could be a symptom of degraded capability, or they could actively cause the degradation. To distinguish these, we look at the errors directly.
+        Across all 28 model and quantization pairs, the Spearman correlation between accuracy degradation and CoT length increase is <strong>&rho; = -0.73</strong>. The models that lose the most accuracy are the same ones that produce the longest reasoning traces. PTQ reduces accuracy and increases CoT length at the same time, which suggests that the extra reasoning is part of how quantization hurts accuracy and not just a side effect of it.
       </p>
     </div>
   </div>
@@ -299,27 +294,20 @@
 
 <section style="background:#fafbfc;">
   <div class="container is-fluid">
-    <h2 class="title is-3">An error analysis isolates overthinking</h2>
+    <h2 class="title is-3">Quantization increases overthinking errors</h2>
     <p>
-      We define an <span class="term">overthinking error</span> as a failure where the model reaches the correct answer at some point in its chain of thought, then opens new reasoning paths, questions its own assumptions, or reverses the correct conclusion before producing a final answer. We annotated a subset of MATH-500 failures by hand and used GPT-5 (calibrated to over 95% agreement with our annotation) to scale labels into four buckets: <strong>overthinking</strong>, <strong>logical error</strong> (wrong plan from the start), <strong>arithmetic error</strong> (right plan, wrong computation), and <strong>formatting / hallucination / other</strong>.
+      To see <em>which</em> errors quantization amplifies, we categorize incorrect answers from DeepSeek-R1-Distill-Qwen-1.5B on MATH-500. We first annotate a subset of errors manually, then use GPT-5 as a judge to scale the categorization, tuning the prompt to reach over 95% agreement with human annotation. We assign each failure to exactly one of: (i) <strong>Overthinking</strong>: the model reaches the correct solution at some point in its chain-of-thought but does not commit to it as the final answer. Instead, the model opens new reasoning paths, excessively questions its own assumptions, or reverses a correct conclusion. (ii) <strong>Logical error</strong>: the model follows an incorrect plan or misunderstands the problem from early on, such that the reasoning trajectory is wrong before any correct solution is reached. (iii) <strong>Arithmetic error</strong>: the overall approach and plan are correct, but the model makes concrete computational mistakes that lead to a wrong final answer. (iv) <strong>Formatting, hallucination, and other errors</strong>: off format answers, hallucinated constraints, or other failures not covered above.
     </p>
 
     <div class="fig-full">
-      <img src="images/error_breakdown_blog.png" alt="MATH-500 error breakdown across BF16, FlatQuant W4A4, and AWQ 3-bit, before and after the overthinking penalty">
+      <img src="images/error_breakdown_blog.png" alt="MATH-500 error breakdown across BF16, FlatQuant W4A4, and AWQ 3 bit, before and after the overthinking penalty">
     </div>
     <p style="text-align:center; color:#475569; font-size: 13.5px; margin-top: 8px; max-width: 900px; margin-left:auto; margin-right:auto;">
-      <strong>Figure 3.</strong> Error breakdown on MATH-500 for DeepSeek-R1-Distill-Qwen-1.5B. Before the penalty, overthinking errors balloon under quantization: 19 (BF16) &rarr; 64 (FlatQuant) &rarr; <strong>139 (AWQ 3-bit)</strong>. After the penalty, overthinking drops to 13 / 34 / 58 respectively. The penalty reduces overthinking errors most dramatically for the most aggressive quantization (a 58% drop for AWQ 3-bit), while leaving logical and arithmetic errors roughly unchanged.
+      <strong>Figure 3. Quantization increases overthinking errors, and penalizing overthinking markers reduces them.</strong> Error breakdown on MATH-500 for DeepSeek-R1-Distill-Qwen-1.5B. Before the penalty, overthinking errors increase sharply under quantization: 19 (BF16) &rarr; 64 (FlatQuant W4A4KV4) &rarr; <strong>139 (AWQ 3 bit)</strong>. Under 3 bit AWQ, overthinking becomes the dominant failure mode at 52% of all 265 errors, a <strong>7.3&times;</strong> increase in absolute count over BF16. Penalizing overthinking markers and high KL tokens consistently reduces overthinking errors by up to 58% on AWQ 3 bit while improving accuracy by up to 14.2%. Penalizing random or low KL tokens does not reduce overthinking errors and can even increase such errors.
     </p>
-
     <div class="accent-box amber">
       <p style="margin:0;">
-        The error categories do not grow in proportion. Overthinking errors inflate disproportionately under quantization. Arithmetic and logical errors stay roughly flat in absolute count. The longer chains under PTQ are not just slower correct reasoning. They contain qualitatively different failures, in which the answer was reached and then abandoned.
-      </p>
-    </div>
-    <div class="note-box">
-      <p>
-        <strong>What we claim and what we do not.</strong>
-        Overthinking is one effect of PTQ on reasoning models, isolated through our error analysis. Quantization may degrade reasoning in other ways we do not measure here (changes to retrieval, attention behavior, calibration on harder problems). The contribution of this work is to identify this one mode, characterize its token-level signature, and show that it can be addressed with a targeted decode-time intervention. Other errors are not addressed by our method.
+        The longer reasoning traces produced by quantized models are not slower correct reasoning. They contain excessive hesitation and self-doubt that actively turns correct intermediate answers into incorrect final answers, while the other error categories grow much less. Quantization can also hurt reasoning in other ways tied to capability loss, but we focus on overthinking because, like PTQ itself, we can address it entirely at inference time, with no training and no computational overhead.
       </p>
     </div>
   </div>
@@ -327,57 +315,55 @@
 
 <section>
   <div class="container is-fluid">
-    <h2 class="title is-3">Where the quantized and full-precision models diverge</h2>
+    <h2 class="title is-3">Quantized models diverge from full precision ones at branching positions</h2>
     <p>
-      To localize the source of the overthinking errors, we run BF16 and 3-bit AWQ on the same MATH-500 prompts under identical generation prefixes and measure per-position <span class="term">KL divergence</span> $D_{\mathrm{KL}}(p_t \,\|\, q_t)$ between the BF16 and quantized next-token distributions. KL divergence is a standard measure of how much one distribution differs from another. A large KL at position $t$ means the two models disagree sharply about what to say next at that position. We then associate each KL value with the token the quantized model actually sampled, and average across all positions where each unique token appears (with a minimum count of 50).
+      To understand <em>how</em> quantization increases overthinking errors, we measure token level KL divergence between the output distributions of the BF16 and 3 bit AWQ models. We treat the full precision model as a reference and run both models on the same MATH-500 prompts under identical generation prefixes to isolate the effects of quantization. At each decoding position $t$, we compute the <span class="term">KL divergence</span> $D_{\mathrm{KL}}(p_t \,\|\, q_t) = \sum_{v \in \mathcal V} p_t(v) \log \frac{p_t(v)}{q_t(v)}$, where $p_t$ and $q_t$ are the next token distributions of the full precision and quantized models. A large KL at position $t$ means the two models disagree sharply about what to say next. We then associate each KL value with the token the quantized model sampled at that position and compute, for each unique token in the vocabulary, its average KL across all positions where it was sampled, filtering to tokens appearing at least 50 times.
     </p>
     <div class="accent-box purple">
       <p style="margin:0;">
-        <strong>What we mean by a high-entropy position.</strong> At a <span class="term">high-entropy position</span>, the full-precision model spreads probability across many roughly comparable next-token candidates rather than concentrating it on one. The model has not made up its mind about what to say next. Low-entropy positions are the opposite: one token (a digit, an operator, the next step of an arithmetic chain) dominates and the rest of the distribution is essentially zero. This distinction matters because, as we show below, quantization disrupts the two kinds of positions very differently.
+        <strong>What we mean by a high entropy position.</strong> At a <span class="term">high entropy position</span>, the full precision model spreads probability across many roughly comparable next token candidates rather than concentrating it on one. Low entropy positions are the opposite: one token, such as a digit, operator, or the next step of an arithmetic chain, dominates the distribution. This distinction matters because quantization most affects positions where the reference model is already locally uncertain, with a small logit margin.
       </p>
     </div>
     <div class="fig-row">
       <div class="fig-card">
-        <img src="images/kl_highest_tokens.png" alt="Top 20 tokens with the highest KL divergence between BF16 and 3-bit AWQ; these are hesitation and branching tokens">
-        <figcaption><em>Highest-KL tokens are hesitation and branching tokens.</em></figcaption>
+        <img src="images/kl_highest_tokens.png" alt="Top 20 tokens with the highest KL divergence between BF16 and 3 bit AWQ; these are overthinking markers">
+        <figcaption><em>Highest KL tokens are overthinking markers.</em></figcaption>
       </div>
       <div class="fig-card">
         <img src="images/kl_lowest_tokens.png" alt="Top 20 tokens with the lowest KL divergence; these are mathematical and formatting tokens, all with KL well under 0.02">
-        <figcaption><em>Lowest-KL tokens are mathematical and formatting tokens. Note the x-axis only reaches 0.06.</em></figcaption>
+        <figcaption><em>Lowest KL tokens are mathematical and formatting tokens. Note the x axis only reaches 0.06.</em></figcaption>
       </div>
       <div class="fig-card">
-        <img src="images/scatter_kl_vs_entropy.png" alt="Per-position KL divergence vs. BF16 next-token entropy; correlation rho = 0.92">
-        <figcaption><em>Position-level KL vs. BF16 next-token entropy. Spearman &rho; = 0.92.</em></figcaption>
+        <img src="images/scatter_kl_vs_entropy.png" alt="Position level KL divergence vs. BF16 next token entropy; correlation rho = 0.92">
+        <figcaption><em>Position level KL vs. BF16 next token entropy. Spearman &rho; = 0.92.</em></figcaption>
       </div>
     </div>
-    <h3 class="title is-5">Three observations</h3>
+    <h3 class="title is-5">Quantization disproportionately affects overthinking markers at high entropy positions</h3>
     <ul>
-      <li><strong>The highest-KL tokens are hesitation or branching tokens</strong> (&ldquo;Wait&rdquo;, &ldquo;But&rdquo;, &ldquo;Alternatively&rdquo;, &ldquo;maybe&rdquo;, &ldquo;verify&rdquo;, &ldquo;think&rdquo;). Many of them open new reasoning paths or express doubt.</li>
-      <li><strong>The lowest-KL tokens are mathematical and formatting tokens.</strong> Quantization barely changes how the model samples digits, operators, or LaTeX markup. Note the x-axis range: low-KL values are nearly 100&times; smaller than the high-KL ones (the largest low-KL value is around 0.015, while the largest high-KL value is around 1.30).</li>
-      <li><strong>Position-level KL tracks BF16 next-token entropy</strong> at Spearman &rho; = 0.92. Quantization noise has the most leverage at high-entropy positions, where the BF16 model is already uncertain.</li>
+      <li><strong>The tokens where the quantized and full precision models diverge the most are overthinking markers</strong> such as &ldquo;Wait&rdquo;, &ldquo;But&rdquo;, &ldquo;Alternatively&rdquo;, &ldquo;if&rdquo;, &ldquo;maybe&rdquo;, &ldquo;verify&rdquo;, &ldquo;think&rdquo;. Many of these open a new reasoning path and signal the model's hesitation.</li>
+      <li><strong>The tokens where the two models agree most closely are mathematical and formatting tokens.</strong> Quantization barely changes how the model samples these execution tokens. Note the x axis range: low KL values are nearly 100&times; smaller than high KL values (the largest low KL value is around 0.015, while the largest high KL value is around 1.30).</li>
+      <li><strong>Position level KL divergence correlates strongly with the BF16 model's next token entropy</strong> (Spearman &rho; = 0.92), confirming that quantization most affects positions where the model is already uncertain.</li>
     </ul>
     <p>
-      Two things happen at once at high-entropy positions. First, the logit gap between the top token and a hesitation token like &ldquo;Wait&rdquo; is small, so a modest perturbation to the logits can flip which token is sampled. Second, hesitation tokens are 2 to 4&times; more likely to appear among the top-20 candidates at high-entropy positions than at low-entropy ones (see Section 6 of the paper for the per-bin breakdown). Quantization noise has its largest effect exactly at these uncertain positions, so the quantized model is more likely to sample a &ldquo;Wait&rdquo; or &ldquo;But&rdquo;, open a new reasoning branch, and overwrite the answer it had already found.
+      Two things happen at once at high entropy positions. First, the logit gap between the top token and an overthinking marker like &ldquo;Wait&rdquo; is small, so even a moderate perturbation to the logits can flip which token is sampled. Second, overthinking markers are 2 to 4&times; more likely to appear among the top 20 most probable tokens at high entropy positions than at low entropy ones. Because these positions are inherently uncertain, quantization noise has a larger effect on the output distribution, and we are more likely to see the quantized model sample a &ldquo;Wait&rdquo; or &ldquo;But&rdquo;, open a new reasoning branch, and overwrite the correct intermediate answer it had already found.
+    </p>
+    <p>
+      We also compute the density of high KL and low KL tokens relative to total CoT length. In BF16, low KL math tokens appear at a higher rate than high KL overthinking markers (ratio 0.57). Under 3 bit AWQ, this ratio flips to <strong>1.15</strong>: high KL tokens outnumber low KL tokens, so the quantized model produces more overthinking markers per unit of reasoning than mathematical content. This shift in token composition is how quantization leads to less efficient reasoning.
     </p>
   </div>
 </section>
 
 <section style="background:#fafbfc;">
   <div class="container is-fluid">
-    <h2 class="title is-3">Confirming the mechanism with a targeted intervention</h2>
+    <h2 class="title is-3">Penalizing overthinking markers</h2>
     <p>
-      If hesitation tokens at high-entropy positions really drive the overthinking errors, suppressing them at decode time should shorten chains, shrink the overthinking error bucket specifically, and leave the other error categories alone. We curate a set $\mathcal S$ of 50 overthinking markers (&ldquo;Wait&rdquo;, &ldquo;But&rdquo;, &ldquo;Alternatively&rdquo;, &ldquo;perhaps&rdquo;, &ldquo;maybe&rdquo;, &ldquo;however&rdquo;, &ldquo;reconsider&rdquo;, &ldquo;backtrack&rdquo;, &ldquo;wrong&rdquo;, ...; the full list is in the paper) and subtract a fixed penalty $\lambda &gt; 0$ from their logits at every decoding step:
+      The analysis above shows that quantization disproportionately affects overthinking markers, while leaving mathematical tokens largely unchanged. We now use this to build an inference time intervention that reduces the probability of these markers during decoding. We curate a set $\mathcal S$ of 50 <em>overthinking markers</em>: tokens that signal hesitation, self-doubt, or a switch to a new reasoning branch (&ldquo;Wait&rdquo;, &ldquo;But&rdquo;, &ldquo;Alternatively&rdquo;, &ldquo;perhaps&rdquo;, &ldquo;maybe&rdquo;, &ldquo;however&rdquo;, &ldquo;reconsider&rdquo;, &ldquo;backtrack&rdquo;, &ldquo;wrong&rdquo;, &hellip;; the full list is in the paper). At each decoding step $t$, we modify the logits $z_t(v)$ for each token $v \in \mathcal S$ by subtracting a fixed penalty $\lambda > 0$:
     </p>
     <div class="eq-box">
       $$ z'_t(v) = z_t(v) - \lambda \;\;\text{if}\;\; v \in \mathcal S, \quad z'_t(v) = z_t(v) \;\;\text{otherwise.} $$
     </div>
-    <div class="note-box diagnostic">
-      <p>
-        We use this penalty as a diagnostic for the mechanism we identified, not as a proposed inference method. If the diagnosis is right, suppressing exactly these tokens should produce a specific, predictable change in the overthinking error count. Suppressing other token lists (random tokens, lowest-KL math tokens) should produce nothing or the opposite. Both controls are run below.
-      </p>
-    </div>
-    <p style="margin-top: 18px;">
-      We sweep $\lambda \in [0.5, 4.0]$ over four token lists of equal size (50 tokens each): our overthinking markers, the 50 highest-KL tokens, the 50 lowest-KL tokens, and 50 randomly selected tokens. Results are averaged over six quantization configurations and five benchmarks on Qwen-1.5B. We focus on chain-of-thought length and the efficiency&ndash;accuracy Pareto frontier. Accuracy is preserved or improved on average across this sweep.
+    <p>
+      The penalty adds zero computational overhead and has a single hyperparameter $\lambda$. To check that the effect is specific to overthinking markers and not a generic artifact of touching the logits, we run controlled ablations with three other token lists of the same size (50 tokens each): the 50 highest KL tokens between BF16 and 3 bit AWQ, the 50 lowest KL tokens, and 50 randomly selected tokens. We apply the logit penalty to each list on Qwen-1.5B across six quantization configurations and five benchmarks, sweeping $\lambda$ from 0.5 to 4.0.
     </p>
     <div class="fig-row">
       <div class="fig-card">
@@ -385,44 +371,46 @@
         <figcaption><em>Positive penalty: shortens CoT.</em></figcaption>
       </div>
       <div class="fig-card">
-        <img src="images/neg_sweep_len_new.png" alt="CoT length vs. negative penalty strength (boosting hesitation tokens)">
-        <figcaption><em>Negative penalty: inflates CoT (sanity check on direction).</em></figcaption>
+        <img src="images/neg_sweep_len_new.png" alt="CoT length vs. negative penalty strength (boosting overthinking markers)">
+        <figcaption><em>Negative penalty: increases CoT (directionality check).</em></figcaption>
       </div>
       <div class="fig-card">
         <img src="images/ablation_pareto.png" alt="Accuracy vs. length Pareto frontier across all penalty strengths">
-        <figcaption><em>Pareto frontier: overthinking markers occupy the upper-left.</em></figcaption>
+        <figcaption><em>Pareto frontier: overthinking markers occupy the upper left.</em></figcaption>
       </div>
     </div>
     <div class="accent-box green">
-      <p style="margin:0;"><strong>Overthinking markers.</strong> Shorten CoT by 12 to 23% at every $\lambda$ we tried. The list occupies the upper-left of the Pareto frontier across all $\lambda$ values. Accuracy is preserved or improved on average.</p>
+      <p style="margin:0;"><strong>Overthinking markers.</strong> Shorten CoT by 12 to 23% at every $\lambda$, with accuracy preserved or slightly improved. The list occupies the upper left region of the Pareto frontier for all $\lambda$ values, the best accuracy versus reasoning cost tradeoff among the four lists.</p>
     </div>
     <div class="accent-box slate">
-      <p style="margin:0;"><strong>Random tokens.</strong> Negligible effect on CoT length or accuracy. The configuration stays near the no-penalty baseline.</p>
+      <p style="margin:0;"><strong>Random tokens.</strong> Near zero effect on both accuracy and CoT length: the configuration stays on top of the no-penalty baseline. Suppressing arbitrary tokens does nothing on its own.</p>
     </div>
     <div class="accent-box amber">
-      <p style="margin:0;"><strong>Lowest-KL math tokens.</strong> CoT grows by up to 41% and accuracy drops by up to 9.5%. Suppressing the tokens that compute the answer hurts reasoning, as expected.</p>
+      <p style="margin:0;"><strong>Lowest KL math tokens.</strong> Catastrophic in the opposite direction: CoT grows by up to 41% and accuracy drops by up to 9.5%. These are the tokens that carry the computational content of reasoning, and they are not the ones responsible for the post-quantization degradation.</p>
     </div>
     <hr class="subtle">
     <p>
-      A symmetric sanity check (middle figure above): <em>boosting</em> the same overthinking markers with a negative $\lambda$ inflates CoT by up to 445% and drops accuracy by up to 34%. Random and lowest-KL tokens stay flat under boosting. The lever points in both directions when we expect it to, which closes the loop on the mechanism: the markers we identified are exactly the tokens that control reasoning length, and they control it monotonically in both directions.
+      A symmetric directionality check (middle figure above): <em>boosting</em> the same overthinking markers with a negative $\lambda$ increases CoT by up to 445% and drops accuracy by up to 34%. High KL tokens behave similarly; random and lowest KL tokens stay nearly neutral under boosting. Overthinking markers and high KL tokens control reasoning length in both directions.
     </p>
     <p>
-      The effect generalizes. Across all five models and all PTQ settings, the penalty reduces CoT length by 4.1 to 28.0% on average, with accuracy preserved or improved. The Pareto frontier shifts toward shorter chains in every configuration we tested. The overthinking error bucket on MATH-500 under 3-bit AWQ drops from 139 to 58 without inflating the other error categories, confirming the bucket the penalty was designed to target. The same intervention shortens chains in full-precision models by 5.6 to 10.0% as well, so overthinking is a tendency already present in reasoning models that quantization amplifies.
+      <strong>The effect generalizes.</strong> Across all 5 models and all PTQ settings, the penalty shortens CoT length by 4.1 to 28.0% on average and shifts the Pareto frontier toward shorter CoT in every configuration we tested. On MATH-500 under 3 bit AWQ, overthinking errors drop from 139 to 58 (a 58% reduction) without increasing the other error categories: the accuracy gains we observe in some configurations come from this drop in overthinking errors specifically, not from a generic boost in capability. In a small number of configurations accuracy moves slightly in either direction, but CoT length always shrinks, so the Pareto frontier moves in the right direction at every $\lambda$.
+    </p>
+    <p>
+      The same penalty also reduces CoT length in full precision models by 5.6 to 10.0% depending on the model. Overthinking is a tendency already present in BF16 reasoning models; quantization amplifies it, and the same lightweight intervention helps in both regimes.
     </p>
   </div>
 </section>
 
 <section>
   <div class="container is-fluid">
-    <h2 class="title is-3">What we show, and what we do not</h2>
+    <h2 class="title is-3">Contributions</h2>
     <ul>
-      <li><strong>We characterize one specific way PTQ degrades reasoning models.</strong> Overthinking errors (correct answer reached, not committed) inflate up to 7.3&times; in absolute count on MATH-500 under 3-bit AWQ. Other error categories grow much less.</li>
-      <li><strong>We localize the damage at the token level.</strong> KL divergence between BF16 and quantized output distributions concentrates on hesitation tokens at high-entropy positions (&rho; = 0.92 between position-level KL and BF16 next-token entropy).</li>
-      <li><strong>We confirm the mechanism with a targeted intervention.</strong> A 50-token logit penalty cuts CoT length by 12 to 23% while preserving or improving accuracy. Random and lowest-KL controls do not.</li>
-      <li><strong>We do not claim this is the only effect of PTQ on reasoning models</strong>, nor that the penalty is the right way to deploy quantized models. The penalty is a diagnostic that validates the mechanism. Other effects of quantization on reasoning, and a learned or entropy-adaptive variant of the intervention, are open questions.</li>
+      <li><strong>We show that PTQ exacerbates overthinking in reasoning models.</strong> In up to 52% of failures under aggressive quantization, the model reaches the correct answer in intermediate steps but fails to commit to it. Overthinking errors increase up to <strong>7.3&times;</strong> in absolute count on MATH-500 under 3 bit AWQ, while other error categories grow much less. Quantization does not introduce overthinking as a new failure mode but rather amplifies a tendency already present in BF16 reasoning models: the same penalty reduces BF16 CoT length by 5.6 to 10.0%.</li>
+      <li><strong>We identify which tokens drive this failure through a KL divergence analysis between the quantized and full precision output distributions.</strong> Among the tokens with the highest divergence are overthinking markers that concentrate at high entropy positions. The tokens with the lowest divergence are mathematical tokens that carry the computational content of reasoning. Position level KL correlates with BF16 next token entropy at Spearman $\rho = 0.92$.</li>
+      <li><strong>We introduce a very simple yet effective logit penalty on a curated set of 50 overthinking markers.</strong> The penalty is training free, adds no computational overhead, and consistently reduces CoT length across 5 models (1.5B to 32B) $\times$ 3 quantization methods $\times$ 5 benchmarks, by 4 to 28% on average. We see accuracy preserved or improved, with the gains coming from up to 58% fewer overthinking errors on AWQ 3 bit. Controlled ablations confirm that penalizing overthinking markers yields the most favorable Pareto frontier of accuracy against reasoning cost: penalizing random tokens does nothing, and penalizing the lowest KL math tokens is catastrophic (CoT $+41\%$, accuracy $-9.5\%$).</li>
     </ul>
     <p style="margin-top: 12px; color:#475569; font-size: 14px;">
-      <strong>Caveats.</strong> The set $\mathcal S$ is curated for English reasoning models. The penalty $\lambda$ is fixed per decoding step rather than adapted to local entropy. Our evaluation is restricted to math, coding, and science benchmarks. Whether the same overthinking signature appears in agentic or open-domain reasoning is an open question.
+      <strong>Limitations and future work.</strong> Our penalty uses a fixed $\lambda$ at every decoding step; adapting $\lambda$ to local entropy is a natural extension. The overthinking markers list $\mathcal S$ is curated for English reasoning models, and we expect automatic per-model construction to make the approach more portable. Our evaluation covers math, coding, and science; whether the same signature appears in agentic or open domain reasoning is an open question. More broadly, our KL divergence analysis is not specific to quantization: any perturbation to a model's weights or activations (pruning, distillation, low rank approximation) may behave similarly at uncertain positions, so the same diagnostic could apply more broadly.
     </p>
   </div>
 </section>
@@ -431,9 +419,10 @@
   <div class="container is-fluid">
     <h2 class="title is-4">BibTeX</h2>
     <pre><code>@article{lotfi2026quantized,
-  title  = {Quantized Reasoning Models Think They Need to Think Longer, but They Do Not},
-  author = {Lotfi, Sanae and Kirichenko, Polina and Li, Steven and Liu, Zechun},
-  year   = {2026},
+  title={Quantized Reasoning Models Think They Need to Think Longer, but They Do Not},
+  author={Lotfi, Sanae and Kirichenko, Polina and Li, Steven and Liu, Zechun},
+  journal={arXiv preprint arXiv:2606.00206},
+  year={2026}
 }</code></pre>
   </div>
 </section>
